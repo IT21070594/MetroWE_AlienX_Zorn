@@ -1,0 +1,54 @@
+<resources>
+    <string name="app_name">Uploads</string>
+    <string name="albumBtn">Album</string>
+    <string name="songsBtn">Songs</string>
+    <string name="searchBar">Search songs</string>
+    <string name="uploadNewBtn">Upload new song</string>
+    <string name="lonely">Lonely</string>
+    <string name="HomeBtn">Home</string>
+    <string name="MyLibraryBtn">MyLibrary</string>
+    <string name="upgradeBtn">Upgrade</string>
+    <string name="uploadBtn">Uploads</string>
+    <string name="createNewBtn">Create New Album</string>
+    <string name="sorry">Sorry</string>
+    <string name="alone">Alone</string>
+    <string name="worldOfWalker">World Of Walker</string>
+    <string name="differentWorld">Different World</string>
+    <string name="songName">"Song Name : "</string>
+    <string name="SongNameHint">This will be displayed</string>
+    <string name="lang">Language :</string>
+    <string name="langInput">Language of the song</string>
+    <string name="genre">"Genre : "</string>
+    <string name="genreInput">Genre of the song</string>
+    <string name="photo">"Portrait Photo : "</string>
+    <string name="photoInput">Choose image</string>
+    <string name="audio">Upload Audio :</string>
+    <string name="audioInput">Choose file</string>
+    <string name="radioTxt1">Release as single song</string>
+    <string name="radioTxt2">Add to existing album</string>
+    <string name="album">Select Album :</string>
+    <string-array name="albumList">
+        <item>World Of Walker</item>
+        <item>Different World</item>
+    </string-array>
+    <string name="chkTxt">I agree to the terms of services and privacy policy</string>
+    <string name="cancelBtn">Cancel</string>
+    <string name="submitBtn">Upload</string>
+    <string name="editSongInput">Sorry</string>
+    <string name="editLangInput">English</string>
+    <string name="editGenreInput">Electronic</string>
+    <string name="updateBtn">Update</string>
+    <string name="enterAlbum">Enter Album Name</string>
+    <string name="albumUpload">Album</string>
+    <string name="createNewAlbum">Great! Take First Step To Create Your Album</string>
+    <string name="createAlbum">Create</string>
+    <string name="editAlbumName">Edit Album Name</string>
+    <string name="playMusic">Playing Music</string>
+    <string name="artistNameAlan">Alan Walker</string>
+    <string name="songname">Sorry</string>
+    <string name="langGenre">English Electronic</string>
+    <string name="artistName">Alan Walker</string>
+    <string name="currentTime">0:56</string>
+    <string name="endTime">3:10</string>
+</resources>
+
