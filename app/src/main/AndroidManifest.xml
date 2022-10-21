@@ -59,7 +59,7 @@
             android:name=".downloads"
             android:exported="false" />
         <activity
-            android:name=".viewPlans"
+            android:name=".viewUserPlan"
             android:exported="false" />
         <activity
             android:name=".SignUp"
@@ -92,7 +92,7 @@
             android:name=".viewDownloadedSongs"
             android:exported="false" />
         <activity
-            android:name=".viewUserPlan"
+            android:name=".viewPlans"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
