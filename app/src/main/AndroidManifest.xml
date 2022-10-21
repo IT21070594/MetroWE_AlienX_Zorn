@@ -58,9 +58,41 @@
         <activity
             android:name=".downloads"
             android:exported="false" />
-
+        <activity
+            android:name=".viewPlans"
+            android:exported="false" />
+        <activity
+            android:name=".SignUp"
+            android:exported="false" />
+        <activity
+            android:name=".UserViewAccount"
+            android:exported="false" />
+        <activity
+            android:name=".viewArtistAcc"
+            android:exported="false" />
+        <activity
+            android:name=".viewArtistPremiumPlans"
+            android:exported="false" />
+        <activity
+            android:name=".viewPremiumUserAcc"
+            android:exported="false" />
+        <activity
+            android:name=".makePayment"
+            android:exported="false" />
+        <activity
+            android:name=".login"
+            android:exported="false" />
+        <activity
+            android:name=".editUserProfile"
+            android:exported="false" />
+        <activity
+            android:name=".artistSignUp"
+            android:exported="false" />
         <activity
             android:name=".viewDownloadedSongs"
+            android:exported="false" />
+        <activity
+            android:name=".viewUserPlan"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
