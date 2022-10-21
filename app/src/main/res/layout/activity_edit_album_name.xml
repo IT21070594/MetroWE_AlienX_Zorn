@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1C1A1A"
+    tools:context=".editAlbumName">
+
+    <TextView
+        android:id="@+id/editAlbumName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/editAlbumName"
+        android:textAlignment="center"
+        android:textColor="#F44336"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/editWorldOfWalkerAlbum"
+        android:layout_width="184dp"
+        android:layout_height="199dp"
+        android:layout_marginTop="48dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editAlbumName"
+        app:srcCompat="@drawable/worldofwalker" />
+
+    <EditText
+        android:id="@+id/changeAlbumName"
+        android:layout_width="300dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="60dp"
+        android:ems="10"
+        android:hint="@string/enterAlbum"
+        android:inputType="textPersonName"
+        android:textAlignment="center"
+        android:textColor="#9F9A9A"
+        android:textColorHint="#9F9A9A"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editWorldOfWalkerAlbum" />
+
+    <Button
+        android:id="@+id/updateAlbumBtn"
+        android:layout_width="192dp"
+        android:layout_height="67dp"
+        android:backgroundTint="#880E04"
+        android:text="@string/cancelBtn"
+        app:layout_constraintBaseline_toBaselineOf="@+id/updateAlbumBtn2"
+        app:layout_constraintEnd_toStartOf="@+id/updateAlbumBtn2"
+        app:layout_constraintHorizontal_bias="0.301"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/updateAlbumBtn2"
+        android:layout_width="192dp"
+        android:layout_height="67dp"
+        android:layout_marginTop="65dp"
+        android:backgroundTint="#04146A"
+        android:text="@string/updateAlbum"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.977"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/changeAlbumName" />
+    <Button
+        android:id="@+id/homeBtn"
+        android:layout_width="80dp"
+        android:layout_height="42dp"
+        android:text="@string/home"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/uploadBtn"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/myLibraryBtn"
+        android:layout_width="122dp"
+        android:layout_height="42dp"
+        android:text="@string/library"
+        android:textColor="#F44336"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/uploadBtn"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/homeBtn" />
+
+    <Button
+        android:id="@+id/upgradeBtn"
+        android:layout_width="106dp"
+        android:layout_height="42dp"
+        android:text="@string/upgrade"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/uploadBtn"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/myLibraryBtn" />
+
+    <Button
+        android:id="@+id/uploadBtn"
+        android:layout_width="104dp"
+        android:layout_height="42dp"
+        android:text="@string/upload"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/upgradeBtn" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

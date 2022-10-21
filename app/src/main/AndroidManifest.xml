@@ -14,6 +14,9 @@
         android:theme="@style/Theme.ZornMusic"
         tools:targetApi="31">
         <activity
+            android:name=".MainActivity"
+            android:exported="false" />
+        <activity
             android:name=".ViewAlbumSongs"
             android:exported="false" />
         <activity
@@ -35,7 +38,29 @@
             android:name=".UpdateSong"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".DownloadAlbum"
+            android:exported="false" />
+        <activity
+            android:name=".editAlbumName"
+            android:exported="false" />
+        <activity
+            android:name=".EditSongName"
+            android:exported="false" />
+        <activity
+            android:name=".HomePage"
+            android:exported="false" />
+        <activity
+            android:name=".myLibrary"
+            android:exported="false" />
+        <activity
+            android:name=".viewDownloadedAlbumSongs"
+            android:exported="false" />
+        <activity
+            android:name=".downloads"
+            android:exported="false" />
+
+        <activity
+            android:name=".viewDownloadedSongs"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Uploads</string>
     <string name="albumBtn">Album</string>
     <string name="songsBtn">Songs</string>
@@ -12,7 +12,7 @@
     <string name="createNewBtn">Create New Album</string>
     <string name="sorry">Sorry</string>
     <string name="alone">Alone</string>
-    <string name="worldOfWalker">World Of Walker</string>
+    <string name="worldOfWalker" tools:ignore="DuplicateDefinition">World Of Walker</string>
     <string name="differentWorld">Different World</string>
     <string name="songName">"Song Name : "</string>
     <string name="SongNameHint">This will be displayed</string>
@@ -26,7 +26,7 @@
     <string name="audioInput">Choose file</string>
     <string name="radioTxt1">Release as single song</string>
     <string name="radioTxt2">Add to existing album</string>
-    <string name="album">Select Album :</string>
+    <string name="album" tools:ignore="DuplicateDefinition">Select Album :</string>
     <string-array name="albumList">
         <item>World Of Walker</item>
         <item>Different World</item>
@@ -50,5 +50,51 @@
     <string name="artistName">Alan Walker</string>
     <string name="currentTime">0:56</string>
     <string name="endTime">3:10</string>
+    <string name="song">Songs</string>
+    <string name="album1">Album</string>
+    <string name="search">Search Song</string>
+    <string name="songDownload">Download Now</string>
+    <string name="home">Home</string>
+    <string name="library">MyLibrary</string>
+    <string name="upgrade">Upgrade</string>
+    <string name="upload">Uploads</string>
+    <string name="albumDownload">Download Now</string>
+    <string name="aloneSong">Lonely</string>
+    <string name="sorrySong">Sorry</string>
+    <string name="worldOfWalker1">World Of Walker</string>
+    <string name="differentWorldAlbum">Different World</string>
+    <string name="lonelySong">Lonely</string>
+    <string name="editSong">Edit Song Name</string>
+    <string name="editSongName">Enter Song Name</string>
+    <string name="updateBtn1">Update</string>
+    <string name="editAlbumName1">Edit Album Name</string>
+    <string name="enterAlbum1">Enter Album Name</string>
+    <string name="updateAlbum">Update</string>
+    <string name="worldOfWalkerAlbum">World Of Walker</string>
+    <string name="myLibrary">Your Library</string>
+    <string name="music">Music</string>
+    <string name="playList">Playlists</string>
+    <string name="createPlaylist">Create New Playlist</string>
+    <string name="downloads">Downloads</string>
+    <string name="favourites">Favourites</string>
+    <string name="cancelBtn1">Cancel</string>
+    <string name="hi">Hi!</string>
+    <string name="welcome">Welcome, Start Listening!</string>
+    <string name="searchSong">Search Songs</string>
+    <string name="searchAlbum">Search Albums</string>
+    <string name="trending">Trending Songs</string>
+    <string name="viewAll">View All</string>
+    <string name="hindi">Hindi</string>
+    <string name="category">Categories</string>
+    <string name="pop">Pop</string>
+    <string name="jazz">Jazz</string>
+    <string name="classic">Classic</string>
+    <string name="playMusic1">Playing Music</string>
+    <string name="artistNameAlan1">Alan Walker</string>
+    <string name="songname1">Sorry</string>
+    <string name="langGenre1">English Electronic</string>
+    <string name="artistName1">Alan Walker</string>
+    <string name="currentTime1">0:56</string>
+    <string name="endTime1">3:10</string>
 </resources>
 

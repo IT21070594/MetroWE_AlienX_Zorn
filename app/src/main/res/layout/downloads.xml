@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1C1A1A"
+    android:textAlignment="center"
+    tools:context=".downloads">
+
+    <Button
+        android:id="@+id/songBtn"
+        android:layout_width="208dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#1C1A1A"
+        android:outlineProvider="none"
+        android:text="@string/song"
+        android:textColor="#F44336"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/albumBtn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/albumBtn"
+        android:layout_width="208dp"
+        android:layout_height="48dp"
+        android:backgroundTint="#1C1A1A"
+        android:outlineProvider="none"
+        android:text="@string/album1"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@+id/songBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/songBtn" />
+
+    <Button
+        android:id="@+id/homeBtn"
+        android:layout_width="80dp"
+        android:layout_height="42dp"
+        android:backgroundTint="#1C1A1A"
+        android:outlineProvider="none"
+        android:text="@string/home"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/myLibraryBtn"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/myLibraryBtn"
+        android:layout_width="122dp"
+        android:layout_height="42dp"
+        android:backgroundTint="#1C1A1A"
+        android:outlineProvider="none"
+        android:text="@string/library"
+        android:textColor="#F44336"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/upgradeBtn"
+        app:layout_constraintStart_toEndOf="@+id/homeBtn" />
+
+    <Button
+        android:id="@+id/upgradeBtn"
+        android:layout_width="106dp"
+        android:layout_height="42dp"
+        android:backgroundTint="#1C1A1A"
+        android:outlineProvider="none"
+        android:text="@string/upgrade"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/uploadBtn"
+        app:layout_constraintStart_toEndOf="@+id/myLibraryBtn" />
+
+    <Button
+        android:id="@+id/uploadBtn"
+        android:layout_width="104dp"
+        android:layout_height="42dp"
+        android:backgroundTint="#1C1A1A"
+        android:outlineProvider="none"
+        android:text="@string/upload"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/upgradeBtn" />
+
+    <SearchView
+        android:id="@+id/search"
+        android:layout_width="408dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="6dp"
+        android:background="#4E4E50"
+        android:queryHint="@string/searchSong"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/albumBtn" />
+
+    <ImageButton
+        android:id="@+id/downloadCloud"
+        android:layout_width="99dp"
+        android:layout_height="70dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:background="#1C1A1A"
+        app:tint="#AA1616"
+        app:layout_constraintEnd_toStartOf="@+id/downloadNowBtn"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/search"
+        app:srcCompat="@drawable/ic_baseline_cloud_download_24" />
+
+    <Button
+        android:id="@+id/downloadNowBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="126dp"
+        android:backgroundTint="#E42020"
+        android:text="@string/songDownload"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/downloadCloud"
+        app:layout_constraintTop_toBottomOf="@+id/search" />
+
+    <ImageView
+        android:id="@+id/aloneImg"
+        android:layout_width="127dp"
+        android:layout_height="106dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="282dp"
+        app:layout_constraintBottom_toTopOf="@+id/sorryImg"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/downloadNowBtn"
+        app:srcCompat="@drawable/alone" />
+
+    <ImageView
+        android:id="@+id/sorryImg"
+        android:layout_width="129dp"
+        android:layout_height="107dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="282dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/aloneImg"
+        app:srcCompat="@drawable/sorry" />
+
+    <TextView
+        android:id="@+id/alone"
+        android:layout_width="88dp"
+        android:layout_height="31dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="150dp"
+        android:text="@string/alone"
+        android:textAlignment="center"
+        android:textColor="#F3EDED"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/aloneImg"
+        app:layout_constraintTop_toBottomOf="@+id/downloadNowBtn" />
+
+    <TextView
+        android:id="@+id/sorry"
+        android:layout_width="80dp"
+        android:layout_height="33dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="80dp"
+        android:layout_marginEnd="150dp"
+        android:text="@string/sorrySong"
+        android:textAlignment="center"
+        android:textColor="#F3EDED"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/sorryImg"
+        app:layout_constraintTop_toBottomOf="@+id/alone" />
+
+    <ImageButton
+        android:id="@+id/settings1"
+        android:layout_width="59dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="11dp"
+        android:backgroundTint="#1C1A1A"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/alone"
+        app:layout_constraintTop_toBottomOf="@+id/downloadNowBtn"
+        app:srcCompat="@drawable/ic_baseline_more_vert_24" />
+
+    <ImageButton
+        android:id="@+id/settings2"
+        android:layout_width="59dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="11dp"
+        android:backgroundTint="#1C1A1A"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/sorry"
+        app:layout_constraintTop_toBottomOf="@+id/settings1"
+        app:srcCompat="@drawable/ic_baseline_more_vert_24" />
+
+    <ImageButton
+        android:id="@+id/settings3"
+        android:layout_width="59dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="11dp"
+        android:background="#1C1A1A"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/settings2"
+        app:srcCompat="@drawable/ic_baseline_more_vert_24" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="129dp"
+        android:layout_height="107dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="282dp"
+        app:layout_constraintEnd_toStartOf="@+id/settings3"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sorryImg"
+        app:srcCompat="@drawable/lonely" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="88dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="68dp"
+        android:layout_marginEnd="150dp"
+        android:text="@string/lonelySong"
+        android:textAlignment="center"
+        android:textColor="#F3EDED"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toStartOf="@+id/settings3"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toBottomOf="@+id/sorry" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
