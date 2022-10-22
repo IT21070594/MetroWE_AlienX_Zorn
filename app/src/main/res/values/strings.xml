@@ -162,6 +162,42 @@
     <string name="renewP">Renew Plan</string>
     <string name="dropdown">Account Type</string>
     <string name="choosePlan">Choose Plan</string>
+    <string name="app_name">Zorn</string>
+    <string name="PlaylistS">Playlists</string>
+    <string name="XSearchSong">Search Song</string>
+    <string name="CreatePlaylist">+ Create New Playlist</string>
+    <string name="AddBtn">+</string>
+    <string name="CreaPlaylist">Create New Playlist</string>
+    <string name="PlaylistName" />
+    <string name="EnternameHere">Give a name to your playlist</string>
+    <string name="CancelBtn">Cancel</string>
+    <string name="CreateBtn">Create</string>
+    <string name="SearchSong">" Search here"</string>
+    <string name="NewSearch">Search Songs</string>
+    <string name="PlaylistText1">Mind booster</string>
+    <string name="PlaylistText2">90s Hits</string>
+    <string name="PlaylistText3">Dream Pop</string>
+
+    <string name="XuploadBtn">Upload</string>
+    <string name="AddSongs">Add Songs</string>
+    <string name="Songname1">A Whole New World</string>
+    <string name="Songname2">Drivers License</string>
+    <string name="EditPlName">Edit Playlist Name</string>
+    <string name="DeletePlName">Delete Playlist</string>
+    <string name="DownloadPlaylist">Download Playlist</string>
+
+    <string name="addSongs" />
+    <string name="addSongText" />
+    <string name="addSongtext">Add Songs</string>
+    <string name="AddsongstoPlaylistpg">Add Songs</string>
+    <string name="Songname3">All Too Well</string>
+    <string name="Songname4">Mozart Music</string>
+    <string name="playlistnewname">Enter New Name Here</string>
+    <string name="newnamevtext">Give a new name to your playlist</string>
+    <string name="enternewname">Enter New Name Here</string>
+    <string name="renamebtn">"Rename "</string>
+    <string name="newnamebtn">Rename Playlist</string>
+
     <string-array name="planTypes">
         <item>Basic</item>
         <item>Premium </item>

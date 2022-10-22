@@ -89,6 +89,24 @@
             android:name=".artistSignUp"
             android:exported="false" />
         <activity
+            android:name=".Moredetailspl"
+            android:exported="false" />
+        <activity
+            android:name=".CreatePlaylist"
+            android:exported="false" />
+        <activity
+            android:name=".addSongs"
+            android:exported="false" />
+        <activity
+            android:name=".ShowPlaylistContents"
+            android:exported="false" />
+        <activity
+            android:name=".EditPlaylistName"
+            android:exported="false" />
+        <activity
+            android:name=".PlaylistHome"
+            android:exported="false" />
+        <activity
             android:name=".viewDownloadedSongs"
             android:exported="false" />
         <activity

@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/addSongs"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1c1a1a"
+    tools:context=".addSongs">
+
+
+    <EditText
+        android:id="@+id/addSongText"
+        android:layout_width="174dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="@string/AddsongstoPlaylistpg"
+        android:textColor="#F44336"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <SearchView
+        android:id="@+id/Search"
+        android:layout_width="411dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="4dp"
+        android:background="#4e4e50"
+        android:queryHint="@string/NewSearch"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/addSongText" />
+
+    <ImageView
+        android:id="@+id/Songimg1"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Search"
+        app:srcCompat="@drawable/aladdin" />
+
+    <Button
+        android:id="@+id/addSong1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="52dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="30dp"
+        android:drawableRight="@drawable/redcross"
+        android:text="@string/Songname1"
+        android:textAllCaps="false"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.294"
+        app:layout_constraintStart_toEndOf="@+id/Songimg1"
+        app:layout_constraintTop_toBottomOf="@+id/Search" />
+
+    <Button
+        android:id="@+id/addSong2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="30dp"
+        android:drawableRight="@drawable/redcross"
+        android:text="@string/Songname2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/Songimg2"
+        app:layout_constraintTop_toBottomOf="@+id/addSong1" />
+
+    <Button
+        android:id="@+id/addSong3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginEnd="30dp"
+        android:drawableRight="@drawable/redcross"
+        android:text="@string/Songname3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/Songimg3"
+        app:layout_constraintTop_toBottomOf="@+id/addSong2" />
+
+    <Button
+        android:id="@+id/addSong4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="30dp"
+        android:drawableRight="@drawable/redcross"
+        android:text="@string/Songname4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/Songimg4"
+        app:layout_constraintTop_toBottomOf="@+id/addSong3" />
+
+    <ImageView
+        android:id="@+id/Songimg2"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Songimg1"
+        app:srcCompat="@drawable/sour" />
+
+    <ImageView
+        android:id="@+id/Songimg3"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Songimg2"
+        app:srcCompat="@drawable/taylor" />
+
+    <ImageView
+        android:id="@+id/Songimg4"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Songimg3"
+        app:srcCompat="@drawable/mind" />
+
+    <ImageButton
+        android:id="@+id/donebtn"
+        android:layout_width="65dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:src="@drawable/img"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
