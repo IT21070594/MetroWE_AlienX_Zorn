@@ -4,6 +4,39 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/ASUS/MetroWE_AlienX/app/src/main/res/layout/activity_add_songs.xml" value="0.1" />
+        <entry key="..\:/Users/Nuha Nafas/AndroidStudioProjects/MetroWE_AlienX/app/src/main/res/layout/activity_add_songs.xml" value="0.25" />
+        <entry key="..\:/Users/Nuha Nafas/AndroidStudioProjects/MetroWE_AlienX/app/src/main/res/layout/activity_album.xml" value="0.25" />
+        <entry key="..\:/Users/Nuha Nafas/AndroidStudioProjects/MetroWE_AlienX/app/src/main/res/layout/activity_artist_sign_up.xml" value="0.25" />
+        <entry key="..\:/Users/Nuha Nafas/AndroidStudioProjects/MetroWE_AlienX/app/src/main/res/layout/activity_create_new_album.xml" value="0.25" />
+        <entry key="..\:/Users/Nuha Nafas/AndroidStudioProjects/MetroWE_AlienX/app/src/main/res/layout/activity_create_playlist.xml" value="0.25" />
+        <entry key="..\:/Users/Nuha Nafas/AndroidStudioProjects/MetroWE_AlienX/app/src/main/res/layout/activity_download_album.xml" value="0.25" />
+        <entry key="..\:/Users/Nuha Nafas/AndroidStudioProjects/MetroWE_AlienX/app/src/main/res/layout/activity_edit_album.xml" value="0.25" />
+        <entry key="..\:/Users/Nuha Nafas/AndroidStudioProjects/MetroWE_AlienX/app/src/main/res/layout/activity_edit_album_name.xml" value="0.25" />
+        <entry key="..\:/Users/Nuha Nafas/AndroidStudioProjects/MetroWE_AlienX/app/src/main/res/layout/activity_edit_playlist_name.xml" value="0.25" />
+        <entry key="..\:/Users/Nuha Nafas/AndroidStudioProjects/MetroWE_AlienX/app/src/main/res/layout/activity_edit_song_name.xml" value="0.25" />
+        <entry key="..\:/Users/Nuha Nafas/AndroidStudioProjects/MetroWE_AlienX/app/src/main/res/layout/activity_edit_user_profile.xml" value="0.25" />
+        <entry key="..\:/Users/Nuha Nafas/AndroidStudioProjects/MetroWE_AlienX/app/src/main/res/layout/activity_home_page.xml" value="0.25" />
+        <entry key="..\:/Users/Nuha Nafas/AndroidStudioProjects/MetroWE_AlienX/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/Nuha Nafas/AndroidStudioProjects/MetroWE_AlienX/app/src/main/res/layout/activity_make_payment.xml" value="0.25" />
+        <entry key="..\:/Users/Nuha Nafas/AndroidStudioProjects/MetroWE_AlienX/app/src/main/res/layout/activity_moredetailspl.xml" value="0.25" />
+        <entry key="..\:/Users/Nuha Nafas/AndroidStudioProjects/MetroWE_AlienX/app/src/main/res/layout/activity_my_library.xml" value="0.25" />
+        <entry key="..\:/Users/Nuha Nafas/AndroidStudioProjects/MetroWE_AlienX/app/src/main/res/layout/activity_playlisthome.xml" value="0.25" />
+        <entry key="..\:/Users/Nuha Nafas/AndroidStudioProjects/MetroWE_AlienX/app/src/main/res/layout/activity_show_playlist_contents.xml" value="0.25" />
+        <entry key="..\:/Users/Nuha Nafas/AndroidStudioProjects/MetroWE_AlienX/app/src/main/res/layout/activity_sign_up.xml" value="0.25" />
+        <entry key="..\:/Users/Nuha Nafas/AndroidStudioProjects/MetroWE_AlienX/app/src/main/res/layout/activity_update_song.xml" value="0.25" />
+        <entry key="..\:/Users/Nuha Nafas/AndroidStudioProjects/MetroWE_AlienX/app/src/main/res/layout/activity_upload_new_song.xml" value="0.25" />
+        <entry key="..\:/Users/Nuha Nafas/AndroidStudioProjects/MetroWE_AlienX/app/src/main/res/layout/activity_user_view_account.xml" value="0.25" />
+        <entry key="..\:/Users/Nuha Nafas/AndroidStudioProjects/MetroWE_AlienX/app/src/main/res/layout/activity_view_album_songs.xml" value="0.25" />
+        <entry key="..\:/Users/Nuha Nafas/AndroidStudioProjects/MetroWE_AlienX/app/src/main/res/layout/activity_view_artist_acc.xml" value="0.25" />
+        <entry key="..\:/Users/Nuha Nafas/AndroidStudioProjects/MetroWE_AlienX/app/src/main/res/layout/activity_view_artist_premium_plans.xml" value="0.25" />
+        <entry key="..\:/Users/Nuha Nafas/AndroidStudioProjects/MetroWE_AlienX/app/src/main/res/layout/activity_view_plans.xml" value="0.25" />
+        <entry key="..\:/Users/Nuha Nafas/AndroidStudioProjects/MetroWE_AlienX/app/src/main/res/layout/activity_view_premium_user_acc.xml" value="0.25" />
+        <entry key="..\:/Users/Nuha Nafas/AndroidStudioProjects/MetroWE_AlienX/app/src/main/res/layout/activity_view_song.xml" value="0.25" />
+        <entry key="..\:/Users/Nuha Nafas/AndroidStudioProjects/MetroWE_AlienX/app/src/main/res/layout/activity_view_user_plan.xml" value="0.25" />
+        <entry key="..\:/Users/Nuha Nafas/AndroidStudioProjects/MetroWE_AlienX/app/src/main/res/layout/downloads.xml" value="0.25" />
+        <entry key="..\:/Users/Nuha Nafas/AndroidStudioProjects/MetroWE_AlienX/app/src/main/res/layout/login.xml" value="0.25" />
+        <entry key="..\:/Users/Nuha Nafas/AndroidStudioProjects/MetroWE_AlienX/app/src/main/res/layout/viewdownloadedalbumsongs.xml" value="0.25" />
+        <entry key="..\:/Users/Nuha Nafas/AndroidStudioProjects/MetroWE_AlienX/app/src/main/res/layout/viewdownloadedsongs.xml" value="0.25" />
         <entry key="..\:/Users/zaina/AndroidStudioProjects/ZornMusic/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.124" />
         <entry key="..\:/Users/zaina/AndroidStudioProjects/ZornMusic/app/src/main/res/drawable/ic_baseline_favorite_border_16.xml" value="0.124" />
         <entry key="..\:/Users/zaina/AndroidStudioProjects/ZornMusic/app/src/main/res/drawable/ic_baseline_file_download_16.xml" value="0.124" />
