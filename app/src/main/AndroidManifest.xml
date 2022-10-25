@@ -16,9 +16,13 @@
         <activity
             android:name=".UploadSong"
             android:exported="false" />
+
         <activity
             android:name=".ViewAlbumSongs"
             android:exported="false" />
+        <activity
+            android:name=".HomePage"
+            android:exported="false"/>
         <activity
             android:name=".ViewSong"
             android:exported="false" />
@@ -110,7 +114,7 @@
             android:name=".viewDownloadedSongs"
             android:exported="false" />
         <activity
-            android:name=".HomePage"
+            android:name=".favourites"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
