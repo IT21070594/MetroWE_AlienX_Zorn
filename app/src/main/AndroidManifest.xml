@@ -47,7 +47,7 @@
             android:name=".EditSongName"
             android:exported="false" />
         <activity
-            android:name=".HomePage"
+            android:name=".viewPlans"
             android:exported="false" />
         <activity
             android:name=".myLibrary"
@@ -110,7 +110,7 @@
             android:name=".viewDownloadedSongs"
             android:exported="false" />
         <activity
-            android:name=".viewPlans"
+            android:name=".HomePage"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
