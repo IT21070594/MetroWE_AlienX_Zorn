@@ -16,6 +16,16 @@ public class HomePage extends AppCompatActivity {
         setContentView(R.layout.activity_home_page);
         Button BtnLibrary = findViewById(R.id.myLibraryBtn);
 Button BtnUpgrade = findViewById(R.id.upgradeBtn);
+Button BtnUpload = findViewById(R.id.uploadBtn);
+        BtnUpload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent upload = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(upload);
+            }
+        });
+
+
         BtnLibrary.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

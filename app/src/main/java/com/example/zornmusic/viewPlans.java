@@ -16,6 +16,15 @@ Intent viewPlans ;
         setContentView(R.layout.activity_view_plans);
         Button home = findViewById(R.id.homeBtn);
         Button BtnLibrary = findViewById(R.id.myLibraryBtn);
+        Button BtnUpload = findViewById(R.id.uploadBtn);
+        BtnUpload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent upload = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(upload);
+            }
+        });
+
         BtnLibrary.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

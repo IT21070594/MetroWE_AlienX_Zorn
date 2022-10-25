@@ -15,7 +15,15 @@ public class myLibrary extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_library);
         Button home = findViewById(R.id.homeBtn);
-Button upgrade = findViewById(R.id.upgradeBtn);
+Button BtnUpgrade = findViewById(R.id.upgradeBtn);
+        Button BtnUpload = findViewById(R.id.uploadBtn);
+        BtnUpload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent upload = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(upload);
+            }
+        });
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -24,7 +32,7 @@ Button upgrade = findViewById(R.id.upgradeBtn);
             }
         });
 
-        upgrade.setOnClickListener(new View.OnClickListener() {
+        BtnUpgrade.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intentUpgrade = new Intent(getApplicationContext(), viewPlans.class);
