@@ -14,7 +14,7 @@
         android:theme="@style/Theme.ZornMusic"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".UploadSong"
             android:exported="false" />
         <activity
             android:name=".ViewAlbumSongs"

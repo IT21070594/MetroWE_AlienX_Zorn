@@ -17,11 +17,12 @@ Intent viewPlans ;
         Button home = findViewById(R.id.homeBtn);
         Button BtnLibrary = findViewById(R.id.myLibraryBtn);
         Button BtnUpload = findViewById(R.id.uploadBtn);
+
         BtnUpload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent upload = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(upload);
+                Intent uploadMove = new Intent(getApplicationContext(), UploadSong.class);
+                startActivity(uploadMove);
             }
         });
 

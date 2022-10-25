@@ -140,10 +140,10 @@
         <item>Premium User</item>
         <item>Artist</item>
     </string-array>
-<!--    <string name="home1">Home</string>-->
-<!--    <string name="library1">MyLibrary</string>-->
-<!--    <string name="upgrade1">Upgrade</string>-->
-<!--    <string name="upload1">Upload</string>-->
+    <!--    <string name="home1">Home</string>-->
+    <!--    <string name="library1">MyLibrary</string>-->
+    <!--    <string name="upgrade1">Upgrade</string>-->
+    <!--    <string name="upload1">Upload</string>-->
     <string name="paymentLabel">Make Payment</string>
     <string name="yourPlanLabel">Your Plan</string>
     <string name="otpLabel">One Time Payment</string>

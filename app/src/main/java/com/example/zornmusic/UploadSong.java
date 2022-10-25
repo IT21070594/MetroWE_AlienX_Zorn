@@ -7,24 +7,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class MainActivity extends AppCompatActivity {
-Intent uploadIntent;
+public class UploadSong extends AppCompatActivity {
+    Intent receive;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        uploadIntent = getIntent();
+        receive = getIntent();
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        Button BtnLibrary = findViewById(R.id.myLibraryBtn);
+        setContentView(R.layout.activity_upload_song);
+        Button home = findViewById(R.id.HomeBtn);
         Button BtnUpgrade = findViewById(R.id.upgradeBtn);
-        Button home = findViewById(R.id.homeBtn);
-
-        BtnLibrary.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent library = new Intent(getApplicationContext(), myLibrary.class);
-                startActivity(library);
-            }
-        });
+        Button BtnLibrary = findViewById(R.id.MyLibraryBtn);
         home.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -39,6 +31,13 @@ Intent uploadIntent;
                 startActivity(intentUpgrade);
             }
         });
-
+        BtnLibrary.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent library = new Intent(getApplicationContext(), myLibrary.class);
+                startActivity(library);
+            }
+        });
     }
+
 }

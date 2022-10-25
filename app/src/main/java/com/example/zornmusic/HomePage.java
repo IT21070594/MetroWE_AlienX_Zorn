@@ -15,16 +15,16 @@ public class HomePage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
         Button BtnLibrary = findViewById(R.id.myLibraryBtn);
-Button BtnUpgrade = findViewById(R.id.upgradeBtn);
-Button BtnUpload = findViewById(R.id.uploadBtn);
+        Button BtnUpgrade = findViewById(R.id.upgradeBtn);
+        Button BtnUpload = findViewById(R.id.uploadBtn);
+
         BtnUpload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent upload = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(upload);
+                Intent uploadMove = new Intent(getApplicationContext(), UploadSong.class);
+                startActivity(uploadMove);
             }
         });
-
 
         BtnLibrary.setOnClickListener(new View.OnClickListener() {
             @Override
