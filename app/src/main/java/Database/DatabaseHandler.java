@@ -31,11 +31,13 @@ public class DatabaseHandler extends SQLiteOpenHelper
                                                                         "lang TEXT, " +
                                                                         "genre TEXT, " +
                                                                         "image BLOB, " +
-                                                                        "audio BLOB ) ";
+                                                                        "audio BLOB," +
+                                                                        "artistName TEXT )";
 
     private static String createAlbumTableQuery = "CREATE TABLE " + TABLE_NAME_2 + " ( albumID INTEGER PRIMARY KEY, " +
                                                                                       "albumName TEXT, " +
-                                                                                      "image BLOB )" ;
+                                                                                      "image BLOB , " +
+                                                                                      "artistName TEXT )";
 
     //To convert Bitmap to byte array to store in DB.
     private ByteArrayOutputStream objectByteArrayOutputStream;
@@ -67,20 +69,14 @@ public class DatabaseHandler extends SQLiteOpenHelper
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1)
+    public void onUpgrade(SQLiteDatabase db, int i, int i1)
     {
+        String query = "DROP TABLE IF EXISTS " + TABLE_NAME;
+        db.execSQL(query);
 
+        String query_2 = "DROP TABLE IF EXISTS " + TABLE_NAME_2;
+        db.execSQL(query_2);
     }
-
-//    @Override
-//    public void onUpgrade(SQLiteDatabase db, int i, int i1)
-//    {
-//        String query = "DROP TABLE IF EXISTS " + TABLE_NAME;
-//        db.execSQL(query);
-//
-//        String query_2 = "DROP TABLE IF EXISTS " + TABLE_NAME_2;
-//        db.execSQL(query_2);
-//    }
 
     //CRUD of Songs
     public void insertSong(Songs songClass)
@@ -103,6 +99,7 @@ public class DatabaseHandler extends SQLiteOpenHelper
             objectContentValues.put("genre", songClass.getGenre());
             objectContentValues.put("image", imageInBytes);
             objectContentValues.put("audio", audioInBytes);
+            objectContentValues.put("artistName", songClass.getArtistName());
 
             long recordInsert =  objectSQLiteDB.insert(TABLE_NAME, null, objectContentValues);
             if(recordInsert != -1 )
@@ -142,9 +139,57 @@ public class DatabaseHandler extends SQLiteOpenHelper
                     String genre = objectCursor.getString(3);
                     byte[] imageBytes = objectCursor.getBlob(4);
                     byte[] audioBytes = objectCursor.getBlob(5);
+                    String artistName = objectCursor.getString(6);
+
 
                     Bitmap objectBitMap = BitmapFactory.decodeByteArray(imageBytes,0, imageBytes.length);
-                    objectSongsClassList.add(new Songs(songId,songName, lang, genre, objectBitMap, audioBytes));
+                    objectSongsClassList.add(new Songs(songId,songName, lang, genre, objectBitMap, audioBytes, artistName));
+                }
+
+                objectSQLiteDB.close();
+                objectCursor.close();
+                return objectSongsClassList;
+            }
+            else
+            {
+                Toast.makeText(context, "No songs uploaded yet" , Toast.LENGTH_SHORT).show();
+                return objectSongsClassList;
+            }
+        }
+        catch(Exception e)
+        {
+            //Toast.makeText(context, e.getMessage() , Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public ArrayList<Songs> getArtistSongsData(String artistName)
+    {
+        try
+        {
+            SQLiteDatabase objectSQLiteDB = this.getReadableDatabase();
+            ArrayList<Songs> objectSongsClassList = new ArrayList<>();
+
+            String selectSongs = "SELECT * FROM Songs WHERE artistName = " + artistName;
+            Cursor objectCursor = objectSQLiteDB.rawQuery(selectSongs, null);
+
+            //If there are entries in the DB.
+            if(objectCursor.getCount()!=0)
+            {
+                while (objectCursor.moveToNext())
+                {
+                    int songId = objectCursor.getInt(0);
+                    String songName = objectCursor.getString(1);
+                    String lang = objectCursor.getString(2);
+                    String genre = objectCursor.getString(3);
+                    byte[] imageBytes = objectCursor.getBlob(4);
+                    byte[] audioBytes = objectCursor.getBlob(5);
+                    String name = objectCursor.getString(6);
+
+
+                    Bitmap objectBitMap = BitmapFactory.decodeByteArray(imageBytes,0, imageBytes.length);
+                    objectSongsClassList.add(new Songs(songId,songName, lang, genre, objectBitMap, audioBytes, name));
                 }
 
                 objectSQLiteDB.close();
@@ -173,8 +218,6 @@ public class DatabaseHandler extends SQLiteOpenHelper
             Songs singleSong = null;
 
             String selectSong = "SELECT * FROM Songs WHERE songID = " + id;
-
-
             Cursor objectCursor = objectSQLiteDB.rawQuery(selectSong, null);
 
             //If there are entries in the DB.
@@ -188,9 +231,10 @@ public class DatabaseHandler extends SQLiteOpenHelper
                     String genre = objectCursor.getString(3);
                     byte[] imageBytes = objectCursor.getBlob(4);
                     byte[] audioBytes = objectCursor.getBlob(5);
+                    String artistName = objectCursor.getString(6);
 
                     Bitmap objectBitMap = BitmapFactory.decodeByteArray(imageBytes,0, imageBytes.length);
-                    singleSong = new Songs(songId,songName, lang, genre, objectBitMap, audioBytes);
+                    singleSong = new Songs(songId,songName, lang, genre, objectBitMap, audioBytes, artistName);
                 }
 
                 objectSQLiteDB.close();
@@ -217,8 +261,8 @@ public class DatabaseHandler extends SQLiteOpenHelper
         {
             SQLiteDatabase objectSQLiteDB = this.getReadableDatabase();
             byte[] audioBytes = null;
-            String selectAudio = "SELECT audio FROM Songs WHERE songID = " + id;
 
+            String selectAudio = "SELECT audio FROM Songs WHERE songID = " + id;
             Cursor objectCursor = objectSQLiteDB.rawQuery(selectAudio, null);
 
             //If there are entries in the DB.
@@ -310,6 +354,7 @@ public class DatabaseHandler extends SQLiteOpenHelper
             ContentValues objectContentValues = new ContentValues();
             objectContentValues.put("albumName", albumClass.getAlbumName());
             objectContentValues.put("image", albumImageInBytes);
+            objectContentValues.put("artistName", albumClass.getArtistName());
 
             long recordInsert =  objectSQLiteDB.insert(TABLE_NAME_2, null, objectContentValues);
             if(recordInsert != -1 )
@@ -346,9 +391,52 @@ public class DatabaseHandler extends SQLiteOpenHelper
                     int albumId = objectCursor.getInt(0);
                     String albumName = objectCursor.getString(1);
                     byte[] imageBytes = objectCursor.getBlob(2);
+                    String artistName = objectCursor.getString(3);
 
                     Bitmap objectBitMap = BitmapFactory.decodeByteArray(imageBytes,0, imageBytes.length);
-                    objectAlbumsClassList.add(new Albums(albumId, albumName, objectBitMap));
+                    objectAlbumsClassList.add(new Albums(albumId, albumName, objectBitMap, artistName ));
+                }
+
+                objectSQLiteDB.close();
+                objectCursor.close();
+                return objectAlbumsClassList;
+            }
+            else
+            {
+                Toast.makeText(context, "No albums uploaded yet" , Toast.LENGTH_SHORT).show();
+                return objectAlbumsClassList;
+            }
+        }
+        catch(Exception e)
+        {
+            //Toast.makeText(context, e.getMessage() , Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public ArrayList<Albums> getArtistAlbumsData(String artistName)
+    {
+        try
+        {
+            SQLiteDatabase objectSQLiteDB = this.getReadableDatabase();
+            ArrayList<Albums> objectAlbumsClassList = new ArrayList<>();
+
+            String selectSongs = "SELECT * FROM Songs WHERE artistName = " + artistName;
+            Cursor objectCursor = objectSQLiteDB.rawQuery(selectSongs, null);
+
+            //If there are entries in the DB.
+            if(objectCursor.getCount()!=0)
+            {
+                while (objectCursor.moveToNext())
+                {
+                    int albumId = objectCursor.getInt(0);
+                    String albumName = objectCursor.getString(1);
+                    byte[] imageBytes = objectCursor.getBlob(2);
+                    String name = objectCursor.getString(3);
+
+                    Bitmap objectBitMap = BitmapFactory.decodeByteArray(imageBytes,0, imageBytes.length);
+                    objectAlbumsClassList.add(new Albums(albumId, albumName, objectBitMap, name));
                 }
 
                 objectSQLiteDB.close();

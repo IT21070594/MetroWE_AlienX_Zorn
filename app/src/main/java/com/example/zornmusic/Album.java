@@ -28,6 +28,8 @@ public class Album extends AppCompatActivity {
     private RecyclerView objectAlbumRV;
     private TextView noAlbums;
     private AlbumRecyclerViewAdapter objectAlbumRVAdapter;
+    private String artistName;
+    private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +68,8 @@ public class Album extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Album.this, MainActivity.class);
+                intent.putExtra("user", artistName );
+                //intent.putExtra("user", intent.getStringExtra("user"));
                 startActivity(intent);
                 overridePendingTransition(0,0);
             }
@@ -95,6 +99,10 @@ public class Album extends AppCompatActivity {
         {
             noAlbums = findViewById(R.id.noAlbumsText);
             objectAlbumRV= findViewById(R.id.albumsRV);
+
+            intent = getIntent();
+            artistName = intent.getStringExtra("user");
+
             objectDBHandler = new DatabaseHandler(this);
 
         }
@@ -109,14 +117,14 @@ public class Album extends AppCompatActivity {
             field.setAccessible(true);
             field.set(null, 500*1024*1024); //500MB is the new size
 
-            if(objectDBHandler.getAllAlbumsData().size()==0)
+            if(objectDBHandler.getArtistAlbumsData(artistName).size()==0)
             {
                 noAlbums.setVisibility(View.VISIBLE);
                 objectAlbumRV.setVisibility(View.GONE);
             }
             else
             {
-                objectAlbumRVAdapter = new AlbumRecyclerViewAdapter(this,objectDBHandler.getAllAlbumsData());
+                objectAlbumRVAdapter = new AlbumRecyclerViewAdapter(this,objectDBHandler.getArtistAlbumsData(artistName));
 
                 objectAlbumRV.setHasFixedSize(true);
                 objectAlbumRV.setLayoutManager(new LinearLayoutManager(this));
@@ -152,7 +160,7 @@ public class Album extends AppCompatActivity {
         super.onResume();
         if(objectAlbumRV!=null && objectAlbumRVAdapter!=null)
         {
-            objectAlbumRVAdapter = new AlbumRecyclerViewAdapter(this,objectDBHandler.getAllAlbumsData());
+            objectAlbumRVAdapter = new AlbumRecyclerViewAdapter(this,objectDBHandler.getArtistAlbumsData(artistName));
 
             objectAlbumRV.setHasFixedSize(true);
             objectAlbumRV.setLayoutManager(new LinearLayoutManager(this));

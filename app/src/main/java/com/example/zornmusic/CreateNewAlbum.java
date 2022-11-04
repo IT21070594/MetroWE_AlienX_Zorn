@@ -28,6 +28,9 @@ import Database.Songs;
 
 public class CreateNewAlbum extends AppCompatActivity {
 
+    String artistName;
+    Intent intent;
+
     EditText albumName;
     int id = 0;
 
@@ -85,6 +88,10 @@ public class CreateNewAlbum extends AppCompatActivity {
             albumName = findViewById(R.id.enterAlbumName);;
             albumPhoto = findViewById(R.id.albumPhotoInput);
 
+
+            intent = getIntent();
+            artistName = intent.getStringExtra("user");
+
             objectDatabaseHandler = new DatabaseHandler(this);
 
         }catch (Exception e)
@@ -135,7 +142,7 @@ public class CreateNewAlbum extends AppCompatActivity {
         {
             if(!albumName.getText().toString().isEmpty() && albumPhoto.getDrawable()!=null && imageToStore!=null)
             {
-                objectDatabaseHandler.insertAlbum(new Albums(id, albumName.getText().toString(),imageToStore));
+                objectDatabaseHandler.insertAlbum(new Albums(id, albumName.getText().toString(),imageToStore, artistName));
 
                 Intent intent = new Intent(CreateNewAlbum.this, Album.class);
                 startActivity(intent);

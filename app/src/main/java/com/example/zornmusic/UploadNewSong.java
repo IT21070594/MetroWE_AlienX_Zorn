@@ -38,6 +38,9 @@ import Database.Songs;
 
 public class UploadNewSong extends AppCompatActivity
 {
+    String artistName;
+    Intent intent;
+
     EditText songName;
     EditText lang;
     EditText genre;
@@ -116,6 +119,9 @@ public class UploadNewSong extends AppCompatActivity
             genre = findViewById(R.id.genreInput);
             songPhoto = findViewById(R.id.photoInput);
             selectAudio = findViewById(R.id.audioInput);
+
+            intent = getIntent();
+            artistName = intent.getStringExtra("user");
 
             objectDatabaseHandler = new DatabaseHandler(this);
 
@@ -204,7 +210,7 @@ public class UploadNewSong extends AppCompatActivity
         {
             if(!songName.getText().toString().isEmpty() && songPhoto.getDrawable()!=null && imageToStore!=null && audioToStore!=null )
             {
-                objectDatabaseHandler.insertSong(new Songs(id, songName.getText().toString(), lang.getText().toString(), genre.getText().toString(),imageToStore, audioToStore));
+                objectDatabaseHandler.insertSong(new Songs(id, songName.getText().toString(), lang.getText().toString(), genre.getText().toString(),imageToStore, audioToStore, artistName));
 
                 Intent intent = new Intent(UploadNewSong.this, MainActivity.class);
                 startActivity(intent);

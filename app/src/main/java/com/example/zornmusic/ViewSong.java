@@ -47,6 +47,7 @@ public class ViewSong extends AppCompatActivity
     String lang;
     String genre;
     String Name;
+    String artistName;
     Songs songData;
 
     private byte[] imageInBytes;
@@ -225,6 +226,8 @@ public class ViewSong extends AppCompatActivity
         Name = songData.getSongName();
         lang = songData.getLang();
         genre = songData.getGenre();
+        artistName = songData.getArtistName();
+
         audioInBytes = songData.getAudio();
 
         Bitmap bitmap = songData.getImage();;
@@ -234,9 +237,9 @@ public class ViewSong extends AppCompatActivity
 
         name.setText(Name);
         langGenre.setText(lang + " " + genre);
+        artist.setText(artistName);
         image.setImageBitmap(bitmap);
         endTime.setText(convertToMMSS(mediaPlayer.getDuration()+""));
-        //artist.setText(bundle.getString("song_artist"));
 
         pauseBtn.setOnClickListener(v-> pausePlay());
         nextBtn.setOnClickListener(v-> playNextSong());

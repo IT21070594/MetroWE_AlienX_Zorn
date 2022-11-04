@@ -34,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView objectRV;
     private TextView noSongs;
     private RecyclerViewAdapter objectRVAdapter;
+    private String artistName;
+    private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +73,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, Album.class);
+                intent.putExtra("user", artistName );
+                //intent.putExtra("user", intent.getStringExtra("user"));
                 startActivity(intent);
                 overridePendingTransition(0,0);
             }
@@ -100,6 +104,10 @@ public class MainActivity extends AppCompatActivity {
         {
             noSongs = findViewById(R.id.noSongsText);
             objectRV= findViewById(R.id.songsRV);
+
+            intent = getIntent();
+            artistName = intent.getStringExtra("user");
+
             objectDBHandler = new DatabaseHandler(this);
 
         }
@@ -114,14 +122,14 @@ public class MainActivity extends AppCompatActivity {
             field.setAccessible(true);
             field.set(null, 700*1024*1024); //500MB is the new size
 
-            if(objectDBHandler.getAllSongsData().size()==0)
+            if(objectDBHandler.getArtistSongsData(artistName).size()==0)
             {
                 noSongs.setVisibility(View.VISIBLE);
                 objectRV.setVisibility(View.GONE);
             }
             else
             {
-                objectRVAdapter = new RecyclerViewAdapter(this,objectDBHandler.getAllSongsData());
+                objectRVAdapter = new RecyclerViewAdapter(this,objectDBHandler.getArtistSongsData(artistName));
 
                 objectRV.setHasFixedSize(true);
                 objectRV.setLayoutManager(new LinearLayoutManager(this));
@@ -173,7 +181,7 @@ public class MainActivity extends AppCompatActivity {
     private void filter(String text)
     {
         ArrayList<Songs> filteredList = new ArrayList<>();
-        ArrayList<Songs> NotFilteredList = objectDBHandler.getAllSongsData();
+        ArrayList<Songs> NotFilteredList = objectDBHandler.getArtistSongsData(artistName);
 
         for(Songs item : NotFilteredList)
         {
@@ -192,7 +200,7 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         if(objectRV!=null && objectRVAdapter!=null)
         {
-            objectRVAdapter = new RecyclerViewAdapter(this,objectDBHandler.getAllSongsData());
+            objectRVAdapter = new RecyclerViewAdapter(this,objectDBHandler.getArtistSongsData(artistName));
 
             objectRV.setHasFixedSize(true);
             objectRV.setLayoutManager(new LinearLayoutManager(this));

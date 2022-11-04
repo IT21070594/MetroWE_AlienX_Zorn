@@ -12,8 +12,9 @@ public class Songs implements Serializable
     private String genre;
     private Bitmap image;
     private byte[] audio;
+    private String artistName;
 
-    public Songs(int songID, String songName, String lang, String genre, Bitmap image, byte[] audio)
+    public Songs(int songID, String songName, String lang, String genre, Bitmap image, byte[] audio, String artistName)
     {
         this.songID = songID;
         this.songName = songName;
@@ -21,6 +22,7 @@ public class Songs implements Serializable
         this.genre = genre;
         this.image = image;
         this.audio = audio;
+        this.artistName = artistName;
     }
 
     public int getSongID()
@@ -79,6 +81,14 @@ public class Songs implements Serializable
 
     public void setAudio(byte[] audio) {
         this.audio = audio;
+    }
+
+    public String getArtistName() {
+        return artistName;
+    }
+
+    public void setArtistName(String artistName) {
+        this.artistName = artistName;
     }
 }
 

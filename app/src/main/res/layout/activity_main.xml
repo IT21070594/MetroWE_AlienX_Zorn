@@ -81,7 +81,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/noSongsText"
-        android:text="No Albums Uploaded"
+        android:text="No Songs Uploaded"
         android:layout_centerInParent="true"
         android:layout_below="@+id/uploadNewBtn"
         android:layout_marginTop="32dp"
