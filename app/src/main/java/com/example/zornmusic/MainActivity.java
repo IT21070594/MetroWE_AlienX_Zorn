@@ -200,8 +200,8 @@ public class MainActivity extends AppCompatActivity {
         }
         else
         {
-                noSongs.setVisibility(View.VISIBLE);
-                objectRV.setVisibility(View.GONE);
+            noSongs.setVisibility(View.VISIBLE);
+            objectRV.setVisibility(View.GONE);
         }
     }
 
