@@ -18,6 +18,7 @@ import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class DatabaseHandler extends SQLiteOpenHelper
 {
     Context context;
@@ -25,6 +26,9 @@ public class DatabaseHandler extends SQLiteOpenHelper
     private static final String TABLE_NAME = "Songs";
     private static final String TABLE_NAME_2 = "Albums";
     private static final int DATABASE_VERSION = 1;
+
+    //Rashida's
+    public static final String TABLE_NAME1 = "downloads";
 
     private static String createSongTableQuery = "CREATE TABLE " + TABLE_NAME + " ( songID INTEGER PRIMARY KEY, " +
                                                                         "songName TEXT, " +
@@ -88,6 +92,9 @@ public class DatabaseHandler extends SQLiteOpenHelper
             db.execSQL(CREATE_TABLE_STATEMENT5);
             db.execSQL(CREATE_TABLE_STATEMENT6);
 
+            //Rashida's
+            String query2 = "create table "+TABLE_NAME1+ "(id integer primary key, image blob,song text,username text)";
+            db.execSQL(query2);
 
             Toast.makeText(context, "Songs and albums table created successfully inside the DB!", Toast.LENGTH_SHORT).show();
         }
@@ -112,6 +119,11 @@ public class DatabaseHandler extends SQLiteOpenHelper
         db.execSQL("drop Table if exists "+UserMasters.ArtistPlans.TABLE_NAME2);
         db.execSQL("drop Table if exists "+UserMasters.PremiumUsers.TABLE_NAME3);
         db.execSQL("drop Table if exists "+UserMasters.ArtistUsers.TABLE_NAME4);
+
+        //Rashida's
+        String query2 = "drop table if exists "+TABLE_NAME1+"";
+        db.execSQL(query2);
+
     }
 
     //CRUD of Songs

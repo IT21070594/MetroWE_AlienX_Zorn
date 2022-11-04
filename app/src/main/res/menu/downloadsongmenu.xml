@@ -1,0 +1,9 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:title="Edit"
+        android:id="@+id/edit_download_menu"/>
+    <item android:title="Delete"
+        android:id="@+id/delete_download_menu"/>
+
+<!--    <item android:title="Add to playList"-->
+<!--        android:id="@+id/download_playlist"/>-->
+</menu>

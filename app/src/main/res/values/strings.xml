@@ -119,6 +119,13 @@
     <string name="choosePlan">Choose Plan</string>
     <string name="usernamevalue">Your username</string>
     <string name="usernametext">Username</string>
+    <string name="myLibrary">My Library</string>
+    <string name="music">Music</string>
+    <string name="playList">PLAYLISTS</string>
+    <string name="createPlaylist">CREATE PLAYLIST</string>
+    <string name="downloads">downloads</string>
+    <string name="PlaySong">Playing Music</string>
+    <string name="PlayDMusic">Playing Music</string>
     <string-array name="planTypes">
         <item>Basic</item>
         <item>Premium </item>

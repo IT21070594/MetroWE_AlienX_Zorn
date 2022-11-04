@@ -1,22 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1C1A1A"
+    android:background="@color/black"
     tools:context=".Library">
 
     <TextView
+        android:id="@+id/library"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="26dp"
-        android:layout_marginTop="100dp"
-        android:text="LIBRARY"
-        android:textColor="#E8E0E0"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/myLibrary"
+        android:textColor="#F44336"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/music"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="sans-serif-black"
+        android:text="@string/music"
+        android:layout_below="@+id/library"
+        android:textAlignment="center"
+        android:textColor="#F3EDED"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        />
+
+    <Button
+        android:id="@+id/playListBtn"
+        android:layout_width="407dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="50dp"
+        android:layout_below="@+id/music"
+        android:backgroundTint="#A59999"
+        android:text="@string/playList"
+        android:textColor="#FAF6F6"
+
         android:textSize="20sp"
-        android:layout_centerInParent="true"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.378"
+        />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="87dp"
+        android:layout_height="98dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="75dp"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_below="@+id/playListBtn"
+        app:srcCompat="@drawable/ic_baseline_playlist_add_24" />
+
+    <Button
+        android:id="@+id/createPlaylist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="150dp"
+        android:backgroundTint="#F44336"
+        android:text="@string/createPlaylist"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:layout_below="@+id/playListBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.224"
+        />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="407dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="100dp"
+        android:backgroundTint="#A59999"
+        android:text="@string/downloads"
+        android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_below="@+id/createPlaylist"
+        />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
@@ -27,5 +97,8 @@
         app:itemIconTint="@drawable/selector"
         app:menu="@menu/menu_navigation"
         android:layout_alignParentBottom="true"/>
+
+
+
 
 </RelativeLayout>

@@ -1,12 +1,12 @@
 package com.example.zornmusic;
 
+
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ImageButton;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -19,35 +19,39 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.ArrayList;
 
 import Database.DatabaseHandler;
-import Database.UserMasters;
 
-public class viewPlans extends AppCompatActivity {
-    Intent receiveIntent1;
-    ImageButton back;
-    DatabaseHandler dbHandler;
+public class DisplayDownloads extends AppCompatActivity {
+    DatabaseHandler dBmain;
     SQLiteDatabase sqLiteDatabase;
+    Intent receiveIntent1;
     RecyclerView recyclerView;
-    MyAdapter myAdapter;
+    MyAdapterDownloads myAdapterDownloads;
+    ArrayList<DownloadModel> downloadModels;
+int id = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_plans);
-        receiveIntent1=getIntent();
-        String name= receiveIntent1.getStringExtra("user");
-        System.out.println(name);
-        back=findViewById(R.id.BackBtn);
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
-
-        dbHandler = new DatabaseHandler(getApplicationContext());
+        setContentView(R.layout.activity_display_downloads);
+        Intent intent1=getIntent();
+        dBmain = new DatabaseHandler(this);
         findId();
-        displayData();
+        displayDownloads(intent1.getStringExtra("user"));
         recyclerView.setLayoutManager(new LinearLayoutManager(this,RecyclerView.VERTICAL,false));
+        SearchView searchDownload = findViewById(R.id.searchdownloads);
+       searchDownload.clearFocus();
+       searchDownload.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+           @Override
+           public boolean onQueryTextSubmit(String s) {
+               return false;
+           }
 
+           @Override
+           public boolean onQueryTextChange(String s) {
+               filterList(s);
+               return true;
+           }
+       });
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
         //Set Home Selected
@@ -73,27 +77,47 @@ public class viewPlans extends AppCompatActivity {
             }
         });
 
+
+
+
     }
 
-    private void displayData() {
-        sqLiteDatabase=dbHandler.getReadableDatabase();
-        Cursor cursor=sqLiteDatabase.rawQuery("select * from "+UserMasters.UserPlans.TABLE_NAME1+"",null);
-        ArrayList<Model>models=new ArrayList<>();
+    private void filterList(String text) {
+        ArrayList<DownloadModel> filteredList =  new ArrayList<>();
+        for(DownloadModel item : downloadModels){
+            if(item.getName().toLowerCase().contains(text.toLowerCase())) {
+                filteredList.add(item);
+            }
+        }
+        if(filteredList.isEmpty()){
+            Toast.makeText(this,"no song found",Toast.LENGTH_SHORT).show();
+        }else{
+            myAdapterDownloads.setFilteredList(filteredList);
+        }
+    }
+
+    private void displayDownloads(String Username) {
+        sqLiteDatabase = dBmain.getReadableDatabase();
+
+        String selection = "SELECT * FROM downloads WHERE username =" +Username;
+        Cursor cursor = sqLiteDatabase.rawQuery(selection,null);
+        downloadModels=new ArrayList<>();
         while(cursor.moveToNext()){
-            String planName = cursor.getString(0);
-            byte[]imagePlan = cursor.getBlob(1);
-            int amount = cursor.getInt(2);
-            int downloadLimit = cursor.getInt(3);
-            String name=receiveIntent1.getStringExtra("user");
-            models.add(new Model(planName,imagePlan,amount,downloadLimit,name));
+            int id = cursor.getInt(0);
+            byte[]avatar = cursor.getBlob(1);
+            String name = cursor.getString(2);
+            downloadModels.add(new DownloadModel(id,avatar,name));
+
+
         }
         cursor.close();
-        myAdapter= new MyAdapter(this,models,sqLiteDatabase,R.layout.singledata);
-        recyclerView.setAdapter(myAdapter);
+        myAdapterDownloads = new MyAdapterDownloads(this, R.layout.singledownload_data,downloadModels,sqLiteDatabase);
+        recyclerView.setAdapter(myAdapterDownloads);
     }
 
     private void findId() {
-        recyclerView = findViewById(R.id.rv) ;
+        recyclerView = findViewById(R.id.rvd);
+
     }
     public void uploadButtonGo(){
         receiveIntent1=getIntent();

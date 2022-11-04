@@ -3,50 +3,65 @@ package com.example.zornmusic;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 
 import Database.DatabaseHandler;
-import Database.UserMasters;
 
-public class viewPlans extends AppCompatActivity {
-    Intent receiveIntent1;
-    ImageButton back;
-    DatabaseHandler dbHandler;
-    SQLiteDatabase sqLiteDatabase;
-    RecyclerView recyclerView;
-    MyAdapter myAdapter;
+
+public class displayOneSong extends AppCompatActivity {
+SQLiteDatabase sqLiteDatabase;
+DatabaseHandler dBmain;
+
+int id = 0;
+ImageView songPic;
+TextView songName;
+ImageButton backBtn;
+Intent receiveIntent1;
+ArrayList<DownloadModel> downloadModels;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_view_plans);
-        receiveIntent1=getIntent();
-        String name= receiveIntent1.getStringExtra("user");
-        System.out.println(name);
-        back=findViewById(R.id.BackBtn);
-        back.setOnClickListener(new View.OnClickListener() {
+        setContentView(R.layout.activity_display_one_song);
+        dBmain = new DatabaseHandler(this);
+        songPic = findViewById(R.id.playMusicImg);
+        songName = findViewById(R.id.songname);
+        backBtn =  findViewById(R.id.backBtn);
+        Bundle bundle = getIntent().getBundleExtra("oneSong");
+        id = bundle.getInt("songId");
+
+        //DownloadModel downloadModel = getOneSong(id);
+        byte[]bytes = bundle.getByteArray("avatar");
+
+        //byte[]bytes = downloadModel.getProAvatar();
+        Bitmap bitmap = BitmapFactory.decodeByteArray(bytes,0,bytes.length);
+        songPic.setImageBitmap(bitmap);
+
+        //songName.setText(downloadModel.getName());
+        songName.setText(bundle.getString("songName"));
+        getOneSong(id);
+
+        backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                startActivity(new Intent(displayOneSong.this,DisplayDownloads.class));
             }
         });
-
-        dbHandler = new DatabaseHandler(getApplicationContext());
-        findId();
-        displayData();
-        recyclerView.setLayoutManager(new LinearLayoutManager(this,RecyclerView.VERTICAL,false));
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
@@ -72,29 +87,34 @@ public class viewPlans extends AppCompatActivity {
                 return false;
             }
         });
+    }
+    private void getOneSong(int id) {
+        sqLiteDatabase=dBmain.getReadableDatabase();
+        //DownloadModel model = null;
+       // Cursor cursor=sqLiteDatabase.rawQuery("select *from "+TABLE_NAME1+"id="+id,null);
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM downloads WHERE id='id'", null);
 
+        // Cursor cursor=sqLiteDatabase.rawQuery("select *from "+TABLE_NAME1+"id="+id,null);
+        downloadModels=new ArrayList<>();
+        if(cursor.getCount()!=0) {
+
+            while (cursor.moveToNext()) {
+                int songId = cursor.getInt(0);
+                byte[] avatar = cursor.getBlob(1);
+                String name = cursor.getString(2);
+                downloadModels.add(new DownloadModel(songId,avatar,name));
+              // model=  new DownloadModel(songId,avatar,name);
+
+            }
+            cursor.close();
+
+            //return model;
+      }
+//        else{
+//            return model;
+//        }
     }
 
-    private void displayData() {
-        sqLiteDatabase=dbHandler.getReadableDatabase();
-        Cursor cursor=sqLiteDatabase.rawQuery("select * from "+UserMasters.UserPlans.TABLE_NAME1+"",null);
-        ArrayList<Model>models=new ArrayList<>();
-        while(cursor.moveToNext()){
-            String planName = cursor.getString(0);
-            byte[]imagePlan = cursor.getBlob(1);
-            int amount = cursor.getInt(2);
-            int downloadLimit = cursor.getInt(3);
-            String name=receiveIntent1.getStringExtra("user");
-            models.add(new Model(planName,imagePlan,amount,downloadLimit,name));
-        }
-        cursor.close();
-        myAdapter= new MyAdapter(this,models,sqLiteDatabase,R.layout.singledata);
-        recyclerView.setAdapter(myAdapter);
-    }
-
-    private void findId() {
-        recyclerView = findViewById(R.id.rv) ;
-    }
     public void uploadButtonGo(){
         receiveIntent1=getIntent();
         String name=receiveIntent1.getStringExtra("user");
@@ -129,4 +149,5 @@ public class viewPlans extends AppCompatActivity {
             overridePendingTransition(0,0);
         }
     }
+
 }
