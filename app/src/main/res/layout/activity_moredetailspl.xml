@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/MoreDetailsPl"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1c1a1a"
+    tools:context=".Moredetailspl">
+
+    <ImageView
+        android:id="@+id/PlaylistImage"
+        android:layout_width="133dp"
+        android:layout_height="151dp"
+        android:layout_marginTop="96dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/old" />
+
+    <TextView
+        android:id="@+id/playlistNameEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/PlaylistText2"
+        android:textColor="@color/white"
+        android:textSize="34sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/PlaylistImage" />
+
+    <Button
+        android:id="@+id/AddSongsBtn"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="44dp"
+        android:background="#00FFFFFF"
+        android:drawableLeft="@drawable/addbtn"
+        android:text="@string/AddSongs"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/playlistNameEdit" />
+
+    <Button
+        android:id="@+id/EditPlName"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:background="#00FFFFFF"
+        android:drawableLeft="@drawable/edit"
+        android:text="@string/EditPlName"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/AddSongsBtn" />
+
+    <Button
+        android:id="@+id/DownloadPlaylist"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:background="#00FFFFFF"
+        android:drawableLeft="@drawable/downloadbtn"
+        android:text="@string/DownloadPlaylist"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/DeletePlName" />
+
+    <Button
+        android:id="@+id/DeletePlName"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:background="#00FFFFFF"
+        android:drawableLeft="@drawable/deletebtn"
+        android:text="@string/DeletePlName"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/EditPlName" />
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        android:layout_width="39dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/backbtn" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
