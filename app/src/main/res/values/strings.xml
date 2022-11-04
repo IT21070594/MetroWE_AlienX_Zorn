@@ -50,5 +50,84 @@
     <string name="artistName">Artist Name</string>
     <string name="currentTime">0:56</string>
     <string name="endTime">3:10</string>
+    <string name="signin">"Sign  In "</string>
+    <string name="Msg">Hi there, nice to see you again!</string>
+    <string name="eMail">Email</string>
+    <string name="emailExample">example@gmail.com</string>
+    <string name="pass">Password</string>
+    <string name="wordpass">Password</string>
+    <string name="Button1">Sign In</string>
+    <string name="Msg2">Don\'t have an account?</string>
+    <string name="SignUp">Sign Up</string>
+    <string name="name">Name</string>
+    <string name="inputName">Your Name</string>
+    <string name="AccType">Type of Account</string>
+    <string name="checkBox">I agree to the Terms Of Services and Privacy Policy</string>
+    <string name="Button2">Continue</string>
+    <string name="question">Have an account?</string>
+    <string name="Link">Sign In</string>
+    <string name="goBack">back</string>
+    <string name="editBtn">editAccount</string>
+    <string name="deleteBtn">Delete</string>
+    <string name="logOut">Log Out</string>
+    <string name="edit">Edit User Profile</string>
+    <string name="Updateprof">Update User Profile</string>
+    <string name="freeAcc">Free User</string>
+    <string name="artistLabel">Artist</string>
+    <string name="artViewUp">View Uploads</string>
+    <string name="viewPlans">View Plan</string>
+    <string name="Premium">Premium</string>
+    <string name="upLabel">Upgrade to Premium</string>
+    <string name="line1">Subscribe to ZornPlus for</string>
+    <string name="line2">PREMIUM EXPERIENCE</string>
+    <string name="premiumOffer">HD Music Streaming</string>
+    <string name="downprop">Unlimited Downloads</string>
+    <string name="bscPlan">Upgradetobasic</string>
+    <string name="premmPlan">upgradetopremium</string>
+    <string name="ultra">upgradetoultra</string>
+    <string name="uploadArt">Unlimited Uploads</string>
+    <string name="basicArtPlan">upgrade to basic artist plan</string>
+    <string name="premArtPlan">upgrade to premium artist plan</string>
+    <string name="ultraPremArtPlam">Upgrade to ultra premium artist plan</string>
+    <string-array name="accTypes">
+        <item>Please Choose the account type</item>
+        <item>Free User</item>
+        <item>Premium User</item>
+        <item>Artist</item>
+    </string-array>
+    <string name="home">Home</string>
+    <string name="library">MyLibrary</string>
+    <string name="upgrade">Upgrade</string>
+    <string name="upload">Upload</string>
+    <string name="paymentLabel">Make Payment</string>
+    <string name="yourPlanLabel">Your Plan</string>
+    <string name="otpLabel">One Time Payment</string>
+    <string name="todayLbl">Starting today</string>
+    <string name="paydetailslbl">Payment Details</string>
+    <string name="cardLabel">Credit Or Debit Card</string>
+    <string name="cardNumber">Card Number</string>
+    <string name="expiryLbl">Expiry Date</string>
+    <string name="security">Security Code</string>
+    <string name="TAndC">I agree to The Terms And Conditions set by the Zorn Music Company</string>
+    <string name="btnPayment">BUY NOW</string>
+    <string name="viewPlanLabel">Your Plan</string>
+    <string name="cancel">Cancel Subscription</string>
+    <string name="upPlan">Upgrade Plan\\</string>
+    <string name="upgradePlan">Upgrade Plan</string>
+    <string name="renewP">Renew Plan</string>
+    <string name="dropdown">Account Type</string>
+    <string name="choosePlan">Choose Plan</string>
+    <string name="usernamevalue">Your username</string>
+    <string name="usernametext">Username</string>
+    <string-array name="planTypes">
+        <item>Basic</item>
+        <item>Premium </item>
+        <item>Ultra Premium</item>
+    </string-array>
+    <string-array name="ArtistplanTypes">
+        <item>Basic</item>
+        <item>Premium </item>
+        <item>Ultra Premium</item>
+    </string-array>
 </resources>
 

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1C1A1A"
+    tools:context=".planInsert">
+<!--    uPlan(PlanName,Image,amount,noOfSongsDownload)-->
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:id="@+id/imagePlan"
+        android:src="@mipmap/ic_launcher"
+        android:layout_centerHorizontal="true"/>
+
+    <EditText
+        android:id="@+id/planName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imagePlan"
+        android:hint="Plan Name"
+        android:minHeight="48dp" />
+
+    <EditText
+        android:id="@+id/payamount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/planName"
+        android:hint="Plan amount"
+        android:minHeight="48dp" />
+
+    <EditText
+        android:id="@+id/downloadLimit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/payamount"
+        android:hint="Download limit for song"
+        android:minHeight="48dp" />
+
+    <Button
+        android:id="@+id/btn_submit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/payamount"
+        android:layout_marginTop="61dp"
+        android:backgroundTint="@color/dark_red"
+        android:text="Submit" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/btn_submit"
+        android:backgroundTint="@color/dark_red"
+        android:id="@+id/btn_display"
+        android:text="Display"
+        android:layout_alignParentRight="true"/>
+
+</RelativeLayout>

@@ -56,10 +56,39 @@ public class DatabaseHandler extends SQLiteOpenHelper
     @Override
     public void onCreate(SQLiteDatabase db)
     {
+
         try
         {
             db.execSQL(createSongTableQuery);
             db.execSQL(createAlbumTableQuery);
+
+
+            //Nuha
+            String CREATE_TABLE_STATEMENT = "CREATE TABLE "+ UserMasters.Users.TABLE_NAME + "(" +
+                    UserMasters.Users.COLUMN1_UN + " TEXT PRIMARY KEY,"+UserMasters.Users.COLUMN2_EM+" TEXT,"+UserMasters.Users.COLUMN3_PW+" TEXT,"+UserMasters.Users.COLUMN4_AT+" TEXT)";
+
+            String CREATE_TABLE_STATEMENT2="CREATE TABLE "+UserMasters.UserPlans.TABLE_NAME1 + "(" +
+                    UserMasters.UserPlans.COLUMN1_PN + " TEXT PRIMARY KEY,"+UserMasters.UserPlans.COLUMN2_IM+" BLOB,"+ UserMasters.UserPlans.COLUMN3_AM+" INTEGER,"+UserMasters.UserPlans.COLUMN4_DL+" INTEGER)";
+
+            String CREATE_TABLE_STATEMENT3="CREATE TABLE "+UserMasters.ArtistPlans.TABLE_NAME2 + "(" +
+                    UserMasters.ArtistPlans.COLUMN1_PNA + " TEXT PRIMARY KEY,"+UserMasters.ArtistPlans.COLUMN2_IMA+" BLOB,"+ UserMasters.ArtistPlans.COLUMN3_AMA+" INTEGER,"+UserMasters.ArtistPlans.COLUMN4_DLA+" INTEGER,"+UserMasters.ArtistPlans.COLUMN5_ULA+" INTEGER)";
+
+            String CREATE_TABLE_STATEMENT4="CREATE TABLE "+UserMasters.PremiumUsers.TABLE_NAME3 + "(" +UserMasters.PremiumUsers._ID+" INTEGER PRIMARY KEY,"+
+                    UserMasters.PremiumUsers.COLUMN1_UN + " TEXT NOT NULL,"+UserMasters.PremiumUsers.COLUMN2_PT + " TEXT NOT NULL )";
+
+            String CREATE_TABLE_STATEMENT5="CREATE TABLE "+UserMasters.ArtistUsers.TABLE_NAME4 + "(" +UserMasters.ArtistUsers._ID+" INTEGER PRIMARY KEY,"+
+                    UserMasters.ArtistUsers.COLUMN1_UN + " TEXT NOT NULL,"+UserMasters.ArtistUsers.COLUMN2_PT + " TEXT NOT NULL )";
+
+            String CREATE_TABLE_STATEMENT6="CREATE TABLE "+UserMasters.Payments.TABLE_NAME5 + "(" +UserMasters.Payments._ID+" INTEGER PRIMARY KEY,"+
+                    UserMasters.Payments.COLUMN1_UN + " TEXT NOT NULL,"+UserMasters.Payments.COLUMN2_AM + " INTEGER NOT NULL,"+UserMasters.Payments.COLUMN3_DT+ " TEXT,"+UserMasters.Payments.COLUMN4_PN+ " TEXT )";
+            db.execSQL(CREATE_TABLE_STATEMENT);
+            db.execSQL(CREATE_TABLE_STATEMENT2);
+            db.execSQL(CREATE_TABLE_STATEMENT3);
+            db.execSQL(CREATE_TABLE_STATEMENT4);
+            db.execSQL(CREATE_TABLE_STATEMENT5);
+            db.execSQL(CREATE_TABLE_STATEMENT6);
+
+
             Toast.makeText(context, "Songs and albums table created successfully inside the DB!", Toast.LENGTH_SHORT).show();
         }
         catch(Exception e)
@@ -76,6 +105,13 @@ public class DatabaseHandler extends SQLiteOpenHelper
 
         String query_2 = "DROP TABLE IF EXISTS " + TABLE_NAME_2;
         db.execSQL(query_2);
+
+        //Nuha
+        db.execSQL("drop Table if exists "+UserMasters.Users.TABLE_NAME);
+        db.execSQL("drop Table if exists "+UserMasters.UserPlans.TABLE_NAME1);
+        db.execSQL("drop Table if exists "+UserMasters.ArtistPlans.TABLE_NAME2);
+        db.execSQL("drop Table if exists "+UserMasters.PremiumUsers.TABLE_NAME3);
+        db.execSQL("drop Table if exists "+UserMasters.ArtistUsers.TABLE_NAME4);
     }
 
     //CRUD of Songs
@@ -170,6 +206,7 @@ public class DatabaseHandler extends SQLiteOpenHelper
         {
             SQLiteDatabase objectSQLiteDB = this.getReadableDatabase();
             ArrayList<Songs> objectSongsClassList = new ArrayList<>();
+
 
             String selectSongs = "SELECT * FROM Songs WHERE artistName = " + artistName;
             Cursor objectCursor = objectSQLiteDB.rawQuery(selectSongs, null);
@@ -502,5 +539,224 @@ public class DatabaseHandler extends SQLiteOpenHelper
             Toast.makeText(context, e.getMessage() , Toast.LENGTH_SHORT).show();
         }
     }
+
+    //Nuha's Crud
+
+    public boolean insertData(String username,String password,String email,String accountType){
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(UserMasters.Users.COLUMN1_UN,username);
+        values.put(UserMasters.Users.COLUMN3_PW,password);
+        values.put(UserMasters.Users.COLUMN2_EM,email);
+        values.put(UserMasters.Users.COLUMN4_AT,accountType);
+
+        long result = MyDB.insert(UserMasters.Users.TABLE_NAME,null,values);
+        if (result==-1) {return false;}
+        else
+        {return true;}
+    }
+    public boolean insertUserPlan(String username,String plan){
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(UserMasters.PremiumUsers.COLUMN1_UN,username);
+        values.put(UserMasters.PremiumUsers.COLUMN2_PT,plan);
+
+        long result = MyDB.insert(UserMasters.PremiumUsers.TABLE_NAME3,null,values);
+        if(result==-1){return false;}
+        else { return true;}
+    }
+    public boolean insertArtistPlan(String username,String plan){
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(UserMasters.ArtistUsers.COLUMN1_UN,username);
+        values.put(UserMasters.ArtistUsers.COLUMN2_PT,plan);
+
+        long result = MyDB.insert(UserMasters.ArtistUsers.TABLE_NAME4,null,values);
+        if(result==-1){return false;}
+        else { return true;}
+    }
+    public boolean insertPayment(String username, int amount, String date, String planname){
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(UserMasters.Payments.COLUMN1_UN,username);
+        values.put(UserMasters.Payments.COLUMN2_AM,amount);
+        values.put(UserMasters.Payments.COLUMN3_DT,String.valueOf(date));
+        values.put(UserMasters.Payments.COLUMN4_PN,planname);
+
+        long result = MyDB.insert(UserMasters.Payments.TABLE_NAME5,null,values);
+        if ( result==-1){return false;}
+        else {return true;}
+    }
+
+    public Boolean checkUserName(String username) {
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        String selection = UserMasters.Users.COLUMN1_UN + "=?";
+
+        String [] selectionArgs ={username};
+        // Cursor cursor = db.rawQuery("Select * from "+UserMaster.Users.TABLE_NAME+" where "+selection,selectionArgs);
+
+        Cursor cursor = MyDB.rawQuery("select * from "+UserMasters.Users.TABLE_NAME+" where "+selection, selectionArgs);
+        if (cursor.getCount() > 0)
+            return true;
+        else
+            return false;
+    }
+
+    public Boolean checkUserNamePassword(String username, String password){
+        SQLiteDatabase MyDB = this.getWritableDatabase();
+        Cursor cursor =  MyDB.rawQuery("select * from "+UserMasters.Users.TABLE_NAME+" where "+UserMasters.Users.COLUMN1_UN+" =? and "+UserMasters.Users.COLUMN3_PW+"=?",new String[] {username,password});
+
+        if(cursor.getCount()>0)
+            return true;
+        else
+            return false;
+
+    }
+    public Boolean updateInfo(String username,String email, String password){
+        SQLiteDatabase db= getWritableDatabase();
+        String selection = UserMasters.Users.COLUMN1_UN + "=?";
+        String [] selectionArgs ={username};
+        ContentValues values = new ContentValues();
+//    values.put(UserMaster.Users.COLUMN1_UN, username);
+        values.put(UserMasters.Users.COLUMN3_PW, password);
+        values.put(UserMasters.Users.COLUMN2_EM,email);
+
+
+        Cursor cursor = db.rawQuery("Select * from "+UserMasters.Users.TABLE_NAME+" where "+selection,selectionArgs);
+        if(cursor.getCount()>0) {
+
+
+//        insert method returns an integer if successful long is used in tutu to capture the value no point anyway since add info returns void
+            long result = db.update(UserMasters.Users.TABLE_NAME, values, selection,selectionArgs);
+            if (result == -1) {
+                return false;
+            } else {
+                return true;
+            }
+        }else{
+            return false;
+        }
+    }
+    public boolean updateUserAccType(String username,String acctype){
+        SQLiteDatabase db= getWritableDatabase();
+        String selection = UserMasters.Users.COLUMN1_UN + "=?";
+        String [] selectionArgs ={username};
+        ContentValues values = new ContentValues();
+        values.put(UserMasters.Users.COLUMN4_AT,acctype);
+        Cursor cursor = db.rawQuery("Select * from "+UserMasters.Users.TABLE_NAME+" where "+selection,selectionArgs);
+        if(cursor.getCount()>0) {
+
+
+//        insert method returns an integer if successful long is used in tutu to capture the value no point anyway since add info returns void
+            long result = db.update(UserMasters.Users.TABLE_NAME, values, selection,selectionArgs);
+            if (result == -1) {
+                return false;
+            } else {
+                return true;
+            }
+        }else{
+            return false;
+        }
+
+    }
+    public Boolean deleteInfo(String username){
+        SQLiteDatabase db= getWritableDatabase();
+        String selection = UserMasters.Users.COLUMN1_UN + "=?";
+
+        String []selectionArgs ={username};
+        Cursor cursor = db.rawQuery("Select * from "+UserMasters.Users.TABLE_NAME+" where "+selection,selectionArgs);
+        if(cursor.getCount()>0) {
+
+
+//        insert method returns an integer if successful long is used in tutu to capture the value no point anyway since add info returns void
+            long result = db.delete(UserMasters.Users.TABLE_NAME, selection, selectionArgs);
+            if (result == -1) {
+                return false;
+            } else {
+                return true;
+            }
+        }else{
+            return false;
+        }
+    }
+
+    public Cursor getInfo(String username) {
+        SQLiteDatabase db = getWritableDatabase();
+        String selection = UserMasters.Users.COLUMN1_UN + "=?";
+
+        String []selectionArgs ={username};
+        Cursor cursor = db.rawQuery("Select * from "+UserMasters.Users.TABLE_NAME+" where "+selection,selectionArgs);
+        return cursor;
+    }
+    public Cursor getPremiumPlanInfo(String username){
+        SQLiteDatabase sqLiteDatabase = getWritableDatabase();
+        String selection = UserMasters.PremiumUsers.COLUMN1_UN+"=?";
+        String []selectionArgs = {username};
+        Cursor cursor = sqLiteDatabase.rawQuery("Select * from "+UserMasters.PremiumUsers.TABLE_NAME3+" where "+selection,selectionArgs);
+        return cursor;
+    }
+    public Cursor getArtistPlanInfo(String username){
+        SQLiteDatabase sqLiteDatabase = getWritableDatabase();
+        String selection = UserMasters.ArtistUsers.COLUMN1_UN+"=?";
+        String []selectionArgs = {username};
+        Cursor cursor = sqLiteDatabase.rawQuery("Select * from "+UserMasters.ArtistUsers.TABLE_NAME4+" where "+selection,selectionArgs);
+        return cursor;
+    }
+    public Cursor getArtistPlanDetails(String planname){
+        SQLiteDatabase sqLiteDatabase=getWritableDatabase();
+        String selection = UserMasters.ArtistPlans.COLUMN1_PNA+"=?";
+        String []selectionArgs = {planname};
+        Cursor cursor = sqLiteDatabase.rawQuery("Select * from "+UserMasters.ArtistPlans.TABLE_NAME2+" where "+selection,selectionArgs);
+        return cursor;
+    }
+    public Cursor getPremiumPlanDetails(String planname){
+        SQLiteDatabase sqLiteDatabase=getWritableDatabase();
+        String selection = UserMasters.UserPlans.COLUMN1_PN+"=?";
+        String []selectionArgs = {planname};
+        Cursor cursor = sqLiteDatabase.rawQuery("Select * from "+UserMasters.UserPlans.TABLE_NAME1+" where "+selection,selectionArgs);
+        return cursor;
+    }
+    public Boolean deletePremiumUserInfo(String username){
+        SQLiteDatabase db= getWritableDatabase();
+        String selection = UserMasters.PremiumUsers.COLUMN1_UN + "=?";
+
+        String []selectionArgs ={username};
+        Cursor cursor = db.rawQuery("Select * from "+UserMasters.PremiumUsers.TABLE_NAME3+" where "+selection,selectionArgs);
+        if(cursor.getCount()>0) {
+
+
+//        insert method returns an integer if successful long is used in tutu to capture the value no point anyway since add info returns void
+            long result = db.delete(UserMasters.PremiumUsers.TABLE_NAME3, selection, selectionArgs);
+            if (result == -1) {
+                return false;
+            } else {
+                return true;
+            }
+        }else{
+            return false;
+        }
+    }
+    public Boolean deleteArtistUserInfo(String username){
+        SQLiteDatabase db= getWritableDatabase();
+        String selection = UserMasters.ArtistUsers.COLUMN1_UN + "=?";
+
+        String []selectionArgs ={username};
+        Cursor cursor = db.rawQuery("Select * from "+UserMasters.ArtistUsers.TABLE_NAME4+" where "+selection,selectionArgs);
+        if(cursor.getCount()>0) {
+
+
+//        insert method returns an integer if successful long is used in tutu to capture the value no point anyway since add info returns void
+            long result = db.delete(UserMasters.ArtistUsers.TABLE_NAME4, selection, selectionArgs);
+            if (result == -1) {
+                return false;
+            } else {
+                return true;
+            }
+        }else{
+            return false;
+        }
+    }
+
+
 
 }
