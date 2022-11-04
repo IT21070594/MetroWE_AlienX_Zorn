@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,52 +8,51 @@
     android:background="#1C1A1A"
     tools:context=".CreateNewAlbum">
 
-    <Button
-        android:id="@+id/cancelBtn"
-        android:layout_width="195dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="80dp"
-        android:backgroundTint="#880E04"
-        android:text="@string/cancelBtn"
-        app:layout_constraintEnd_toStartOf="@+id/createAlbumBtn"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/enterAlbumName" />
-
     <TextView
         android:id="@+id/album"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="8dp"
         android:text="@string/albumUpload"
         android:textAlignment="center"
         android:textColor="#F44336"
         android:textSize="34sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        />
 
     <TextView
         android:id="@+id/coolStep"
         android:layout_width="362dp"
         android:layout_height="76dp"
-        android:layout_marginTop="42dp"
+        android:layout_marginTop="24dp"
         android:fontFamily="sans-serif-black"
         android:text="@string/createNewAlbum"
         android:textAlignment="center"
         android:textColor="#887979"
         android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/album" />
+        android:layout_below="@+id/album"
+        android:layout_centerHorizontal="true"/>
+
+    <ImageView
+        android:id="@+id/albumPhotoInput"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="60dp"
+        android:src="@drawable/ic_baseline_add_a_photo"
+        android:scaleType="centerCrop"
+        android:clickable="true"
+        android:onClick="chooseAlbumImage"
+        android:layout_centerInParent="true"
+        android:layout_below="@+id/coolStep"/>
 
     <EditText
         android:id="@+id/enterAlbumName"
         android:layout_width="314dp"
         android:layout_height="57dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="24dp"
         android:ems="10"
         android:hint="@string/enterAlbum"
         android:importantForAutofill="no"
@@ -61,64 +61,45 @@
         android:textColor="#9F9A9A"
         android:textColorHint="#ECE1E1"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/coolStep" />
+        android:layout_below="@+id/albumPhotoInput"
+        android:layout_centerHorizontal="true"/>
+
+    <Button
+        android:id="@+id/cancelAlbumBtn"
+        android:layout_width="195dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:layout_marginStart="8dp"
+        android:backgroundTint="#880E04"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/cancelBtn"
+        android:textAlignment="center"
+        android:textSize="14sp"
+        android:layout_below="@+id/enterAlbumName"
+        android:layout_alignParentLeft="true"/>
 
     <Button
         android:id="@+id/createAlbumBtn"
         android:layout_width="195dp"
         android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="8dp"
         android:backgroundTint="#04146A"
         android:fontFamily="sans-serif-medium"
         android:text="@string/createAlbum"
         android:textAlignment="center"
         android:textSize="14sp"
-        app:layout_constraintBaseline_toBaselineOf="@+id/cancelBtn"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:layout_below="@+id/enterAlbumName"
+        android:layout_alignParentRight="true"
+        android:onClick="storeAlbum"/>
 
-    <Button
-        android:id="@+id/HomeBtn"
-        android:layout_width="80dp"
-        android:layout_height="42dp"
-        android:backgroundTint="#1C1A1A"
-        android:text="@string/HomeBtn"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/MyLibraryBtn"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/MyLibraryBtn"
-        android:layout_width="122dp"
-        android:layout_height="42dp"
-        android:backgroundTint="#1C1A1A"
-        android:text="@string/MyLibraryBtn"
-        android:textAlignment="textStart"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/upgradeBtn"
-        app:layout_constraintStart_toEndOf="@+id/HomeBtn" />
-
-    <Button
-        android:id="@+id/upgradeBtn"
-        android:layout_width="106dp"
-        android:layout_height="42dp"
-        android:backgroundTint="#1C1A1A"
-        android:text="@string/upgradeBtn"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/uploadBtn"
-        app:layout_constraintStart_toEndOf="@+id/MyLibraryBtn" />
-
-    <Button
-        android:id="@+id/uploadBtn"
-        android:layout_width="104dp"
-        android:layout_height="42dp"
-        android:backgroundTint="#1C1A1A"
-        android:text="@string/uploadBtn"
-        android:textColor="#F44336"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/upgradeBtn" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bottom_navigation"
+        app:itemBackground="@color/black"
+        app:itemTextColor="@drawable/selector"
+        app:itemIconTint="@drawable/selector"
+        app:menu="@menu/menu_navigation"
+        android:layout_alignParentBottom="true"/>
+</RelativeLayout>

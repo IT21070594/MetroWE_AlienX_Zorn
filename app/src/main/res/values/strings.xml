@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Uploads</string>
+    <string name="app_name">Zorn Music</string>
     <string name="albumBtn">Album</string>
     <string name="songsBtn">Songs</string>
     <string name="searchBar">Search songs</string>
@@ -23,7 +23,7 @@
     <string name="photo">"Portrait Photo : "</string>
     <string name="photoInput">Choose image</string>
     <string name="audio">Upload Audio :</string>
-    <string name="audioInput">Choose file</string>
+    <string name="audioInput">Select an audio</string>
     <string name="radioTxt1">Release as single song</string>
     <string name="radioTxt2">Add to existing album</string>
     <string name="album">Select Album :</string>
@@ -37,7 +37,7 @@
     <string name="editSongInput">Sorry</string>
     <string name="editLangInput">English</string>
     <string name="editGenreInput">Electronic</string>
-    <string name="updateBtn">Update</string>
+    <string name="updateBtn">Save Changes</string>
     <string name="enterAlbum">Enter Album Name</string>
     <string name="albumUpload">Album</string>
     <string name="createNewAlbum">Great! Take First Step To Create Your Album</string>
@@ -45,9 +45,9 @@
     <string name="editAlbumName">Edit Album Name</string>
     <string name="playMusic">Playing Music</string>
     <string name="artistNameAlan">Alan Walker</string>
-    <string name="songname">Sorry</string>
-    <string name="langGenre">English Electronic</string>
-    <string name="artistName">Alan Walker</string>
+    <string name="songname">Song Name</string>
+    <string name="langGenre">Language &amp; Genre</string>
+    <string name="artistName">Artist Name</string>
     <string name="currentTime">0:56</string>
     <string name="endTime">3:10</string>
 </resources>

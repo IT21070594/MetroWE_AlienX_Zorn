@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,243 +8,141 @@
     android:background="#1C1A1A"
     tools:context=".UpdateSong">
 
-    <EditText
-        android:id="@+id/editSongInput"
-        android:layout_width="194dp"
+    <ImageView
+        android:id="@+id/editPhotoInput"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="60dp"
+        android:src="@drawable/ic_baseline_add_a_photo"
+        android:scaleType="centerCrop"
+        android:clickable="true"
+        android:onClick="chooseEditImage"
+        android:layout_centerInParent="true"
+        android:layout_alignParentTop="true"/>
+
+    <TextView
+        android:id="@+id/songName"
+        android:layout_width="152dp"
         android:layout_height="40dp"
-        android:layout_marginTop="61dp"
-        android:layout_marginEnd="24dp"
-        android:ems="10"
-        android:hint="@string/editSongInput"
-        android:inputType="textPersonName"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/songName"
         android:textAlignment="textStart"
-        android:textColor="#F3EDED"
-        android:textColorHint="#B3A8A8"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/settings"
-        tools:ignore="TouchTargetSizeCheck" />
+        android:textColor="#F44336"
+        android:textSize="18sp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/editPhotoInput"/>
 
     <EditText
-        android:id="@+id/editLangInput"
+        android:id="@+id/editSongNameInput"
         android:layout_width="194dp"
         android:layout_height="40dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="212dp"
         android:layout_marginEnd="24dp"
         android:ems="10"
-        android:hint="@string/editLangInput"
+        android:hint="@string/SongNameHint"
         android:inputType="textPersonName"
         android:textAlignment="textStart"
         android:textColor="#F3EDED"
         android:textColorHint="#B3A8A8"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editSongInput"
-        tools:ignore="TouchTargetSizeCheck" />
+        android:layout_alignParentRight="true"
+        />
+
+
+    <TextView
+        android:id="@+id/genre"
+        android:layout_width="152dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/genre"
+        android:textAlignment="textStart"
+        android:textColor="#F44336"
+        android:textSize="18sp"
+        android:layout_below="@+id/songName"
+        android:layout_alignParentLeft="true"/>
+
 
     <EditText
         android:id="@+id/editGenreInput"
         android:layout_width="194dp"
         android:layout_height="40dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
         android:ems="10"
-        android:hint="@string/editGenreInput"
+        android:hint="@string/genreInput"
         android:inputType="textPersonName"
         android:textAlignment="textStart"
         android:textColor="#F3EDED"
         android:textColorHint="#B3A8A8"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editLangInput"
-        tools:ignore="TouchTargetSizeCheck" />
-
-    <TextView
-        android:id="@+id/editSong"
-        android:layout_width="152dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="18dp"
-        android:text="@string/songName"
-        android:textAlignment="textStart"
-        android:textColor="#F44336"
         android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/editSongInput"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/playBtn" />
+        android:layout_below="@+id/editSongNameInput"
+        android:layout_alignParentRight="true"/>
+
 
     <TextView
-        android:id="@+id/editLang"
+        android:id="@+id/lang"
         android:layout_width="152dp"
         android:layout_height="40dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="18dp"
         android:text="@string/lang"
         android:textAlignment="textStart"
         android:textColor="#F44336"
         android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/editLangInput"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editSong" />
+        android:layout_below="@+id/genre"
+        android:layout_alignParentLeft="true"/>
 
-    <TextView
-        android:layout_width="152dp"
+    <EditText
+        android:id="@+id/editLangInput"
+        android:layout_width="194dp"
         android:layout_height="40dp"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="18dp"
-        android:text="@string/genre"
+        android:layout_marginEnd="24dp"
+        android:ems="10"
+        android:hint="@string/langInput"
+        android:inputType="textPersonName"
         android:textAlignment="textStart"
-        android:textColor="#F44336"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/editGenreInput"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editLang" />
-
-    <ImageView
-        android:id="@+id/editImg"
-        android:layout_width="164dp"
-        android:layout_height="110dp"
-        android:layout_marginStart="128dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="129dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/sorry" />
-
+        android:textColor="#F3EDED"
+        android:textColorHint="#B3A8A8"
+        android:layout_below="@+id/editGenreInput"
+        android:layout_alignParentRight="true"/>
 
     <Button
-        android:id="@+id/cancelBtn"
+        android:id="@+id/editCancelBtn"
         android:layout_width="195dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginBottom="16dp"
         android:backgroundTint="#880E04"
         android:text="@string/cancelBtn"
-        app:layout_constraintBottom_toTopOf="@+id/HomeBtn"
-        app:layout_constraintEnd_toStartOf="@+id/updateAlbumBtn"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_above="@id/bottom_navigation"
+        android:layout_alignParentLeft="true"/>
 
     <Button
-        android:id="@+id/updateAlbumBtn"
+        android:id="@+id/editSubmitBtn"
         android:layout_width="195dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="16dp"
         android:backgroundTint="#04146A"
         android:text="@string/updateBtn"
-        app:layout_constraintBottom_toTopOf="@+id/upgradeBtn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/cancelBtn" />
+        android:layout_above="@id/bottom_navigation"
+        android:layout_alignParentRight="true"
+        android:onClick="editSong"/>
 
-    <Button
-        android:id="@+id/HomeBtn"
-        android:layout_width="80dp"
-        android:layout_height="42dp"
-        android:backgroundTint="#1C1A1A"
-        android:text="@string/HomeBtn"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/MyLibraryBtn"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/MyLibraryBtn"
-        android:layout_width="122dp"
-        android:layout_height="42dp"
-        android:backgroundTint="#1C1A1A"
-        android:text="@string/MyLibraryBtn"
-        android:textAlignment="textStart"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/upgradeBtn"
-        app:layout_constraintStart_toEndOf="@+id/HomeBtn" />
-
-    <Button
-        android:id="@+id/upgradeBtn"
-        android:layout_width="106dp"
-        android:layout_height="42dp"
-        android:backgroundTint="#1C1A1A"
-        android:text="@string/upgradeBtn"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/uploadBtn"
-        app:layout_constraintStart_toEndOf="@+id/MyLibraryBtn" />
-
-    <Button
-        android:id="@+id/uploadBtn"
-        android:layout_width="104dp"
-        android:layout_height="42dp"
-        android:backgroundTint="#1C1A1A"
-        android:text="@string/uploadBtn"
-        android:textColor="#F44336"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/upgradeBtn" />
-
-    <ImageButton
-        android:id="@+id/playBtn"
-        android:layout_width="wrap_content"
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="158dp"
-        android:layout_marginEnd="86dp"
-        android:backgroundTint="#1C1A1A"
-        app:layout_constraintEnd_toStartOf="@+id/placeHolder"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_media_play" />
+        android:id="@+id/bottom_navigation"
+        app:itemBackground="@color/black"
+        app:itemTextColor="@drawable/selector"
+        app:itemIconTint="@drawable/selector"
+        app:menu="@menu/menu_navigation"
+        android:layout_alignParentBottom="true"/>
 
-    <ImageButton
-        android:id="@+id/settings"
-        android:layout_width="35dp"
-        android:layout_height="37dp"
-        android:layout_marginTop="160dp"
-        android:layout_marginEnd="32dp"
-        android:background="#1C1A1A"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_baseline_more_vert_24" />
-
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="164dp"
-        android:layout_marginEnd="8dp"
-        android:background="#1C1A1A"
-        app:layout_constraintEnd_toStartOf="@+id/settings"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:drawable/ic_lock_silent_mode_off" />
-
-    <ImageButton
-        android:id="@+id/placeHolder"
-        android:layout_width="0dp"
-        android:layout_height="24dp"
-        android:layout_marginTop="44dp"
-        android:layout_marginEnd="206dp"
-        android:background="#1C1A1A"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/playBtn"
-        app:layout_constraintTop_toBottomOf="@+id/editImg"
-        app:srcCompat="@drawable/ic_baseline_circle_16" />
-
-    <View
-        android:id="@+id/duration"
-        android:layout_width="180dp"
-        android:layout_height="2dp"
-        android:layout_marginStart="96dp"
-        android:layout_marginTop="56dp"
-        android:background="#f44336"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editImg" />
-
-    <View
-        android:id="@+id/listened"
-        android:layout_width="88dp"
-        android:layout_height="3dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="56dp"
-        android:background="@color/white"
-        app:layout_constraintStart_toEndOf="@+id/playBtn"
-        app:layout_constraintTop_toBottomOf="@+id/editImg" />
-
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

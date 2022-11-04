@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,7 +8,7 @@
     tools:context=".EditAlbum">
 
     <TextView
-        android:id="@+id/editAlbumName"
+        android:id="@+id/editAlbumNameTopic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -17,47 +17,44 @@
         android:textColor="#F44336"
         android:textSize="24sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_centerInParent="true"
+        android:layout_alignParentTop="true"/>
 
     <ImageView
-        android:id="@+id/editWorldOfWalkerAlbum"
+        android:id="@+id/editAlbumImg"
         android:layout_width="184dp"
         android:layout_height="199dp"
         android:layout_marginTop="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editAlbumName"
-        app:srcCompat="@drawable/worldofwalker" />
+        app:srcCompat="@drawable/ic_baseline_add_a_photo"
+        android:layout_centerInParent="true"
+        android:layout_below="@+id/editAlbumNameTopic"
+        android:onClick="chooseAlbumEditImage"/>
 
     <EditText
         android:id="@+id/changeAlbumName"
         android:layout_width="300dp"
         android:layout_height="43dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginTop="40dp"
         android:ems="10"
-        android:hint="@string/enterAlbum"
+        android:hint="@string/editAlbumName"
         android:inputType="textPersonName"
         android:textAlignment="center"
         android:textColor="#9F9A9A"
         android:textColorHint="#9F9A9A"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editWorldOfWalkerAlbum" />
+        android:layout_below="@+id/editAlbumImg"
+        android:layout_centerInParent="true"/>
 
     <Button
-        android:id="@+id/cancelBtn"
+        android:id="@+id/cancelEditAlbumBtn"
         android:layout_width="195dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginBottom="48dp"
+        android:layout_marginTop="60dp"
         android:backgroundTint="#880E04"
         android:text="@string/cancelBtn"
-        app:layout_constraintBottom_toTopOf="@+id/homeBtn"
-        app:layout_constraintEnd_toStartOf="@+id/updateAlbumBtn"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_below="@+id/changeAlbumName"
+        android:layout_alignParentLeft="true"/>
 
     <Button
         android:id="@+id/updateAlbumBtn"
@@ -65,58 +62,21 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="48dp"
+        android:layout_marginTop="60dp"
         android:backgroundTint="#04146A"
         android:text="@string/updateBtn"
-        app:layout_constraintBottom_toTopOf="@+id/upgradeBtn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/cancelBtn" />
-    <Button
-        android:id="@+id/homeBtn"
-        android:layout_width="80dp"
-        android:layout_height="42dp"
-        android:backgroundTint="#1C1A1A"
-        android:outlineProvider="none"
-        android:text="@string/HomeBtn"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/myLibraryBtn"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:layout_below="@+id/changeAlbumName"
+        android:layout_alignParentRight="true"
+        android:onClick="editAlbum"/>
 
-    <Button
-        android:id="@+id/myLibraryBtn"
-        android:layout_width="122dp"
-        android:layout_height="42dp"
-        android:backgroundTint="#1C1A1A"
-        android:outlineProvider="none"
-        android:text="@string/MyLibraryBtn"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/upgradeBtn"
-        app:layout_constraintStart_toEndOf="@+id/homeBtn" />
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bottom_navigation"
+        app:itemBackground="@color/black"
+        app:itemTextColor="@drawable/selector"
+        app:itemIconTint="@drawable/selector"
+        app:menu="@menu/menu_navigation"
+        android:layout_alignParentBottom="true"/>
 
-    <Button
-        android:id="@+id/upgradeBtn"
-        android:layout_width="106dp"
-        android:layout_height="42dp"
-        android:backgroundTint="#1C1A1A"
-        android:outlineProvider="none"
-        android:text="@string/upgradeBtn"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/uploadBtn"
-        app:layout_constraintStart_toEndOf="@+id/myLibraryBtn" />
-
-    <Button
-        android:id="@+id/uploadBtn"
-        android:layout_width="104dp"
-        android:layout_height="42dp"
-        android:backgroundTint="#1C1A1A"
-        android:outlineProvider="none"
-        android:text="@string/uploadBtn"
-        android:textColor="#F44336"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/upgradeBtn" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/home"
+        android:title="HOME"
+        android:icon="@drawable/ic_baseline_home" />
+    <item
+        android:id="@+id/myLibrary"
+        android:title="MY LIBRARY"
+        android:icon="@drawable/ic_baseline_library" />
+<!--    <item-->
+<!--        android:id="@+id/upgrade"-->
+<!--        android:title="UPGRADE"-->
+<!--        android:icon="@drawable/ic_baseline_upgrade" />-->
+    <item
+        android:id="@+id/uploads"
+        android:title="UPLOADS"
+        android:icon="@drawable/ic_baseline_upload" />
+
+</menu>

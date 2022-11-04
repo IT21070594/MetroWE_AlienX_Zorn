@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,153 +8,40 @@
     android:background="#1C1A1A"
     tools:context=".Album">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="100dp"
-        android:text="@string/differentWorld"
-        android:textColor="#E8E0E0"
-        android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/differentWorldImg"
-        app:layout_constraintTop_toBottomOf="@+id/worldOfWalker" />
-
-    <TextView
-        android:id="@+id/worldOfWalker"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="88dp"
-        android:text="@string/worldOfWalker"
-        android:textColor="#E8E0E0"
-        android:textSize="20sp"
-        app:layout_constraintStart_toEndOf="@+id/worldOfWalkerImg"
-        app:layout_constraintTop_toBottomOf="@+id/createNewBtn" />
-
     <Button
         android:id="@+id/songsBtn"
         android:layout_width="206dp"
         android:layout_height="48dp"
-        android:layout_marginTop="10dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
         android:backgroundTint="#1C1A1A"
+        android:paddingTop="8dp"
         android:soundEffectsEnabled="true"
         android:text="@string/songsBtn"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="DuplicateSpeakableTextCheck" />
+        />
 
     <Button
+        android:id="@+id/albumsBtn"
         android:layout_width="208dp"
         android:layout_height="48dp"
         android:backgroundTint="#1C1A1A"
+        android:soundEffectsEnabled="true"
         android:text="@string/albumBtn"
+        android:layout_alignParentTop="true"
+        android:paddingTop="8dp"
         android:textColor="#F44336"
-        app:layout_constraintBaseline_toBaselineOf="@+id/songsBtn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/songsBtn"
-        tools:ignore="DuplicateSpeakableTextCheck" />
-
-    <Button
-        android:id="@+id/HomeBtn"
-        android:layout_width="80dp"
-        android:layout_height="42dp"
-        android:backgroundTint="#1C1A1A"
-        android:text="@string/HomeBtn"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/MyLibraryBtn"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/MyLibraryBtn"
-        android:layout_width="122dp"
-        android:layout_height="42dp"
-        android:backgroundTint="#1C1A1A"
-        android:text="@string/MyLibraryBtn"
-        android:textAlignment="textStart"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/upgradeBtn"
-        app:layout_constraintStart_toEndOf="@+id/HomeBtn" />
-
-    <Button
-        android:id="@+id/upgradeBtn"
-        android:layout_width="106dp"
-        android:layout_height="42dp"
-        android:backgroundTint="#1C1A1A"
-        android:text="@string/upgradeBtn"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/uploadBtn"
-        app:layout_constraintStart_toEndOf="@+id/MyLibraryBtn" />
-
-    <Button
-        android:id="@+id/uploadBtn"
-        android:layout_width="104dp"
-        android:layout_height="42dp"
-        android:backgroundTint="#1C1A1A"
-        android:text="@string/uploadBtn"
-        android:textColor="#F44336"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/upgradeBtn" />
+        android:layout_alignParentRight="true"
+        />
 
     <SearchView
-        android:id="@+id/searchBar"
-        android:layout_width="400dp"
-        android:layout_height="32dp"
-        android:layout_marginStart="6dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="6dp"
+        android:id="@+id/albumSearchBar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="#4E4E50"
         android:queryHint="@string/searchBar"
         android:searchIcon="@android:drawable/ic_menu_search"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/songsBtn" />
-
-    <ImageButton
-        android:id="@+id/set1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="144dp"
-        android:layout_marginEnd="16dp"
-        android:backgroundTint="#1C1A1A"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchBar"
-        app:srcCompat="@drawable/ic_baseline_more_vert_24"
-        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,TouchTargetSizeCheck" />
-
-    <ImageButton
-        android:id="@+id/set2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
-        android:layout_marginEnd="16dp"
-        android:backgroundTint="#1C1A1A"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/set1"
-        app:srcCompat="@drawable/ic_baseline_more_vert_24"
-        tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
-
-    <ImageView
-        android:id="@+id/worldOfWalkerImg"
-        android:layout_width="127dp"
-        android:layout_height="126dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/createImgBtn"
-        app:srcCompat="@drawable/worldofwalker" />
-
-    <ImageView
-        android:id="@+id/differentWorldImg"
-        android:layout_width="127dp"
-        android:layout_height="126dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="24dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/worldOfWalkerImg"
-        app:srcCompat="@drawable/different_world" />
+        android:layout_below="@id/songsBtn"
+        android:paddingStart="20dp"/>
 
     <ImageButton
         android:id="@+id/createImgBtn"
@@ -163,10 +51,8 @@
         android:layout_marginTop="24dp"
         android:background="#1C1A1A"
         app:tint="#F44336"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/searchBar"
         app:srcCompat="@android:drawable/ic_input_add"
-        tools:ignore="TouchTargetSizeCheck" />
+        android:layout_below="@id/albumSearchBar"/>
 
     <Button
         android:id="@+id/createNewBtn"
@@ -174,9 +60,42 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:layout_marginTop="16dp"
+        android:backgroundTint="#1C1A1A"
+        android:soundEffectsEnabled="true"
         android:text="@string/createNewBtn"
         android:textColor="#F44336"
-        app:layout_constraintStart_toEndOf="@+id/createImgBtn"
-        app:layout_constraintTop_toBottomOf="@+id/searchBar" />
+        android:layout_below="@id/albumSearchBar"
+        android:layout_toRightOf="@id/createImgBtn"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/noAlbumsText"
+        android:text="No Albums Uploaded"
+        android:layout_centerInParent="true"
+        android:layout_below="@+id/createNewBtn"
+        android:layout_marginTop="32dp"
+        android:textColor="@color/white"
+        android:textStyle="italic"
+        android:textSize="20sp"
+        android:visibility="gone"
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/albumsRV"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/createNewBtn"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="70dp"/>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bottom_navigation"
+        app:itemBackground="@color/black"
+        app:itemTextColor="@drawable/selector"
+        app:itemIconTint="@drawable/selector"
+        app:menu="@menu/menu_navigation"
+        android:layout_alignParentBottom="true"/>
+</RelativeLayout>
