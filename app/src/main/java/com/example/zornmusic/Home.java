@@ -17,14 +17,45 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import Database.DatabaseHandler;
 
 public class Home extends AppCompatActivity {
-    Intent receiveIntent;
+
     ImageButton avatar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        receiveIntent=getIntent();
+        Intent receiveIntent=getIntent();
         String name=receiveIntent.getStringExtra("user");
+        System.out.println(name);
+        //Initialize And Assign Variable
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+
+        //Set Home Selected
+        bottomNavigationView.setSelectedItemId(R.id.home);
+
+        //Perform ItemSelectedListener
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.home:
+                        return true;
+                    case R.id.myLibrary:
+                        //startActivity(new Intent(getApplicationContext(), Library.class));
+                        Intent intent1 = new Intent(getApplicationContext(),Library.class);
+                        intent1.putExtra("user",name);
+                        startActivity(intent1);
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.uploads:
+
+                        uploadButtonGo();
+                        return true;
+                }
+                return false;
+            }
+        });
+
+
         DatabaseHandler dbHandler=  new DatabaseHandler(this);
         Cursor res=dbHandler.getInfo(name);
         if(res.getCount()==0){
@@ -48,35 +79,10 @@ public class Home extends AppCompatActivity {
 
             }
         });
-        //Initialize And Assign Variable
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-
-        //Set Home Selected
-        bottomNavigationView.setSelectedItemId(R.id.home);
-
-        //Perform ItemSelectedListener
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
-                    case R.id.home:
-                        return true;
-                    case R.id.myLibrary:
-                        startActivity(new Intent(getApplicationContext(), Library.class));
-                        overridePendingTransition(0,0);
-                        return true;
-                    case R.id.uploads:
-
-                        uploadButtonGo();
-                        return true;
-                }
-                return false;
-            }
-        });
     }
     public void gotonextview(){
-        receiveIntent=getIntent();
-        String name=receiveIntent.getStringExtra("user");
+       Intent receiveIntent2=getIntent();
+        String name=receiveIntent2.getStringExtra("user");
         DatabaseHandler dbHandler=  new DatabaseHandler(this);
         Cursor res=dbHandler.getInfo(name);
         if(res.getCount()==0){
@@ -99,26 +105,27 @@ public class Home extends AppCompatActivity {
         System.out.println(accType);
         if (c1.compareTo(accType)==0){ Toast.makeText(this, "Hi Premium", Toast.LENGTH_SHORT).show();
             Intent intent1 = new Intent(getApplicationContext(),viewPremiumUserAcc.class);
-            intent1.putExtra("user",receiveIntent.getStringExtra("user"));
+            intent1.putExtra("user",receiveIntent2.getStringExtra("user"));
             startActivity(intent1);}
         else if(c2.compareTo(accType)==0) {Toast.makeText(this, "Hi Hi", Toast.LENGTH_SHORT).show();
 
             Intent intent2 = new Intent(getApplicationContext(),viewArtistAcc.class);
-            intent2.putExtra("user",receiveIntent.getStringExtra("user"));
+            intent2.putExtra("user",receiveIntent2.getStringExtra("user"));
             startActivity(intent2);
         }
         else if(c3.compareTo(accType)==0) {Toast.makeText(this, "Hellooo", Toast.LENGTH_SHORT).show();
             Intent intent3 = new Intent(getApplicationContext(),UserViewAccount.class);
-            intent3.putExtra("user",receiveIntent.getStringExtra("user"));
+            intent3.putExtra("user",receiveIntent2.getStringExtra("user"));
             startActivity(intent3);
         }
     }
 
     public void uploadButtonGo(){
-        receiveIntent=getIntent();
-        String name=receiveIntent.getStringExtra("user");
+        Intent receiveIntent3=getIntent();
+        String artistName=receiveIntent3.getStringExtra("user");
+        System.out.println(receiveIntent3.getStringExtra("user"));
         DatabaseHandler dbHandler=  new DatabaseHandler(this);
-        Cursor res=dbHandler.getInfo(name);
+        Cursor res=dbHandler.getInfo(artistName);
         if(res.getCount()==0){
             Toast.makeText(getApplicationContext(), "No such entry exists", Toast.LENGTH_SHORT).show();
             return ;
@@ -137,14 +144,20 @@ public class Home extends AppCompatActivity {
 
         if(c3.compareTo(accType)==0){
             Toast.makeText(this, "Please login with Artist Account Credentials!", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(getApplicationContext(), login.class));
+            Intent intent2 = new Intent(getApplicationContext(),login.class);
+            intent2.putExtra("user",receiveIntent3.getStringExtra("user"));
+            startActivity(intent2);
             overridePendingTransition(0,0);
         }else if(c2.compareTo(accType)==0){
-            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            Intent intent2 = new Intent(getApplicationContext(),MainActivity.class);
+            intent2.putExtra("user",artistName);
+            startActivity(intent2);
             overridePendingTransition(0,0);
         }else{
             Toast.makeText(this, "Please login with Artist Account Credentials!", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(getApplicationContext(), login.class));
+            Intent intent2 = new Intent(getApplicationContext(),login.class);
+            intent2.putExtra("user",artistName);
+            startActivity(intent2);
             overridePendingTransition(0,0);
         }
     }

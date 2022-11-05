@@ -30,10 +30,10 @@
             android:name=".premiumMakePayment"
             android:exported="false" />
         <activity
-            android:name=".SignUp"
+            android:name=".Home"
             android:exported="false" />
         <activity
-            android:name=".viewArtistPremiumPlans"
+            android:name=".ArtistPlanInsert"
             android:exported="false" />
         <activity
             android:name=".viewPremiumUserAcc"
@@ -45,16 +45,16 @@
             android:name=".viewArtistAcc"
             android:exported="false" />
         <activity
-            android:name=".planInsert"
+            android:name=".SignUp"
             android:exported="false" />
         <activity
-            android:name=".ArtistPlanInsert"
+            android:name=".planInsert"
             android:exported="false" />
         <activity
             android:name=".viewUserPlan"
             android:exported="false" />
         <activity
-            android:name=".viewPlans"
+            android:name=".viewArtistPremiumPlans"
             android:exported="false" />
         <activity
             android:name=".makePayment"
@@ -63,7 +63,7 @@
             android:name=".editUserProfile"
             android:exported="false" />
         <activity
-            android:name=".login"
+            android:name=".viewPlans"
             android:exported="true"/>
         <activity
             android:name=".Library"
@@ -90,7 +90,7 @@
             android:name=".UpdateSong"
             android:exported="false" />
         <activity
-            android:name=".Home"
+            android:name=".login"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

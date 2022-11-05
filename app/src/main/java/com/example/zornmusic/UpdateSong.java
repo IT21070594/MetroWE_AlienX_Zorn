@@ -40,12 +40,14 @@ public class UpdateSong extends AppCompatActivity
     private Bitmap imageToStore;
     private byte[] imageInBytes;
     DatabaseHandler objectDatabaseHandler;
-
+    Intent receiveIntent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_song);
 
+        receiveIntent=getIntent();
+        String name=receiveIntent.getStringExtra("user");
         //Initialize And Assign Variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
@@ -58,11 +60,15 @@ public class UpdateSong extends AppCompatActivity
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.home:
-                        startActivity(new Intent(getApplicationContext(), Home.class));
+                        Intent intent = new Intent(getApplicationContext(),Home.class);
+                        intent.putExtra("user",name);
+                        startActivity(intent);
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.myLibrary:
-                        startActivity(new Intent(getApplicationContext(), Library.class));
+                        Intent intent1 = new Intent(getApplicationContext(),Library.class);
+                        intent1.putExtra("user",name);
+                        startActivity(intent1);
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.uploads:
@@ -71,14 +77,14 @@ public class UpdateSong extends AppCompatActivity
                 return false;
             }
         });
-
         Button cancelBtn = findViewById(R.id.editCancelBtn);
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(UpdateSong.this, MainActivity.class);
-                startActivity(intent);
-                overridePendingTransition(0,0);
+                finish();
+//                Intent intent = new Intent(UpdateSong.this, MainActivity.class);
+//                startActivity(intent);
+//                overridePendingTransition(0,0);
             }
         });
 
@@ -161,10 +167,10 @@ public class UpdateSong extends AppCompatActivity
             if(!editsongName.getText().toString().isEmpty() && editsongPhoto.getDrawable()!=null)
             {
                 objectDatabaseHandler.editSong(id, editsongName.getText().toString(), editlang.getText().toString(), editgenre.getText().toString(),imageInBytes);
-
-                Intent intent = new Intent(UpdateSong.this, MainActivity.class);
-                startActivity(intent);
-                overridePendingTransition(0,0);
+                    finish();
+//                Intent intent = new Intent(UpdateSong.this, MainActivity.class);
+//                startActivity(intent);
+//                overridePendingTransition(0,0);
             }
             else
             {

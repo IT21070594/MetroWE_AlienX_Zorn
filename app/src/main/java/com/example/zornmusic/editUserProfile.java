@@ -31,6 +31,31 @@ public class editUserProfile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_user_profile);
+        //Initialize And Assign Variable
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+
+        //Set Home Selected
+        bottomNavigationView.setSelectedItemId(R.id.home);
+
+        //Perform ItemSelectedListener
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.home:
+                        return true;
+                    case R.id.myLibrary:
+                        startActivity(new Intent(getApplicationContext(), Library.class));
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.uploads:
+
+                        uploadButtonGo();
+                        return true;
+                }
+                return false;
+            }
+        });
         receiveIntent = getIntent();
         name = findViewById(R.id.namE);
         email= findViewById(R.id.inputEmail);
@@ -59,30 +84,7 @@ public class editUserProfile extends AppCompatActivity {
                 finish();
             }
         });
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
-        //Set Home Selected
-        bottomNavigationView.setSelectedItemId(R.id.home);
-
-        //Perform ItemSelectedListener
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
-                    case R.id.home:
-                        return true;
-                    case R.id.myLibrary:
-                        startActivity(new Intent(getApplicationContext(), Library.class));
-                        overridePendingTransition(0,0);
-                        return true;
-                    case R.id.uploads:
-
-                        uploadButtonGo();
-                        return true;
-                }
-                return false;
-            }
-        });
     }
     public void uploadButtonGo(){
         receiveIntent=getIntent();

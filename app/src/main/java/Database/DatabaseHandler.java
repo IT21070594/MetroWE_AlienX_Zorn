@@ -219,9 +219,13 @@ public class DatabaseHandler extends SQLiteOpenHelper
             SQLiteDatabase objectSQLiteDB = this.getReadableDatabase();
             ArrayList<Songs> objectSongsClassList = new ArrayList<>();
 
-
-            String selectSongs = "SELECT * FROM Songs WHERE artistName = " + artistName;
-            Cursor objectCursor = objectSQLiteDB.rawQuery(selectSongs, null);
+//            String selection = UserMasters.Users.COLUMN1_UN + "=?";
+//
+//            String []selectionArgs ={username};
+//            Cursor cursor = db.rawQuery("Select * from "+UserMasters.Users.TABLE_NAME+" where "+selection,selectionArgs);
+            String selection = "artistName =?";
+            String []selectionArgs = {artistName};
+            Cursor objectCursor = objectSQLiteDB.rawQuery("SELECT * FROM Songs WHERE "+selection, selectionArgs);
 
             //If there are entries in the DB.
             if(objectCursor.getCount()!=0)
@@ -470,9 +474,12 @@ public class DatabaseHandler extends SQLiteOpenHelper
         {
             SQLiteDatabase objectSQLiteDB = this.getReadableDatabase();
             ArrayList<Albums> objectAlbumsClassList = new ArrayList<>();
+            String selection = "artistName =?";
+            String []selectionArgs = {artistName};
+            Cursor objectCursor = objectSQLiteDB.rawQuery("SELECT * FROM Albums WHERE "+selection, selectionArgs);
 
-            String selectSongs = "SELECT * FROM Songs WHERE artistName = " + artistName;
-            Cursor objectCursor = objectSQLiteDB.rawQuery(selectSongs, null);
+//            String selectSongs = "SELECT * FROM  WHERE artistName = " + artistName;
+//            Cursor objectCursor = objectSQLiteDB.rawQuery(selectSongs, null);
 
             //If there are entries in the DB.
             if(objectCursor.getCount()!=0)

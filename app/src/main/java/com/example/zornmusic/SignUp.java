@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -41,7 +42,7 @@ public class SignUp extends AppCompatActivity {
     private AdapterView.OnItemSelectedListener listener = new AdapterView.OnItemSelectedListener() {
         @Override
         public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-            // ((TextView) parent.getChildAt(0)).setTextColor(Color.WHITE);
+             ((TextView) parent.getChildAt(0)).setTextColor(Color.WHITE);
             DB = new DatabaseHandler(getApplicationContext());
 
              btn = findViewById(R.id.btnContinue1);

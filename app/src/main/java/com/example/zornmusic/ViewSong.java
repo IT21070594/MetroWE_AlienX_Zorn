@@ -178,9 +178,7 @@ public class ViewSong extends AppCompatActivity
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ViewSong.this, MainActivity.class);
-                startActivity(intent);
-                overridePendingTransition(0,0);
+               finish();
             }
         });
 
@@ -210,10 +208,11 @@ public class ViewSong extends AppCompatActivity
 
                 mediaPlayer.reset();
                 mediaPlayer.release();
-
-                Intent intent = new Intent(ViewSong.this, MainActivity.class);
-                startActivity(intent);
-                overridePendingTransition(0,0);
+                finish();
+//
+//                Intent intent = new Intent(ViewSong.this, MainActivity.class);
+//                startActivity(intent);
+//                overridePendingTransition(0,0);
             }
         });
     }
@@ -294,7 +293,7 @@ public class ViewSong extends AppCompatActivity
 
     private void playNextSong()
     {
-        if(MyMediaPlayer.currentIndex == objectDatabaseHandler.getAllSongsData().size()-1)
+        if(MyMediaPlayer.currentIndex == objectDatabaseHandler.getArtistSongsData(artistName).size()-1)
             return;
         MyMediaPlayer.currentIndex += 1;
         mediaPlayer.reset();

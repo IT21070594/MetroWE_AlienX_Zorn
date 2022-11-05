@@ -35,7 +35,8 @@ public class Album extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_album);
-
+       // intent=getIntent();
+        //nam
 
         //Initialize And Assign Variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -69,21 +70,13 @@ public class Album extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(Album.this, MainActivity.class);
                 intent.putExtra("user", artistName );
-                //intent.putExtra("user", intent.getStringExtra("user"));
+                //artistintent.putExtra("user", intent.getStringExtra("user"));
                 startActivity(intent);
                 overridePendingTransition(0,0);
             }
         });
 
-        Button createNewBtn = findViewById(R.id.createNewBtn);
-        createNewBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(Album.this,CreateNewAlbum.class);
-                startActivity(intent);
-                overridePendingTransition(0,0);
-            }
-        });
+
 
         ImageButton createImgBtn = findViewById(R.id.createImgBtn);
         createImgBtn.setOnClickListener(new View.OnClickListener() {
@@ -152,6 +145,16 @@ public class Album extends AppCompatActivity {
                 }
             });
         }
+        Button createNewBtn = findViewById(R.id.createNewBtn);
+        createNewBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent1 = new Intent(Album.this,CreateNewAlbum.class);
+                intent1.putExtra("user",artistName);
+                startActivity(intent1);
+                overridePendingTransition(0,0);
+            }
+        });
     }
 
     @Override

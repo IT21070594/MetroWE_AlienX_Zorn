@@ -18,8 +18,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-import Databases.DBHandler;
-import Databases.UserMasters;
+import Database.DatabaseHandler;
+import Database.DatabaseHandler;
+import Database.UserMasters;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     Context context;
@@ -54,7 +55,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
                 @Override
                 public void onClick(View view) {
                    // Intent in
-                    DBHandler dbHandler = new DBHandler(context.getApplicationContext(), UserMasters.PremiumUsers.TABLE_NAME3,null,1);
+                    DatabaseHandler dbHandler = new DatabaseHandler(context.getApplicationContext());
                     Boolean insertresult = dbHandler.insertUserPlan(model.getUsername(),model.getPlanName());
                     if (insertresult==true){
                         Toast.makeText(context, "Plan chosen successfully", Toast.LENGTH_SHORT).show();

@@ -18,8 +18,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-import Databases.DBHandler;
-import Databases.UserMasters;
+import Database.DatabaseHandler;
+import Database.UserMasters;
 
 public class ArtistPlanAdapter extends RecyclerView.Adapter<ArtistPlanAdapter.ViewHolder> {
     Context context;
@@ -53,7 +53,7 @@ public class ArtistPlanAdapter extends RecyclerView.Adapter<ArtistPlanAdapter.Vi
             holder.purchasePlan.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    DBHandler dbHandler = new DBHandler(context.getApplicationContext(), UserMasters.ArtistUsers.TABLE_NAME4,null,1);
+                    DatabaseHandler dbHandler = new DatabaseHandler(context.getApplicationContext());
                     Boolean insertresult = dbHandler.insertArtistPlan(model.getUsername(),model.getPlanName());
                     if (insertresult==true){
                         Toast.makeText(context, "Plan chosen successfully", Toast.LENGTH_SHORT).show();

@@ -77,9 +77,10 @@ public class CreateNewAlbum extends AppCompatActivity {
         cancelAlBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(CreateNewAlbum.this, Album.class);
-                startActivity(intent);
-                overridePendingTransition(0,0);
+//                Intent intent = new Intent(CreateNewAlbum.this, Album.class);
+//                startActivity(intent);
+//                overridePendingTransition(0,0);
+                finish();
             }
         });
 
@@ -143,10 +144,11 @@ public class CreateNewAlbum extends AppCompatActivity {
             if(!albumName.getText().toString().isEmpty() && albumPhoto.getDrawable()!=null && imageToStore!=null)
             {
                 objectDatabaseHandler.insertAlbum(new Albums(id, albumName.getText().toString(),imageToStore, artistName));
-
-                Intent intent = new Intent(CreateNewAlbum.this, Album.class);
-                startActivity(intent);
-                overridePendingTransition(0,0);
+//
+//                Intent intent = new Intent(CreateNewAlbum.this, Album.class);
+//                startActivity(intent);
+//                overridePendingTransition(0,0);
+                finish();
             }
             else
             {

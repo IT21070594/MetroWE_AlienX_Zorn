@@ -64,7 +64,7 @@ public class UploadNewSong extends AppCompatActivity
     private static final int PICK_AUDIO = 1;
     private Uri audioFile;
     private byte[] audioToStore;
-
+    Intent receiveIntent;
     DatabaseHandler objectDatabaseHandler;
 
     @Override
@@ -75,7 +75,9 @@ public class UploadNewSong extends AppCompatActivity
 
         cameraPermission = new String[]{Manifest.permission.CAMERA,Manifest.permission.WRITE_EXTERNAL_STORAGE};
         storagePermission = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
-
+        receiveIntent=getIntent();
+        String name=receiveIntent.getStringExtra("user");
+        System.out.println(receiveIntent.getStringExtra("user"));
         //Initialize And Assign Variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
@@ -88,11 +90,15 @@ public class UploadNewSong extends AppCompatActivity
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.home:
-                        startActivity(new Intent(getApplicationContext(), Home.class));
+                        Intent intent = new Intent(getApplicationContext(),Home.class);
+                        intent.putExtra("user",receiveIntent.getStringExtra("user"));
+                        startActivity(intent);
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.myLibrary:
-                        startActivity(new Intent(getApplicationContext(), Library.class));
+                        Intent intent1 = new Intent(getApplicationContext(),Library.class);
+                        intent1.putExtra("user",receiveIntent.getStringExtra("user"));
+                        startActivity(intent1);
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.uploads:
@@ -101,7 +107,6 @@ public class UploadNewSong extends AppCompatActivity
                 return false;
             }
         });
-
         Button cancelBtn = findViewById(R.id.cancelBtn);
         cancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -211,10 +216,10 @@ public class UploadNewSong extends AppCompatActivity
             if(!songName.getText().toString().isEmpty() && songPhoto.getDrawable()!=null && imageToStore!=null && audioToStore!=null )
             {
                 objectDatabaseHandler.insertSong(new Songs(id, songName.getText().toString(), lang.getText().toString(), genre.getText().toString(),imageToStore, audioToStore, artistName));
-
-                Intent intent = new Intent(UploadNewSong.this, MainActivity.class);
-                startActivity(intent);
-                overridePendingTransition(0,0);
+                    finish();
+//                Intent intent = new Intent(UploadNewSong.this, MainActivity.class);
+//                startActivity(intent);
+//                overridePendingTransition(0,0);
             }
             else
             {

@@ -38,10 +38,40 @@ ArrayList<DownloadModel> downloadModels;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_one_song);
+
+        receiveIntent1=getIntent();
+        String name=receiveIntent1.getStringExtra("user");
+        //Initialize And Assign Variable
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+
+        //Set Home Selected
+        bottomNavigationView.setSelectedItemId(R.id.home);
+
+        //Perform ItemSelectedListener
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.home:
+                        Intent intent1 = new Intent(getApplicationContext(),Home.class);
+                        intent1.putExtra("user",name);
+                        startActivity(intent1);
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.myLibrary:
+                        return true;
+                    case R.id.uploads:
+
+                        uploadButtonGo();
+                        return true;
+                }
+                return false;
+            }
+        });
         dBmain = new DatabaseHandler(this);
-        songPic = findViewById(R.id.playMusicImg);
-        songName = findViewById(R.id.songname);
-        backBtn =  findViewById(R.id.backBtn);
+        songPic = findViewById(R.id.playDMusicImg);
+        songName = findViewById(R.id.songDname);
+        backBtn =  findViewById(R.id.backDBtn);
         Bundle bundle = getIntent().getBundleExtra("oneSong");
         id = bundle.getInt("songId");
 
@@ -63,30 +93,7 @@ ArrayList<DownloadModel> downloadModels;
             }
         });
 
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
-        //Set Home Selected
-        bottomNavigationView.setSelectedItemId(R.id.home);
-
-        //Perform ItemSelectedListener
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
-                    case R.id.home:
-                        return true;
-                    case R.id.myLibrary:
-                        startActivity(new Intent(getApplicationContext(), Library.class));
-                        overridePendingTransition(0,0);
-                        return true;
-                    case R.id.uploads:
-
-                        uploadButtonGo();
-                        return true;
-                }
-                return false;
-            }
-        });
     }
     private void getOneSong(int id) {
         sqLiteDatabase=dBmain.getReadableDatabase();
@@ -138,16 +145,19 @@ ArrayList<DownloadModel> downloadModels;
 
         if(c3.compareTo(accType)==0){
             Toast.makeText(this, "Please login with Artist Account Credentials!", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(getApplicationContext(), login.class));
+            Intent intent2 = new Intent(getApplicationContext(),login.class);
+            intent2.putExtra("user",name);
+            startActivity(intent2);
             overridePendingTransition(0,0);
         }else if(c2.compareTo(accType)==0){
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
             overridePendingTransition(0,0);
         }else{
             Toast.makeText(this, "Please login with Artist Account Credentials!", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(getApplicationContext(), login.class));
+            Intent intent2 = new Intent(getApplicationContext(),login.class);
+            intent2.putExtra("user",name);
+            startActivity(intent2);
             overridePendingTransition(0,0);
         }
     }
-
 }

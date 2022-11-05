@@ -24,18 +24,19 @@ public class ViewAlbumSongs extends AppCompatActivity {
 
     TextView albumName;
     ImageView albumPhoto;
-    String name;
+   // String name;
     int id;
 
     private byte[] imageInBytes;
     DatabaseHandler objectDatabaseHandler;
-
+    Intent receiveIntent;
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_album_songs);
-
+        receiveIntent=getIntent();
+        String name=receiveIntent.getStringExtra("user");
         //Initialize And Assign Variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
@@ -48,11 +49,15 @@ public class ViewAlbumSongs extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.home:
-                        startActivity(new Intent(getApplicationContext(), Home.class));
+                        Intent intent = new Intent(getApplicationContext(),Home.class);
+                        intent.putExtra("user",receiveIntent.getStringExtra("user"));
+                        startActivity(intent);
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.myLibrary:
-                        startActivity(new Intent(getApplicationContext(), Library.class));
+                        Intent intent1 = new Intent(getApplicationContext(),Library.class);
+                        intent1.putExtra("user",receiveIntent.getStringExtra("user"));
+                        startActivity(intent1);
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.uploads:
@@ -61,7 +66,6 @@ public class ViewAlbumSongs extends AppCompatActivity {
                 return false;
             }
         });
-
         try
         {
             albumName = findViewById(R.id.albumName);
@@ -106,7 +110,7 @@ public class ViewAlbumSongs extends AppCompatActivity {
 
                 Bundle bundle = new Bundle();
                 bundle.putInt("album_id", id);
-                bundle.putString("album_name", name);
+                bundle.putString("album_name", receiveIntent.getStringExtra("user"));
                 bundle.putByteArray("album_image", imageInBytes);
 
                 Intent intent = new Intent(ViewAlbumSongs.this, EditAlbum.class);

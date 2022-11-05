@@ -35,13 +35,15 @@ public class MainActivity extends AppCompatActivity {
     private TextView noSongs;
     private RecyclerViewAdapter objectRVAdapter;
     private String artistName;
-    private Intent intent;
+    private Intent intent1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        intent1=getIntent();
+        String name=intent1.getStringExtra("user");
+        System.out.println(intent1.getStringExtra("user"));
         //Initialize And Assign Variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
@@ -54,11 +56,15 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.home:
-                        startActivity(new Intent(getApplicationContext(), Home.class));
+                        Intent intent = new Intent(getApplicationContext(),Home.class);
+                        intent.putExtra("user",name);
+                        startActivity(intent);
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.myLibrary:
-                        startActivity(new Intent(getApplicationContext(), Library.class));
+                        Intent intent1 = new Intent(getApplicationContext(),Library.class);
+                        intent1.putExtra("user",name);
+                        startActivity(intent1);
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.uploads:
@@ -68,23 +74,14 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button albumsBtn = findViewById(R.id.albumsBtn);
-        albumsBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, Album.class);
-                intent.putExtra("user", artistName );
-                //intent.putExtra("user", intent.getStringExtra("user"));
-                startActivity(intent);
-                overridePendingTransition(0,0);
-            }
-        });
+
 
         Button uploadNewSongBtn = findViewById(R.id.uploadNewBtn);
         uploadNewSongBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, UploadNewSong.class);
+                intent.putExtra("user",intent1.getStringExtra("user"));
                 startActivity(intent);
                 overridePendingTransition(0,0);
             }
@@ -105,8 +102,8 @@ public class MainActivity extends AppCompatActivity {
             noSongs = findViewById(R.id.noSongsText);
             objectRV= findViewById(R.id.songsRV);
 
-            intent = getIntent();
-            artistName = intent.getStringExtra("user");
+            intent1 = getIntent();
+            artistName = intent1.getStringExtra("user");
 
             objectDBHandler = new DatabaseHandler(this);
 
@@ -120,9 +117,9 @@ public class MainActivity extends AppCompatActivity {
         {
             Field field = CursorWindow.class.getDeclaredField("sCursorWindowSize");
             field.setAccessible(true);
-            field.set(null, 700*1024*1024); //500MB is the new size
+            field.set(null, 700*1024*1024); //700MB is the new size
 
-            if(objectDBHandler.getArtistSongsData(artistName).size()==0)
+            if(objectDBHandler.getArtistSongsData(intent1.getStringExtra("user")).size()==0)
             {
                 noSongs.setVisibility(View.VISIBLE);
                 objectRV.setVisibility(View.GONE);
@@ -176,6 +173,17 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
+        Button albumsBtn = findViewById(R.id.albumsBtn);
+        albumsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, Album.class);
+                intent.putExtra("user", artistName );
+                //intent.putExtra("user", intent1.getStringExtra("user"));
+                startActivity(intent);
+                overridePendingTransition(0,0);
+            }
+        });
     }
 
     private void filter(String text)

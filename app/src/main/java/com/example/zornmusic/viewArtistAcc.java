@@ -28,6 +28,36 @@ public class viewArtistAcc extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_artist_acc);
         receiveIntent=getIntent();
+        String name=receiveIntent.getStringExtra("user");
+
+        //Initialize And Assign Variable
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+
+        //Set Home Selected
+        bottomNavigationView.setSelectedItemId(R.id.home);
+
+        //Perform ItemSelectedListener
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.home:
+                        return true;
+                    case R.id.myLibrary:
+                        //startActivity(new Intent(getApplicationContext(), Library.class));
+                        Intent intent1 = new Intent(getApplicationContext(),Library.class);
+                        intent1.putExtra("user",name);
+                        startActivity(intent1);
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.uploads:
+
+                        uploadButtonGo();
+                        return true;
+                }
+                return false;
+            }
+        });
 
         edit=findViewById(R.id.editBtn);
         edit.setOnClickListener(new View.OnClickListener() {
@@ -49,7 +79,6 @@ public class viewArtistAcc extends AppCompatActivity {
 
         accType=findViewById(R.id.artistLabel);
         DatabaseHandler dbHandler=  new DatabaseHandler(this);
-        String name=receiveIntent.getStringExtra("user");
         Cursor res=dbHandler.getInfo(name);
         if(res.getCount()==0){
             Toast.makeText(getApplicationContext(), "No such entry exists", Toast.LENGTH_SHORT).show();
@@ -109,30 +138,7 @@ public class viewArtistAcc extends AppCompatActivity {
         });
 
 
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
-        //Set Home Selected
-        bottomNavigationView.setSelectedItemId(R.id.home);
-
-        //Perform ItemSelectedListener
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()){
-                    case R.id.home:
-                        return true;
-                    case R.id.myLibrary:
-                        startActivity(new Intent(getApplicationContext(), Library.class));
-                        overridePendingTransition(0,0);
-                        return true;
-                    case R.id.uploads:
-
-                        uploadButtonGo();
-                        return true;
-                }
-                return false;
-            }
-        });
 
     }
     public void uploadButtonGo(){
@@ -158,14 +164,18 @@ public class viewArtistAcc extends AppCompatActivity {
 
         if(c3.compareTo(accType)==0){
             Toast.makeText(this, "Please login with Artist Account Credentials!", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(getApplicationContext(), login.class));
+            Intent intent2 = new Intent(getApplicationContext(),login.class);
+            intent2.putExtra("user",name);
+            startActivity(intent2);
             overridePendingTransition(0,0);
         }else if(c2.compareTo(accType)==0){
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
             overridePendingTransition(0,0);
         }else{
             Toast.makeText(this, "Please login with Artist Account Credentials!", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(getApplicationContext(), login.class));
+            Intent intent2 = new Intent(getApplicationContext(),login.class);
+            intent2.putExtra("user",name);
+            startActivity(intent2);
             overridePendingTransition(0,0);
         }
     }

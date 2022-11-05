@@ -4,24 +4,29 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class Library extends AppCompatActivity {
+import Database.DatabaseHandler;
 
+public class Library extends AppCompatActivity {
+Intent receiveIntent;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_library);
-
+        receiveIntent =getIntent();
+        String name=receiveIntent.getStringExtra("user");
 
         //Initialize And Assign Variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
-        //Set MyLibrary Selected
-        bottomNavigationView.setSelectedItemId(R.id.myLibrary);
+        //Set Home Selected
+        bottomNavigationView.setSelectedItemId(R.id.home);
 
         //Perform ItemSelectedListener
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -29,18 +34,58 @@ public class Library extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.home:
-                        startActivity(new Intent(getApplicationContext(), Home.class));
+                        Intent intent1 = new Intent(getApplicationContext(),Home.class);
+                        intent1.putExtra("user",name);
+                        startActivity(intent1);
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.myLibrary:
                         return true;
                     case R.id.uploads:
-                        startActivity(new Intent(getApplicationContext(), MainActivity.class));
-                        overridePendingTransition(0,0);
+
+                        uploadButtonGo();
                         return true;
                 }
                 return false;
             }
         });
+    }
+    public void uploadButtonGo(){
+        receiveIntent=getIntent();
+        String name=receiveIntent.getStringExtra("user");
+        DatabaseHandler dbHandler=  new DatabaseHandler(this);
+        Cursor res=dbHandler.getInfo(name);
+        if(res.getCount()==0){
+            Toast.makeText(getApplicationContext(), "No such entry exists", Toast.LENGTH_SHORT).show();
+            return ;
+        }
+        StringBuffer buffer = new StringBuffer();
+        while(res.moveToNext()){
+            buffer.append(res.getString(3));
+
+        }
+        String accType = String.valueOf(buffer);
+        //TextView t1 = findViewById(R.id.textView3);
+        //t1.setText(accType);
+        String c1 = "Premium User";
+        String c2 = "Artist";
+        String c3 = "Free User";
+
+        if(c3.compareTo(accType)==0){
+            Toast.makeText(this, "Please login with Artist Account Credentials!", Toast.LENGTH_SHORT).show();
+            Intent intent2 = new Intent(getApplicationContext(),login.class);
+            intent2.putExtra("user",name);
+            startActivity(intent2);
+            overridePendingTransition(0,0);
+        }else if(c2.compareTo(accType)==0){
+            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            overridePendingTransition(0,0);
+        }else{
+            Toast.makeText(this, "Please login with Artist Account Credentials!", Toast.LENGTH_SHORT).show();
+            Intent intent2 = new Intent(getApplicationContext(),login.class);
+            intent2.putExtra("user",name);
+            startActivity(intent2);
+            overridePendingTransition(0,0);
+        }
     }
 }

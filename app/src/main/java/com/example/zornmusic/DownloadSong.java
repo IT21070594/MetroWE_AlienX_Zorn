@@ -49,14 +49,10 @@ public class DownloadSong extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        receiveIntent=getIntent();
+        String name=receiveIntent.getStringExtra("user");
         setContentView(R.layout.activity_download_song);
-
-
-        dBmain = new DatabaseHandler(this);
-        findid();
-downloadData();
-insertData();
-editData();
+        //Initialize And Assign Variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
         //Set Home Selected
@@ -68,10 +64,12 @@ editData();
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.home:
+                        Intent intent1 = new Intent(getApplicationContext(),Home.class);
+                        intent1.putExtra("user",name);
+                        startActivity(intent1);
+                        overridePendingTransition(0,0);
                         return true;
                     case R.id.myLibrary:
-                        startActivity(new Intent(getApplicationContext(), Library.class));
-                        overridePendingTransition(0,0);
                         return true;
                     case R.id.uploads:
 
@@ -81,9 +79,14 @@ editData();
                 return false;
             }
         });
+        dBmain = new DatabaseHandler(this);
+        findid();
+downloadData();
+insertData();
+editData();
 
-    }
-    public void uploadButtonGo(){
+
+    }public void uploadButtonGo(){
         receiveIntent=getIntent();
         String name=receiveIntent.getStringExtra("user");
         DatabaseHandler dbHandler=  new DatabaseHandler(this);
@@ -106,18 +109,21 @@ editData();
 
         if(c3.compareTo(accType)==0){
             Toast.makeText(this, "Please login with Artist Account Credentials!", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(getApplicationContext(), login.class));
+            Intent intent2 = new Intent(getApplicationContext(),login.class);
+            intent2.putExtra("user",name);
+            startActivity(intent2);
             overridePendingTransition(0,0);
         }else if(c2.compareTo(accType)==0){
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
             overridePendingTransition(0,0);
         }else{
             Toast.makeText(this, "Please login with Artist Account Credentials!", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(getApplicationContext(), login.class));
+            Intent intent2 = new Intent(getApplicationContext(),login.class);
+            intent2.putExtra("user",name);
+            startActivity(intent2);
             overridePendingTransition(0,0);
         }
     }
-
 
     private void editData() {
         if (getIntent().getBundleExtra("songDetails")!=null){

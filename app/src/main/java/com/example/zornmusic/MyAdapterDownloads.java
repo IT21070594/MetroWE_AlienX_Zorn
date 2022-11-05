@@ -1,7 +1,9 @@
 package com.example.zornmusic;
 
 
-import static com.example.zorn.DatabaseHandler.TABLE_NAME1;
+
+
+import static Database.DatabaseHandler.TABLE_NAME1;
 
 import android.content.Context;
 import android.content.Intent;
@@ -23,6 +25,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
+
+import Database.DatabaseHandler;
 
 public class MyAdapterDownloads extends RecyclerView.Adapter<MyAdapterDownloads.ViewHolder> {
     Context context;
