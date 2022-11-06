@@ -2,6 +2,7 @@ package com.example.zornmusic;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.CursorWindow;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
@@ -15,6 +16,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.lang.reflect.Field;
 
 import Database.DatabaseHandler;
 import Database.UserMasters;
@@ -60,7 +63,17 @@ public class viewUserPlan extends AppCompatActivity {
                 return false;
             }
         });
+        Field field = null;
+        try {
+            field = CursorWindow.class.getDeclaredField("sCursorWindowSize");
 
+            field.setAccessible(true);
+            field.set(null, 500*1024*1024); //700MB is the new size
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
 
         back=findViewById(R.id.imageButton3);
         back.setOnClickListener(new View.OnClickListener() {

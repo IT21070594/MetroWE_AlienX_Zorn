@@ -2,30 +2,44 @@ package com.example.zornmusic;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.database.Cursor;
+import android.database.CursorWindow;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-import Database.DatabaseHandler;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
 
+import Database.DatabaseHandler;
+import Database.Songs;
 public class Home extends AppCompatActivity {
     String name;
     ImageButton avatar;
+    Intent receiveIntent;
+    private DatabaseHandler objectDBHandler;
+    private RecyclerView objectRV;
+    private TextView noSongs;
+    private HomeRecyclerViewAdapter objectRVAdapter;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        Intent receiveIntent=getIntent();
+         receiveIntent=getIntent();
          name=receiveIntent.getStringExtra("user");
-        System.out.println(name);
+      //  System.out.println(name);
         //Initialize And Assign Variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
@@ -55,7 +69,60 @@ public class Home extends AppCompatActivity {
             }
         });
 
+        try
+        {
+            noSongs = findViewById(R.id.noSongsHomeText);
+            objectRV= findViewById(R.id.homeRV);
+            objectDBHandler = new DatabaseHandler(this);
 
+        }
+        catch (Exception e)
+        {
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+
+        try
+        {
+            Field field = CursorWindow.class.getDeclaredField("sCursorWindowSize");
+            field.setAccessible(true);
+            field.set(null, 700*1024*1024); //700MB is the new size
+
+            if(objectDBHandler.getAllSongsData().size()==0)
+            {
+                noSongs.setVisibility(View.VISIBLE);
+                objectRV.setVisibility(View.GONE);
+            }
+            else
+            {
+                objectRVAdapter = new HomeRecyclerViewAdapter(this,objectDBHandler.getAllSongsData(),name);
+
+                objectRV.setHasFixedSize(true);
+                objectRV.setLayoutManager(new LinearLayoutManager(this));
+                objectRV.setAdapter(objectRVAdapter);
+            }
+        }
+        catch (Exception e)
+        {
+            //Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
+            e.printStackTrace();
+        }
+
+        SearchView searchView = findViewById(R.id.searchHomeBar);
+        if(objectRV!=null && objectRVAdapter != null) {
+            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                @Override
+                public boolean onQueryTextSubmit(String query) {
+                    return false;
+                }
+
+                @Override
+                public boolean onQueryTextChange(String newText) {
+
+                    objectRVAdapter.getFilter().filter(newText);
+                    return false;
+                }
+            });
+        }
         DatabaseHandler dbHandler=  new DatabaseHandler(this);
         Cursor res=dbHandler.getInfo(name);
         if(res.getCount()==0){
@@ -79,6 +146,40 @@ public class Home extends AppCompatActivity {
 
             }
         });
+    }
+    private void filter(String text)
+    {
+        ArrayList<Songs> filteredList = new ArrayList<>();
+        ArrayList<Songs> NotFilteredList = objectDBHandler.getAllSongsData();
+
+        for(Songs item : NotFilteredList)
+        {
+            if(item.getSongName().toLowerCase().contains(text.toLowerCase()))
+            {
+                filteredList.add(item);
+            }
+        }
+
+        objectRVAdapter.filterList(filteredList);
+    }
+
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+        if(objectRV!=null && objectRVAdapter!=null)
+        {
+            objectRVAdapter = new HomeRecyclerViewAdapter(this,objectDBHandler.getAllSongsData(),name);
+
+            objectRV.setHasFixedSize(true);
+            objectRV.setLayoutManager(new LinearLayoutManager(this));
+            objectRV.setAdapter(objectRVAdapter);
+        }
+        else
+        {
+            noSongs.setVisibility(View.VISIBLE);
+            objectRV.setVisibility(View.GONE);
+        }
     }
     public void gotonextview(){
        Intent receiveIntent2=getIntent();

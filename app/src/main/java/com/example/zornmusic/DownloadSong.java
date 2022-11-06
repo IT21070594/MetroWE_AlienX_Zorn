@@ -32,6 +32,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.io.ByteArrayOutputStream;
 
 import Database.DatabaseHandler;
+import Database.Songs;
 
 
 public class DownloadSong extends AppCompatActivity {
@@ -84,7 +85,7 @@ public class DownloadSong extends AppCompatActivity {
         findid();
 downloadData();
 insertData();
-editData();
+//editData();
 
 
     }public void uploadButtonGo(){
@@ -127,34 +128,37 @@ editData();
         }
     }
 
-    private void editData() {
-        if (getIntent().getBundleExtra("songDetails")!=null){
-            Bundle bundle =getIntent().getBundleExtra("songDetails");
-            id=bundle.getInt("id");
-            //for image
-            byte[]bytes=bundle.getByteArray("avatar");
-            Bitmap bitmap = BitmapFactory.decodeByteArray(bytes,0,bytes.length);
-            avatar.setImageBitmap(bitmap);
-            // for set song name
-            name.setText(bundle.getString("songName"));
-            //visible edit button and hide download button
-            download.setVisibility(View.GONE);
-            edit.setVisibility(View.VISIBLE);
-            download_logo.setVisibility(View.GONE);
-        }
-    }
+////    private void editData() {
+//////        if (getIntent().getBundleExtra("songDetails")!=null){
+//////            Bundle bundle =getIntent().getBundleExtra("songDetails");
+//////            id=bundle.getInt("song_id");
+//////            //for image
+//////            Databa
+//////            byte[]bytes=bundle.getByteArray("avatar");
+//////            Bitmap bitmap = BitmapFactory.decodeByteArray(bytes,0,bytes.length);
+//////            avatar.setImageBitmap(bitmap);
+//////            // for set song name
+//////            name.setText(bundle.getString("songName"));
+//////            //visible edit button and hide download button
+//////            download.setVisibility(View.GONE);
+//////            edit.setVisibility(View.VISIBLE);
+//////            download_logo.setVisibility(View.GONE);
+////        }
+//    }
 
 
     private void downloadData() {
-        if(getIntent().getBundleExtra("userdata")!=null){
-            Bundle bundle = getIntent().getBundleExtra("userdata");
-            id=bundle.getInt("id");
+        if(getIntent().getBundleExtra("userDetails")!=null){
+            Bundle bundle = getIntent().getBundleExtra("userDetails");
+            id=bundle.getInt("song_id");
+            DatabaseHandler db = new DatabaseHandler(this);
+            Songs song=db.getOneSongData(id);
             //for image
             byte[]bytes = bundle.getByteArray("avatar");
-            Bitmap bitmap = BitmapFactory.decodeByteArray(bytes,0,bytes.length);
+            Bitmap bitmap = song.getImage();
             avatar.setImageBitmap(bitmap);
             //for set name
-            name.setText(bundle.getString("name"));
+            name.setText(song.getSongName());
 
         }
     }
@@ -170,7 +174,7 @@ editData();
                 ContentValues cv = new ContentValues();
                 cv.put("image", ImageViewToByte(avatar));
                 cv.put("song", name.getText().toString());
-                cv.put("name",receiveIntent.getStringExtra("user"));
+                cv.put("username",receiveIntent.getStringExtra("user"));
                 sqLiteDatabase = dBmain.getWritableDatabase();
                Long result = sqLiteDatabase.insert(TABLE_NAME1,null,cv);
 //
@@ -189,12 +193,12 @@ editData();
                 }
             }
         });
-        cancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(DownloadSong.this,DisplayDownloads.class));
-            }
-        });
+//        cancel.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startActivity(new Intent(DownloadSong.this,DisplayDownloads.class));
+//            }
+//        });
         //for storing the updated data
         edit.setOnClickListener(new View.OnClickListener() {
             @Override

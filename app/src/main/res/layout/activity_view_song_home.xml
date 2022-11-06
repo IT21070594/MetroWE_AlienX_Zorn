@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1C1A1A"
+    tools:context=".ViewSong">
+
+    <TextView
+        android:id="@+id/playMusicHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="@string/playMusic"
+        android:textAlignment="center"
+        android:textColor="#F44336"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"/>
+
+    <ImageView
+        android:id="@+id/playMusicImgHome"
+        android:layout_width="300dp"
+        android:layout_height="188dp"
+        android:layout_marginTop="24dp"
+        app:srcCompat="@drawable/ic_baseline_add_a_photo"
+        android:layout_below="@+id/playMusicHome"
+        android:layout_centerInParent="true"/>
+
+    <ImageButton
+        android:id="@+id/backBtnHome"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:background="#1C1A1A"
+        app:srcCompat="@drawable/ic_baseline_arrow_back_ios_24"
+        android:layout_alignParentLeft="true"/>
+
+    <TextView
+        android:id="@+id/songnameHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/songname"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:ellipsize="marquee"
+        android:layout_below="@+id/playMusicImgHome" />
+
+    <TextView
+        android:id="@+id/langGenreHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="4dp"
+        android:text="@string/langGenre"
+        android:textColor="#E8E0E0"
+        android:textSize="20sp"
+        android:layout_below="@+id/songnameHome"/>
+
+    <TextView
+        android:id="@+id/artistNameHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:text="@string/artistName"
+        android:textColor="#E8E0E0"
+        android:textSize="20sp"
+        android:textStyle="italic"
+        android:layout_below="@+id/langGenreHome"/>
+
+    <ImageButton
+        android:id="@+id/shareBtn"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="75dp"
+        android:layout_marginEnd="120dp"
+        android:background="#1C1A1A"
+        app:srcCompat="@drawable/ic_baseline_share_24"
+        android:layout_below="@+id/playMusicImgHome"
+        android:layout_alignParentRight="true"/>
+
+    <ImageButton
+        android:id="@+id/downloadBtnHome"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="76dp"
+        android:layout_marginEnd="70dp"
+        android:background="#1C1A1A"
+        app:srcCompat="@drawable/ic_baseline_file_download_24"
+        android:layout_below="@+id/playMusicImgHome"
+        android:layout_alignParentRight="true"/>
+
+    <ImageButton
+        android:id="@+id/likeBtn"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="76dp"
+        android:layout_marginEnd="24dp"
+        android:background="#1C1A1A"
+        app:srcCompat="@drawable/ic_baseline_favorite_border_24"
+        android:layout_below="@+id/playMusicImgHome"
+        android:layout_alignParentRight="true" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/controls"
+        android:layout_below="@id/artistNameHome"
+        android:layout_marginTop="15dp">
+
+        <SeekBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/seekbarHome"
+            android:layout_margin="16dp"
+            android:backgroundTint="#F44336"></SeekBar>
+
+        <TextView
+            android:id="@+id/currentTimeHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="42dp"
+            android:text="0:00"
+            android:textColor="#E8E0E0"
+            android:textSize="16sp"
+            android:layout_alignParentStart="true"
+            />
+
+        <TextView
+            android:id="@+id/endTimeHome"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:layout_marginTop="42dp"
+            android:text="0:00"
+            android:textColor="#E8E0E0"
+            android:textSize="16sp"
+            android:layout_alignParentEnd="true"
+            />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/endTimeHome">
+
+            <ImageButton
+                android:id="@+id/repeatBtn"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="20dp"
+                android:background="#1C1A1A"
+                app:layout_constraintStart_toStartOf="parent"
+                app:srcCompat="@drawable/ic_baseline_repeat_24"
+                android:layout_alignParentLeft="true"/>
+
+            <ImageButton
+                android:id="@+id/skipPrevBtnHome"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginStart="84dp"
+                android:layout_marginTop="20dp"
+                android:background="#1C1A1A"
+                app:srcCompat="@drawable/ic_baseline_skip_previous_24"
+                android:layout_alignParentLeft="true"/>
+
+
+            <ImageButton
+                android:id="@+id/pauseButtonHome"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="32dp"
+                android:background="#1C1A1A"
+                app:srcCompat="@drawable/ic_baseline_pause_circle_filled_32"
+                android:layout_centerInParent="true"
+                />
+
+            <ImageButton
+                android:id="@+id/skipNxtBtnHome"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginEnd="84dp"
+                android:layout_marginTop="20dp"
+                android:background="#1C1A1A"
+                app:srcCompat="@drawable/ic_baseline_skip_next_24"
+                android:layout_alignParentRight="true"/>
+
+            <ImageButton
+                android:id="@+id/addToPlistBtn"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="16dp"
+                android:background="#1C1A1A"
+                app:srcCompat="@drawable/ic_baseline_add_24"
+                android:layout_alignParentRight="true"/>
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/bottom_navigation"
+        app:itemBackground="@color/black"
+        app:itemTextColor="@drawable/selector"
+        app:itemIconTint="@drawable/selector"
+        app:menu="@menu/menu_navigation"
+        android:layout_alignParentBottom="true"/>
+
+</RelativeLayout>

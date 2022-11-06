@@ -24,6 +24,22 @@
                 android:value="" />
         </activity>
         <activity
+            android:name=".DisplayDownloads"
+            android:exported="false" />
+        <activity
+            android:name=".displayOneSong"
+            android:exported="false" />
+        <activity
+            android:name=".DownloadSong"
+            android:exported="false" />
+        <activity
+            android:name=".ViewSongHome"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".viewArtistPlan"
             android:exported="false" />
         <activity

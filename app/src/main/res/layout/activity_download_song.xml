@@ -58,7 +58,7 @@ android:layout_centerHorizontal="true"
         android:layout_marginLeft="130dp"
         android:layout_marginTop="80dp"
         android:backgroundTint="#8E0808"
-android:visibility="gone"
+        android:visibility="gone"
         android:text="Edit" />
 
 <!--    <Button-->
