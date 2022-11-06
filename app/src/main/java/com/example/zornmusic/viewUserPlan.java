@@ -25,14 +25,41 @@ public class viewUserPlan extends AppCompatActivity {
     ImageButton back;
     ImageView planImage;
     Button renew,cancel,Upgrade;
+    String name;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_user_plan);
         receiveIntent1=getIntent();
+         name=receiveIntent1.getStringExtra("user");
+//Initialize And Assign Variable
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
+        //Set Home Selected
+        bottomNavigationView.setSelectedItemId(R.id.home);
 
-        String name=receiveIntent1.getStringExtra("user");
+        //Perform ItemSelectedListener
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.home:
+                        return true;
+                    case R.id.myLibrary:
+                        //startActivity(new Intent(getApplicationContext(), Library.class));
+                        Intent intent1 = new Intent(getApplicationContext(),Library.class);
+                        intent1.putExtra("user",name);
+                        startActivity(intent1);
+                        overridePendingTransition(0,0);
+                        return true;
+                    case R.id.uploads:
+
+                        uploadButtonGo();
+                        return true;
+                }
+                return false;
+            }
+        });
 
 
         back=findViewById(R.id.imageButton3);
@@ -56,6 +83,7 @@ public class viewUserPlan extends AppCompatActivity {
             buffer.append(res.getString(3));
 
         }
+        res.close();
         String accType = String.valueOf(buffer);
         //TextView t1 = findViewById(R.id.textView3);
         //t1.setText(accType);
@@ -77,6 +105,7 @@ public class viewUserPlan extends AppCompatActivity {
             while(result.moveToNext()){
                 sb.append(result.getString(2));
             }
+            result.close();
             String planType = String.valueOf(sb);
             System.out.println(planType);
 
@@ -95,6 +124,7 @@ public class viewUserPlan extends AppCompatActivity {
 //                buffer.append("Password :"+res.getString(2)+"\n\n");
 
             }
+            result1.close();
             TextView plandetails = findViewById(R.id.planDeets);
             plandetails.setText(sb1);
         }
@@ -109,6 +139,7 @@ public class viewUserPlan extends AppCompatActivity {
             while(result.moveToNext()){
                 sb.append(result.getString(2));
             }
+            result.close();
             String planType = String.valueOf(sb);
             System.out.println(planType);
         }
@@ -142,7 +173,45 @@ public class viewUserPlan extends AppCompatActivity {
         });
 
    }
+    public void uploadButtonGo(){
+        DatabaseHandler dbHandler=  new DatabaseHandler(this);
+        Cursor res=dbHandler.getInfo(name);
+//        if(res.getCount()==0){
+//            Toast.makeText(getApplicationContext(), "No such entry exists", Toast.LENGTH_SHORT).show();
+//            return ;
+//        }
+        StringBuffer buffer = new StringBuffer();
+        while(res.moveToNext()){
+            buffer.append(res.getString(3));
 
+        }
+        res.close();
+        String accType = String.valueOf(buffer);
+        //TextView t1 = findViewById(R.id.textView3);
+        //t1.setText(accType);
+        String c1 = "Premium User";
+        String c2 = "Artist";
+        String c3 = "Free User";
+
+        if(c3.compareTo(accType)==0){
+            Toast.makeText(this, "Please login with Artist Account Credentials!", Toast.LENGTH_SHORT).show();
+            Intent intent2 = new Intent(getApplicationContext(),login.class);
+            intent2.putExtra("user",name);
+            startActivity(intent2);
+            overridePendingTransition(0,0);
+        }else if(c2.compareTo(accType)==0){
+            Intent intent2 = new Intent(getApplicationContext(),MainActivity.class);
+            intent2.putExtra("user",name);
+            startActivity(intent2);
+            overridePendingTransition(0,0);
+        }else{
+            Toast.makeText(this, "Please login with Artist Account Credentials!", Toast.LENGTH_SHORT).show();
+            Intent intent2 = new Intent(getApplicationContext(),login.class);
+            intent2.putExtra("user",name);
+            startActivity(intent2);
+            overridePendingTransition(0,0);
+        }
+    }
 
 
 }

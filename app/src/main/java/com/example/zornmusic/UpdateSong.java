@@ -41,13 +41,14 @@ public class UpdateSong extends AppCompatActivity
     private byte[] imageInBytes;
     DatabaseHandler objectDatabaseHandler;
     Intent receiveIntent;
+    String artistName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_song);
 
         receiveIntent=getIntent();
-        String name=receiveIntent.getStringExtra("user");
+        artistName=receiveIntent.getStringExtra("user");
         //Initialize And Assign Variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
@@ -61,13 +62,13 @@ public class UpdateSong extends AppCompatActivity
                 switch (item.getItemId()){
                     case R.id.home:
                         Intent intent = new Intent(getApplicationContext(),Home.class);
-                        intent.putExtra("user",name);
+                        intent.putExtra("user",artistName);
                         startActivity(intent);
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.myLibrary:
                         Intent intent1 = new Intent(getApplicationContext(),Library.class);
-                        intent1.putExtra("user",name);
+                        intent1.putExtra("user",artistName);
                         startActivity(intent1);
                         overridePendingTransition(0,0);
                         return true;
@@ -116,6 +117,7 @@ public class UpdateSong extends AppCompatActivity
             editsongName.setText(bundle.getString("song_name"));
             editlang.setText(bundle.getString("song_lang"));
             editgenre.setText(bundle.getString("song_genre"));
+            artistName=bundle.getString("user");
         }
     }
 
@@ -167,10 +169,11 @@ public class UpdateSong extends AppCompatActivity
             if(!editsongName.getText().toString().isEmpty() && editsongPhoto.getDrawable()!=null)
             {
                 objectDatabaseHandler.editSong(id, editsongName.getText().toString(), editlang.getText().toString(), editgenre.getText().toString(),imageInBytes);
-                    finish();
-//                Intent intent = new Intent(UpdateSong.this, MainActivity.class);
-//                startActivity(intent);
-//                overridePendingTransition(0,0);
+//                    finish();
+                Intent intent = new Intent(UpdateSong.this, MainActivity.class);
+                intent.putExtra("user",artistName);
+                startActivity(intent);
+                overridePendingTransition(0,0);
             }
             else
             {

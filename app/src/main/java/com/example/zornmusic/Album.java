@@ -28,15 +28,15 @@ public class Album extends AppCompatActivity {
     private RecyclerView objectAlbumRV;
     private TextView noAlbums;
     private AlbumRecyclerViewAdapter objectAlbumRVAdapter;
-    private String artistName;
-    private Intent intent;
+     String artistName;
+     Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_album);
-       // intent=getIntent();
-        //nam
+        intent=getIntent();
+        artistName=intent.getStringExtra("user");
 
         //Initialize And Assign Variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -50,11 +50,15 @@ public class Album extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.home:
-                        startActivity(new Intent(getApplicationContext(), Home.class));
+                        Intent intent = new Intent(getApplicationContext(),Home.class);
+                        intent.putExtra("user",artistName);
+                        startActivity(intent);
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.myLibrary:
-                        startActivity(new Intent(getApplicationContext(), Library.class));
+                        Intent intent1 = new Intent(getApplicationContext(),Library.class);
+                        intent1.putExtra("user",artistName);
+                        startActivity(intent1);
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.uploads:
@@ -83,8 +87,9 @@ public class Album extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Album.this,CreateNewAlbum.class);
+                intent.putExtra("user",artistName);
                 startActivity(intent);
-                overridePendingTransition(0,0);
+                overridePendingTransition(0,0);;
             }
         });
 
@@ -93,8 +98,8 @@ public class Album extends AppCompatActivity {
             noAlbums = findViewById(R.id.noAlbumsText);
             objectAlbumRV= findViewById(R.id.albumsRV);
 
-            intent = getIntent();
-            artistName = intent.getStringExtra("user");
+           Intent intent1 = getIntent();
+            artistName = intent1.getStringExtra("user");
 
             objectDBHandler = new DatabaseHandler(this);
 
@@ -160,6 +165,8 @@ public class Album extends AppCompatActivity {
     @Override
     protected void onResume()
     {
+        intent=getIntent();
+        artistName=intent.getStringExtra("user");
         super.onResume();
         if(objectAlbumRV!=null && objectAlbumRVAdapter!=null)
         {

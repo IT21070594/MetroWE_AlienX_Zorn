@@ -15,18 +15,19 @@ import Database.DatabaseHandler;
 
 public class Library extends AppCompatActivity {
 Intent receiveIntent;
+    String name;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_library);
         receiveIntent =getIntent();
-        String name=receiveIntent.getStringExtra("user");
-
+        name=receiveIntent.getStringExtra("user");
+        System.out.println(name);
         //Initialize And Assign Variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
-        //Set Home Selected
-        bottomNavigationView.setSelectedItemId(R.id.home);
+        //Set Library Selected
+        bottomNavigationView.setSelectedItemId(R.id.myLibrary);
 
         //Perform ItemSelectedListener
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -51,8 +52,7 @@ Intent receiveIntent;
         });
     }
     public void uploadButtonGo(){
-        receiveIntent=getIntent();
-        String name=receiveIntent.getStringExtra("user");
+        System.out.println(name);
         DatabaseHandler dbHandler=  new DatabaseHandler(this);
         Cursor res=dbHandler.getInfo(name);
         if(res.getCount()==0){
@@ -64,6 +64,7 @@ Intent receiveIntent;
             buffer.append(res.getString(3));
 
         }
+        res.close();
         String accType = String.valueOf(buffer);
         //TextView t1 = findViewById(R.id.textView3);
         //t1.setText(accType);
@@ -74,16 +75,18 @@ Intent receiveIntent;
         if(c3.compareTo(accType)==0){
             Toast.makeText(this, "Please login with Artist Account Credentials!", Toast.LENGTH_SHORT).show();
             Intent intent2 = new Intent(getApplicationContext(),login.class);
-            intent2.putExtra("user",name);
+            intent2.putExtra("user",receiveIntent.getStringExtra("user"));
             startActivity(intent2);
             overridePendingTransition(0,0);
         }else if(c2.compareTo(accType)==0){
-            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+           Intent intent2 = new Intent(getApplicationContext(),MainActivity.class);
+           intent2.putExtra("user",receiveIntent.getStringExtra("user"));
+           startActivity(intent2);
             overridePendingTransition(0,0);
         }else{
             Toast.makeText(this, "Please login with Artist Account Credentials!", Toast.LENGTH_SHORT).show();
             Intent intent2 = new Intent(getApplicationContext(),login.class);
-            intent2.putExtra("user",name);
+            intent2.putExtra("user",receiveIntent.getStringExtra("user"));
             startActivity(intent2);
             overridePendingTransition(0,0);
         }

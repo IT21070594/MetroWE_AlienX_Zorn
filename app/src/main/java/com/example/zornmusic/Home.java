@@ -17,14 +17,14 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import Database.DatabaseHandler;
 
 public class Home extends AppCompatActivity {
-
+    String name;
     ImageButton avatar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         Intent receiveIntent=getIntent();
-        String name=receiveIntent.getStringExtra("user");
+         name=receiveIntent.getStringExtra("user");
         System.out.println(name);
         //Initialize And Assign Variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -67,7 +67,7 @@ public class Home extends AppCompatActivity {
             buffer.append(res.getString(3)+"\n");
 
         }
-//
+        res.close();
         avatar=(ImageButton) findViewById(R.id.imageButton);
         String c1 = "Premium User";
         String c2 = "Artist";
@@ -94,6 +94,7 @@ public class Home extends AppCompatActivity {
             buffer.append(res.getString(3));
 
         }
+        res.close();
         String accType = String.valueOf(buffer);
         //TextView t1 = findViewById(R.id.textView3);
         //t1.setText(accType);
@@ -121,20 +122,20 @@ public class Home extends AppCompatActivity {
     }
 
     public void uploadButtonGo(){
-        Intent receiveIntent3=getIntent();
-        String artistName=receiveIntent3.getStringExtra("user");
-        System.out.println(receiveIntent3.getStringExtra("user"));
+//        System.out.println(receiveIntent3.getStringExtra("user"));
         DatabaseHandler dbHandler=  new DatabaseHandler(this);
-        Cursor res=dbHandler.getInfo(artistName);
-        if(res.getCount()==0){
-            Toast.makeText(getApplicationContext(), "No such entry exists", Toast.LENGTH_SHORT).show();
-            return ;
-        }
+        Cursor res=dbHandler.getInfo(name);
+
+//        if(res.getCount()==0){
+//            Toast.makeText(getApplicationContext(), "No such entry exists", Toast.LENGTH_SHORT).show();
+//            return ;
+//        }
         StringBuffer buffer = new StringBuffer();
         while(res.moveToNext()){
             buffer.append(res.getString(3));
 
         }
+        res.close();
         String accType = String.valueOf(buffer);
         //TextView t1 = findViewById(R.id.textView3);
         //t1.setText(accType);
@@ -145,18 +146,18 @@ public class Home extends AppCompatActivity {
         if(c3.compareTo(accType)==0){
             Toast.makeText(this, "Please login with Artist Account Credentials!", Toast.LENGTH_SHORT).show();
             Intent intent2 = new Intent(getApplicationContext(),login.class);
-            intent2.putExtra("user",receiveIntent3.getStringExtra("user"));
+            intent2.putExtra("user",name);
             startActivity(intent2);
             overridePendingTransition(0,0);
         }else if(c2.compareTo(accType)==0){
             Intent intent2 = new Intent(getApplicationContext(),MainActivity.class);
-            intent2.putExtra("user",artistName);
+            intent2.putExtra("user",name);
             startActivity(intent2);
             overridePendingTransition(0,0);
         }else{
             Toast.makeText(this, "Please login with Artist Account Credentials!", Toast.LENGTH_SHORT).show();
             Intent intent2 = new Intent(getApplicationContext(),login.class);
-            intent2.putExtra("user",artistName);
+            intent2.putExtra("user",name);
             startActivity(intent2);
             overridePendingTransition(0,0);
         }

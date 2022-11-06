@@ -29,19 +29,20 @@ public class DisplayDownloads extends AppCompatActivity {
     ArrayList<DownloadModel> downloadModels;
 int id = 0;
     Intent intent1;
+    String name;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_display_downloads);
          intent1=getIntent();
        // intent1.getStringExtra("user");
-        String name=intent1.getStringExtra("user");
+         name=intent1.getStringExtra("user");
 
         //Initialize And Assign Variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
-        //Set Home Selected
-        bottomNavigationView.setSelectedItemId(R.id.home);
+        //Set library Selected
+        bottomNavigationView.setSelectedItemId(R.id.myLibrary);
 
         //Perform ItemSelectedListener
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -127,8 +128,6 @@ int id = 0;
 
     }
     public void uploadButtonGo(){
-        intent1=getIntent();
-        String name=intent1.getStringExtra("user");
         DatabaseHandler dbHandler=  new DatabaseHandler(this);
         Cursor res=dbHandler.getInfo(name);
         if(res.getCount()==0){
@@ -140,6 +139,7 @@ int id = 0;
             buffer.append(res.getString(3));
 
         }
+        res.close();
         String accType = String.valueOf(buffer);
         //TextView t1 = findViewById(R.id.textView3);
         //t1.setText(accType);
@@ -154,7 +154,9 @@ int id = 0;
             startActivity(intent2);
             overridePendingTransition(0,0);
         }else if(c2.compareTo(accType)==0){
-            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            Intent intent2 = new Intent(getApplicationContext(),MainActivity.class);
+            intent2.putExtra("user",name);
+            startActivity(intent2);
             overridePendingTransition(0,0);
         }else{
             Toast.makeText(this, "Please login with Artist Account Credentials!", Toast.LENGTH_SHORT).show();

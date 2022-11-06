@@ -26,7 +26,7 @@ public class editUserProfile extends AppCompatActivity {
     EditText email,pw;
     Button btn1;
     ImageButton back;
-
+    String username;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +45,10 @@ public class editUserProfile extends AppCompatActivity {
                     case R.id.home:
                         return true;
                     case R.id.myLibrary:
-                        startActivity(new Intent(getApplicationContext(), Library.class));
+                        //startActivity(new Intent(getApplicationContext(), Library.class));
+                        Intent intent1 = new Intent(getApplicationContext(),Library.class);
+                        intent1.putExtra("user",receiveIntent.getStringExtra("user"));
+                        startActivity(intent1);
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.uploads:
@@ -88,18 +91,19 @@ public class editUserProfile extends AppCompatActivity {
     }
     public void uploadButtonGo(){
         receiveIntent=getIntent();
-        String name=receiveIntent.getStringExtra("user");
+         username=receiveIntent.getStringExtra("user");
         DatabaseHandler dbHandler=  new DatabaseHandler(this);
-        Cursor res=dbHandler.getInfo(name);
-        if(res.getCount()==0){
-            Toast.makeText(getApplicationContext(), "No such entry exists", Toast.LENGTH_SHORT).show();
-            return ;
-        }
+        Cursor res=dbHandler.getInfo(username);
+//        if(res.getCount()==0){
+//            Toast.makeText(getApplicationContext(), "No such entry exists", Toast.LENGTH_SHORT).show();
+//            return ;
+//        }
         StringBuffer buffer = new StringBuffer();
         while(res.moveToNext()){
             buffer.append(res.getString(3));
 
         }
+        res.close();
         String accType = String.valueOf(buffer);
         //TextView t1 = findViewById(R.id.textView3);
         //t1.setText(accType);
@@ -109,14 +113,20 @@ public class editUserProfile extends AppCompatActivity {
 
         if(c3.compareTo(accType)==0){
             Toast.makeText(this, "Please login with Artist Account Credentials!", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(getApplicationContext(), login.class));
+            Intent intent2 = new Intent(getApplicationContext(),login.class);
+            intent2.putExtra("user",username);
+            startActivity(intent2);
             overridePendingTransition(0,0);
         }else if(c2.compareTo(accType)==0){
-            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            Intent intent2 = new Intent(getApplicationContext(),MainActivity.class);
+            intent2.putExtra("user",username);
+            startActivity(intent2);
             overridePendingTransition(0,0);
         }else{
             Toast.makeText(this, "Please login with Artist Account Credentials!", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(getApplicationContext(), login.class));
+            Intent intent2 = new Intent(getApplicationContext(),login.class);
+            intent2.putExtra("user",username);
+            startActivity(intent2);
             overridePendingTransition(0,0);
         }
     }

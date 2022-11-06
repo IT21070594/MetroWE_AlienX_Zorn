@@ -76,11 +76,15 @@ public class ViewSong extends AppCompatActivity
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.home:
-                        startActivity(new Intent(getApplicationContext(), Home.class));
+                        Intent intent = new Intent(getApplicationContext(),Home.class);
+                        intent.putExtra("user",artistName);
+                        startActivity(intent);
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.myLibrary:
-                        startActivity(new Intent(getApplicationContext(), Library.class));
+                        Intent intent1 = new Intent(getApplicationContext(),Library.class);
+                        intent1.putExtra("user",artistName);
+                        startActivity(intent1);
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.uploads:
@@ -119,6 +123,7 @@ public class ViewSong extends AppCompatActivity
             {
                 Bundle bundle = getIntent().getBundleExtra("songData");
                 id = bundle.getInt("song_id");
+                artistName=bundle.getString("user");
             }
             setResourceWithMusic();
 
@@ -192,6 +197,7 @@ public class ViewSong extends AppCompatActivity
                 bundle.putString("song_lang", lang);
                 bundle.putString("song_genre",genre);
                 bundle.putByteArray("song_image", imageInBytes);
+                bundle.putString("user",artistName);
 
                 Intent intent = new Intent(ViewSong.this, UpdateSong.class);
                 intent.putExtra("songData", bundle);
@@ -208,11 +214,12 @@ public class ViewSong extends AppCompatActivity
 
                 mediaPlayer.reset();
                 mediaPlayer.release();
-                finish();
+
 //
-//                Intent intent = new Intent(ViewSong.this, MainActivity.class);
-//                startActivity(intent);
-//                overridePendingTransition(0,0);
+                Intent intent = new Intent(ViewSong.this, MainActivity.class);
+                intent.putExtra("user",artistName);
+                startActivity(intent);
+                overridePendingTransition(0,0);
             }
         });
     }

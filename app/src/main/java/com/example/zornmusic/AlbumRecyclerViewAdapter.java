@@ -64,6 +64,8 @@ public class AlbumRecyclerViewAdapter extends RecyclerView.Adapter<AlbumRecycler
                 Bundle bundle = new Bundle();
                 bundle.putInt("album_id", objectAlbumClass.getAlbumID());
                 bundle.putString("album_name", objectAlbumClass.getAlbumName());
+                bundle.putString("user",objectAlbumClass.getArtistName());
+
 
                 //To convert Bitmap image to byte array.
                 ByteArrayOutputStream objectByteArrayOutputStream = new ByteArrayOutputStream();
@@ -87,6 +89,7 @@ public class AlbumRecyclerViewAdapter extends RecyclerView.Adapter<AlbumRecycler
                 Bundle bundle = new Bundle();
                 bundle.putInt("album_id", objectAlbumClass.getAlbumID());
                 bundle.putString("album_name", objectAlbumClass.getAlbumName());
+                bundle.putString("user",objectAlbumClass.getArtistName());
 
                 //To convert Bitmap image to byte array.
                 ByteArrayOutputStream objectByteArrayOutputStream = new ByteArrayOutputStream();
@@ -110,6 +113,7 @@ public class AlbumRecyclerViewAdapter extends RecyclerView.Adapter<AlbumRecycler
                 Bundle bundle = new Bundle();
                 bundle.putInt("album_id", objectAlbumClass.getAlbumID());
                 bundle.putString("album_name", objectAlbumClass.getAlbumName());
+                bundle.putString("user",objectAlbumClass.getArtistName());
 
                 //To convert Bitmap image to byte array.
                 ByteArrayOutputStream objectByteArrayOutputStream = new ByteArrayOutputStream();
@@ -141,6 +145,7 @@ public class AlbumRecyclerViewAdapter extends RecyclerView.Adapter<AlbumRecycler
                                 Bundle bundle = new Bundle();
                                 bundle.putInt("album_id", objectAlbumClass.getAlbumID());
                                 bundle.putString("album_name", objectAlbumClass.getAlbumName());
+                                bundle.putString("user",objectAlbumClass.getArtistName());
 
                                 //To convert Bitmap image to byte array.
                                 ByteArrayOutputStream objectByteArrayOutputStream = new ByteArrayOutputStream();

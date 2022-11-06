@@ -29,6 +29,7 @@ public class premiumMakePayment extends AppCompatActivity {
     Button buy;
     CheckBox check;
     Intent receiveIntent;
+    String plan,username;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,8 +38,8 @@ public class premiumMakePayment extends AppCompatActivity {
         amount=findViewById(R.id.payValue);
         receiveIntent=getIntent();
         Bundle bundle=getIntent().getBundleExtra("userinfo");
-        String plan =String.valueOf(bundle.getString("plan"));
-        String username =String.valueOf(bundle.getString("user"));
+         plan =String.valueOf(bundle.getString("plan"));
+         username =String.valueOf(bundle.getString("user"));
         int amountpay = bundle.getInt("payamount");
         amount.setText(String.valueOf(bundle.getInt("payamount")));
         planName.setText(String.valueOf(bundle.getString("plan")));
@@ -67,7 +68,7 @@ public class premiumMakePayment extends AppCompatActivity {
                     if(insert==true){
                         Toast.makeText(getApplicationContext(), "Payment successfull..", Toast.LENGTH_SHORT).show();
                         Intent intent1 = new Intent(getApplicationContext(), Home.class);
-                        intent1.putExtra("userinfo",getIntent().getBundleExtra("userinfo"));
+                        intent1.putExtra("user",username);
                         startActivity(intent1);
                     }else {
                         Toast.makeText(getApplicationContext(), "Payment unsuccessfull..", Toast.LENGTH_SHORT).show();

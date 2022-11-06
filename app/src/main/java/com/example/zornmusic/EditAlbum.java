@@ -37,7 +37,7 @@ public class EditAlbum extends AppCompatActivity {
     private Bitmap imageToStore;
     private byte[] imageInBytes;
     DatabaseHandler objectDatabaseHandler;
-
+    String artistName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,11 +55,15 @@ public class EditAlbum extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.home:
-                        startActivity(new Intent(getApplicationContext(), Home.class));
+                        Intent intent = new Intent(getApplicationContext(),Home.class);
+                        intent.putExtra("user",artistName);
+                        startActivity(intent);
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.myLibrary:
-                        startActivity(new Intent(getApplicationContext(), Library.class));
+                        Intent intent1 = new Intent(getApplicationContext(),Library.class);
+                        intent1.putExtra("user",artistName);
+                        startActivity(intent1);
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.uploads:
@@ -73,9 +77,7 @@ public class EditAlbum extends AppCompatActivity {
         cancelEditBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(EditAlbum.this, Album.class);
-                startActivity(intent);
-                overridePendingTransition(0,0);
+                finish();
             }
         });
 
@@ -101,8 +103,12 @@ public class EditAlbum extends AppCompatActivity {
             Bitmap bitmap = BitmapFactory.decodeByteArray(imageInBytes,0, imageInBytes.length);
 
             //To set the name and image.
+
             editAlbumName.setText(bundle.getString("album_name"));
             editAlbumPhoto.setImageBitmap(bitmap);
+
+            artistName=bundle.getString("user");
+            System.out.println(artistName);
         }
     }
 
@@ -155,9 +161,11 @@ public class EditAlbum extends AppCompatActivity {
             {
                 objectDatabaseHandler.editAlbum(id, editAlbumName.getText().toString(),imageInBytes);
 
-                Intent intent = new Intent(EditAlbum.this,Album.class);
-                startActivity(intent);
+                Intent intent1 = new Intent(getApplicationContext(),Album.class);
+                intent1.putExtra("user",artistName);
+                startActivity(intent1);
                 overridePendingTransition(0,0);
+
             }
             else
             {

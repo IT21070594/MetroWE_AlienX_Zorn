@@ -28,12 +28,13 @@ public class viewPlans extends AppCompatActivity {
     SQLiteDatabase sqLiteDatabase;
     RecyclerView recyclerView;
     MyAdapter myAdapter;
+    String name;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_plans);
         receiveIntent1=getIntent();
-        String name= receiveIntent1.getStringExtra("user");
+         name= receiveIntent1.getStringExtra("user");
         System.out.println(name);
         back=findViewById(R.id.BackBtn);
         back.setOnClickListener(new View.OnClickListener() {

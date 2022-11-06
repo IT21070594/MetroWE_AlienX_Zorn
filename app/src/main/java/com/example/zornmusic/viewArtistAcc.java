@@ -23,12 +23,13 @@ public class viewArtistAcc extends AppCompatActivity {
     ImageButton edit,back;
     TextView accType;
     Button delete,viewUploads,viewPlan,logOut;
+    String name;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_artist_acc);
         receiveIntent=getIntent();
-        String name=receiveIntent.getStringExtra("user");
+         name=receiveIntent.getStringExtra("user");
 
         //Initialize And Assign Variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -80,15 +81,16 @@ public class viewArtistAcc extends AppCompatActivity {
         accType=findViewById(R.id.artistLabel);
         DatabaseHandler dbHandler=  new DatabaseHandler(this);
         Cursor res=dbHandler.getInfo(name);
-        if(res.getCount()==0){
-            Toast.makeText(getApplicationContext(), "No such entry exists", Toast.LENGTH_SHORT).show();
-            return ;
-        }
+//        if(res.getCount()==0){
+//            Toast.makeText(getApplicationContext(), "No such entry exists", Toast.LENGTH_SHORT).show();
+//            return ;
+//        }
         StringBuffer buffer = new StringBuffer();
         while(res.moveToNext()){
             buffer.append(res.getString(3));
 
         }
+        res.close();
         accType.setText(buffer);
         System.out.println(buffer);
 
@@ -142,8 +144,6 @@ public class viewArtistAcc extends AppCompatActivity {
 
     }
     public void uploadButtonGo(){
-        receiveIntent=getIntent();
-        String name=receiveIntent.getStringExtra("user");
         DatabaseHandler dbHandler=  new DatabaseHandler(this);
         Cursor res=dbHandler.getInfo(name);
         if(res.getCount()==0){
@@ -155,6 +155,7 @@ public class viewArtistAcc extends AppCompatActivity {
             buffer.append(res.getString(3));
 
         }
+        res.close();
         String accType = String.valueOf(buffer);
         //TextView t1 = findViewById(R.id.textView3);
         //t1.setText(accType);
@@ -169,7 +170,9 @@ public class viewArtistAcc extends AppCompatActivity {
             startActivity(intent2);
             overridePendingTransition(0,0);
         }else if(c2.compareTo(accType)==0){
-            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+            Intent intent2 = new Intent(getApplicationContext(),MainActivity.class);
+            intent2.putExtra("user",name);
+            startActivity(intent2);
             overridePendingTransition(0,0);
         }else{
             Toast.makeText(this, "Please login with Artist Account Credentials!", Toast.LENGTH_SHORT).show();

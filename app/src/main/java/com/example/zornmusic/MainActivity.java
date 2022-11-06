@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView objectRV;
     private TextView noSongs;
     private RecyclerViewAdapter objectRVAdapter;
-    private String artistName;
+    private String name;
     private Intent intent1;
 
     @Override
@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         intent1=getIntent();
-        String name=intent1.getStringExtra("user");
+         name=intent1.getStringExtra("user");
         System.out.println(intent1.getStringExtra("user"));
         //Initialize And Assign Variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, UploadNewSong.class);
-                intent.putExtra("user",intent1.getStringExtra("user"));
+                intent.putExtra("user",name);
                 startActivity(intent);
                 overridePendingTransition(0,0);
             }
@@ -92,6 +92,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, UploadNewSong.class);
+                intent.putExtra("user",name);
                 startActivity(intent);
                 overridePendingTransition(0,0);
             }
@@ -103,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
             objectRV= findViewById(R.id.songsRV);
 
             intent1 = getIntent();
-            artistName = intent1.getStringExtra("user");
+            name = intent1.getStringExtra("user");
 
             objectDBHandler = new DatabaseHandler(this);
 
@@ -119,14 +120,14 @@ public class MainActivity extends AppCompatActivity {
             field.setAccessible(true);
             field.set(null, 700*1024*1024); //700MB is the new size
 
-            if(objectDBHandler.getArtistSongsData(intent1.getStringExtra("user")).size()==0)
+            if(objectDBHandler.getArtistSongsData(name).size()==0)
             {
                 noSongs.setVisibility(View.VISIBLE);
                 objectRV.setVisibility(View.GONE);
             }
             else
             {
-                objectRVAdapter = new RecyclerViewAdapter(this,objectDBHandler.getArtistSongsData(artistName));
+                objectRVAdapter = new RecyclerViewAdapter(this,objectDBHandler.getArtistSongsData(name));
 
                 objectRV.setHasFixedSize(true);
                 objectRV.setLayoutManager(new LinearLayoutManager(this));
@@ -178,7 +179,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, Album.class);
-                intent.putExtra("user", artistName );
+                intent.putExtra("user", name );
                 //intent.putExtra("user", intent1.getStringExtra("user"));
                 startActivity(intent);
                 overridePendingTransition(0,0);
@@ -189,7 +190,7 @@ public class MainActivity extends AppCompatActivity {
     private void filter(String text)
     {
         ArrayList<Songs> filteredList = new ArrayList<>();
-        ArrayList<Songs> NotFilteredList = objectDBHandler.getArtistSongsData(artistName);
+        ArrayList<Songs> NotFilteredList = objectDBHandler.getArtistSongsData(name);
 
         for(Songs item : NotFilteredList)
         {
@@ -208,7 +209,7 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         if(objectRV!=null && objectRVAdapter!=null)
         {
-            objectRVAdapter = new RecyclerViewAdapter(this,objectDBHandler.getArtistSongsData(artistName));
+            objectRVAdapter = new RecyclerViewAdapter(this,objectDBHandler.getArtistSongsData(name));
 
             objectRV.setHasFixedSize(true);
             objectRV.setLayoutManager(new LinearLayoutManager(this));

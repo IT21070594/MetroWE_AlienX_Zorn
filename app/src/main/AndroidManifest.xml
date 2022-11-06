@@ -33,7 +33,7 @@
             android:name=".Home"
             android:exported="false" />
         <activity
-            android:name=".ArtistPlanInsert"
+            android:name=".SignUp"
             android:exported="false" />
         <activity
             android:name=".viewPremiumUserAcc"
@@ -45,10 +45,10 @@
             android:name=".viewArtistAcc"
             android:exported="false" />
         <activity
-            android:name=".SignUp"
+            android:name=".planInsert"
             android:exported="false" />
         <activity
-            android:name=".planInsert"
+            android:name=".ArtistPlanInsert"
             android:exported="false" />
         <activity
             android:name=".viewUserPlan"

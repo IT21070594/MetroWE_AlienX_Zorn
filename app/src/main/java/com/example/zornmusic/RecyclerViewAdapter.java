@@ -72,7 +72,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             {
                 Bundle bundle = new Bundle();
                 bundle.putInt("song_id", objectSongClass.getSongID());
-
+                bundle.putString("user",objectSongClass.getArtistName());
                 //Resetting the media player when any item view is clicked
                 MyMediaPlayer.getInstance().reset();
                 //Setting the current index at that position
@@ -92,7 +92,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             {
                 Bundle bundle = new Bundle();
                 bundle.putInt("song_id", objectSongClass.getSongID());
-
+                bundle.putString("user",objectSongClass.getArtistName());
                 //Resetting the media player when any item view is clicked
                 MyMediaPlayer.getInstance().reset();
                 //Setting the current index at that position
@@ -111,7 +111,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             {
                 Bundle bundle = new Bundle();
                 bundle.putInt("song_id", objectSongClass.getSongID());
-
+                bundle.putString("user",objectSongClass.getArtistName());
                 //Resetting the media player when any item view is clicked
                 MyMediaPlayer.getInstance().reset();
                 //Setting the current index at that position
@@ -149,6 +149,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                                 bundle.putString("song_name", objectSongClass.getSongName());
                                 bundle.putString("song_lang", objectSongClass.getLang());
                                 bundle.putString("song_genre", objectSongClass.getGenre());
+                                bundle.putString("user",objectSongClass.getArtistName());
 
                                 Intent intent = new Intent(context,UpdateSong.class);
                                 intent.putExtra("songData", bundle);

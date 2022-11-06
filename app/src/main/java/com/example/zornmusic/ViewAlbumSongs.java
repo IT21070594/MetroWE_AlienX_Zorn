@@ -24,19 +24,18 @@ public class ViewAlbumSongs extends AppCompatActivity {
 
     TextView albumName;
     ImageView albumPhoto;
-   // String name;
+    String name;
     int id;
-
+    String artistName;
     private byte[] imageInBytes;
     DatabaseHandler objectDatabaseHandler;
-    Intent receiveIntent;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_album_songs);
-        receiveIntent=getIntent();
-        String name=receiveIntent.getStringExtra("user");
         //Initialize And Assign Variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
@@ -50,13 +49,13 @@ public class ViewAlbumSongs extends AppCompatActivity {
                 switch (item.getItemId()){
                     case R.id.home:
                         Intent intent = new Intent(getApplicationContext(),Home.class);
-                        intent.putExtra("user",receiveIntent.getStringExtra("user"));
+                        intent.putExtra("user",artistName);
                         startActivity(intent);
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.myLibrary:
                         Intent intent1 = new Intent(getApplicationContext(),Library.class);
-                        intent1.putExtra("user",receiveIntent.getStringExtra("user"));
+                        intent1.putExtra("user",artistName);
                         startActivity(intent1);
                         overridePendingTransition(0,0);
                         return true;
@@ -91,15 +90,14 @@ public class ViewAlbumSongs extends AppCompatActivity {
             name = bundle.getString("album_name");
             albumName.setText(name);
             albumPhoto.setImageBitmap(bitmap);
+            artistName= bundle.getString("user");
         }
 
         ImageButton backBtn = findViewById(R.id.backAlBtn);
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ViewAlbumSongs.this, Album.class);
-                startActivity(intent);
-                overridePendingTransition(0,0);
+               finish();
             }
         });
 
@@ -110,8 +108,10 @@ public class ViewAlbumSongs extends AppCompatActivity {
 
                 Bundle bundle = new Bundle();
                 bundle.putInt("album_id", id);
-                bundle.putString("album_name", receiveIntent.getStringExtra("user"));
+                bundle.putString("album_name", name);
                 bundle.putByteArray("album_image", imageInBytes);
+                bundle.putString("user",artistName);
+                System.out.println(artistName);
 
                 Intent intent = new Intent(ViewAlbumSongs.this, EditAlbum.class);
                 intent.putExtra("albumData", bundle);
@@ -128,6 +128,7 @@ public class ViewAlbumSongs extends AppCompatActivity {
                 objectDatabaseHandler.deleteAlbum(id);
 
                 Intent intent = new Intent(ViewAlbumSongs.this, Album.class);
+                intent.putExtra("user",artistName);
                 startActivity(intent);
                 overridePendingTransition(0,0);
             }
@@ -138,6 +139,7 @@ public class ViewAlbumSongs extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ViewAlbumSongs.this, UploadNewSong.class);
+                intent.putExtra("user",artistName);
                 startActivity(intent);
                 overridePendingTransition(0,0);
             }
@@ -148,6 +150,7 @@ public class ViewAlbumSongs extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(ViewAlbumSongs.this, UploadNewSong.class);
+                intent.putExtra("user",artistName);
                 startActivity(intent);
                 overridePendingTransition(0,0);
             }

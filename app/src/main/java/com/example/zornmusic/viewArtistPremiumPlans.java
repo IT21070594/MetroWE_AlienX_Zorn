@@ -28,12 +28,13 @@ public class viewArtistPremiumPlans extends AppCompatActivity {
     SQLiteDatabase sqLiteDatabase;
     RecyclerView recyclerView;
     ArtistPlanAdapter myAdapter;
+    String name;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_artist_premium_plans);
         receiveIntent2 = getIntent();
-        String name=receiveIntent2.getStringExtra("user");
+         name=receiveIntent2.getStringExtra("user");
 
         System.out.println(name);
         back=findViewById(R.id.BackBtn);

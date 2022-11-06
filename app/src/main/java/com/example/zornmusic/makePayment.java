@@ -29,6 +29,7 @@ public class makePayment extends AppCompatActivity {
     Button buy;
     CheckBox check;
     Intent receiveIntent;
+    String username,plan;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,8 +38,8 @@ public class makePayment extends AppCompatActivity {
         amount=findViewById(R.id.payValue);
         receiveIntent=getIntent();
         Bundle bundle=getIntent().getBundleExtra("userinfo");
-        String plan =String.valueOf(bundle.getString("plan"));
-        String username =String.valueOf(bundle.getString("user"));
+         plan =String.valueOf(bundle.getString("plan"));
+        username =String.valueOf(bundle.getString("user"));
         int amountpay = bundle.getInt("payamount");
         amount.setText(String.valueOf(bundle.getInt("payamount")));
         planName.setText(String.valueOf(bundle.getString("plan")));

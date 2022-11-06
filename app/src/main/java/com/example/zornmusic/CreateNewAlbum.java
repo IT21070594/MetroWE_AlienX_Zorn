@@ -46,6 +46,8 @@ public class CreateNewAlbum extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_new_album);
+        intent=getIntent();
+        artistName=intent.getStringExtra("user");
 
         //Initialize And Assign Variable
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -59,11 +61,15 @@ public class CreateNewAlbum extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.home:
-                        startActivity(new Intent(getApplicationContext(), Home.class));
+                        Intent intent = new Intent(getApplicationContext(),Home.class);
+                        intent.putExtra("user",artistName);
+                        startActivity(intent);
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.myLibrary:
-                        startActivity(new Intent(getApplicationContext(), Library.class));
+                        Intent intent1 = new Intent(getApplicationContext(),Library.class);
+                        intent1.putExtra("user",artistName);
+                        startActivity(intent1);
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.uploads:
@@ -145,10 +151,11 @@ public class CreateNewAlbum extends AppCompatActivity {
             {
                 objectDatabaseHandler.insertAlbum(new Albums(id, albumName.getText().toString(),imageToStore, artistName));
 //
-//                Intent intent = new Intent(CreateNewAlbum.this, Album.class);
-//                startActivity(intent);
-//                overridePendingTransition(0,0);
-                finish();
+                Intent intent = new Intent(CreateNewAlbum.this, Album.class);
+                intent.putExtra("user",artistName);
+                startActivity(intent);
+                overridePendingTransition(0,0);
+//                finish();
             }
             else
             {

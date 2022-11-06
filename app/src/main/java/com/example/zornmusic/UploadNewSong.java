@@ -91,13 +91,13 @@ public class UploadNewSong extends AppCompatActivity
                 switch (item.getItemId()){
                     case R.id.home:
                         Intent intent = new Intent(getApplicationContext(),Home.class);
-                        intent.putExtra("user",receiveIntent.getStringExtra("user"));
+                        intent.putExtra("user",artistName);
                         startActivity(intent);
                         overridePendingTransition(0,0);
                         return true;
                     case R.id.myLibrary:
                         Intent intent1 = new Intent(getApplicationContext(),Library.class);
-                        intent1.putExtra("user",receiveIntent.getStringExtra("user"));
+                        intent1.putExtra("user",artistName);
                         startActivity(intent1);
                         overridePendingTransition(0,0);
                         return true;
@@ -216,10 +216,11 @@ public class UploadNewSong extends AppCompatActivity
             if(!songName.getText().toString().isEmpty() && songPhoto.getDrawable()!=null && imageToStore!=null && audioToStore!=null )
             {
                 objectDatabaseHandler.insertSong(new Songs(id, songName.getText().toString(), lang.getText().toString(), genre.getText().toString(),imageToStore, audioToStore, artistName));
-                    finish();
-//                Intent intent = new Intent(UploadNewSong.this, MainActivity.class);
-//                startActivity(intent);
-//                overridePendingTransition(0,0);
+                    //finish();
+                Intent intent = new Intent(UploadNewSong.this, MainActivity.class);
+                intent.putExtra("user",artistName);
+                startActivity(intent);
+                overridePendingTransition(0,0);
             }
             else
             {
