@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/EditPlaylistNameIF"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#292424"
+    android:backgroundTintMode="screen"
+    android:textAlignment="center"
+    tools:context=".EditPlaylistName">
+
+    <TextView
+        android:id="@+id/newnamevtext"
+        android:layout_width="305dp"
+        android:layout_height="70dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:text="@string/newnamevtext"
+        android:textAlignment="center"
+        android:textColor="#f44336"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/enternewname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="350dp"
+        android:ems="10"
+        android:hint="@string/enternewname"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:text="@string/PlaylistName"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textColorHint="#B68F8F"
+        android:textStyle="normal" />
+
+    <Button
+        android:id="@+id/CancelEditPlaylistBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:backgroundTint="#f44336"
+        android:text="@string/CancelBtn"
+        android:textColor="@color/white"
+        android:layout_marginTop="500dp"
+        android:layout_marginLeft="80dp" />
+
+    <Button
+        android:id="@+id/renamebtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="250dp"
+        android:layout_marginTop="500dp"
+        android:backgroundTint="@color/white"
+        android:text="@string/renamebtn"
+        android:onClick="editPlaylist"
+        android:textColor="#f44336"
+        android:textStyle="bold" />
+
+
+    <ImageView
+        android:id="@+id/plEditimage"
+        android:layout_width="176dp"
+        android:layout_height="109dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="250dp"
+        android:layout_marginTop="200dp"
+        app:srcCompat="@android:drawable/ic_menu_camera"
+        tools:layout_editor_absoluteX="101dp"
+        tools:layout_editor_absoluteY="270dp" />
+</RelativeLayout>
+
+
+
+
+
+
+
+
+
+

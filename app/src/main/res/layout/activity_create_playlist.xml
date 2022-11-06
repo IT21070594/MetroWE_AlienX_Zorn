@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/CreatePlaylistIF"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#292424"
+    android:backgroundTintMode="screen"
+    android:textAlignment="center"
+    tools:context=".CreatePlaylist">
+
+    <EditText
+        android:id="@+id/EnterHere"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/white"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="350dp"
+        android:ems="10"
+        android:hint="Enter Here"
+        android:inputType="textPersonName"
+        android:minHeight="48dp"
+        android:text="@string/PlaylistName"
+        android:textAlignment="center"
+        android:textColorHint="#B68F8F"
+        android:textStyle="normal" />
+
+    <TextView
+        android:id="@+id/EnterPlnameHere"
+        android:layout_width="305dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="100dp"
+        android:text="@string/EnternameHere"
+        android:textColor="#f44336"
+        android:textSize="24sp"
+        android:textStyle="bold"
+
+        />
+
+    <Button
+        android:id="@+id/CancelCreatePlaylistBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:backgroundTint="#f44336"
+        android:text="@string/CancelBtn"
+        android:textColor="@color/white"
+        android:layout_marginTop="500dp"
+        android:layout_marginLeft="80dp"
+        />
+
+    <Button
+        android:id="@+id/createPlaylistBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="250dp"
+        android:layout_marginTop="500dp"
+        android:backgroundTint="@color/white"
+        android:text="@string/CreateBtn"
+android:onClick="storePlaylist"
+        android:textColor="#f44336"
+        android:textStyle="bold"
+
+        />
+
+    <ImageView
+        android:id="@+id/plimage"
+        android:layout_width="176dp"
+        android:layout_height="109dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="250dp"
+        android:layout_marginTop="200dp"
+        android:onClick="chooseImage"
+        app:srcCompat="@android:drawable/ic_menu_camera"
+        tools:layout_editor_absoluteX="101dp"
+        tools:layout_editor_absoluteY="270dp" />
+</RelativeLayout>

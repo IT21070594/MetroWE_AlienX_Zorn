@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/addSongs"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#1c1a1a"
+    tools:context=".addSongs">
+
+
+    <TextView
+        android:id="@+id/addSongText"
+        android:layout_width="174dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="50dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="@string/AddsongstoPlaylistpg"
+        android:textColor="#F44336"
+        android:textSize="24sp"
+
+        />
+
+    <SearchView
+        android:id="@+id/Search"
+        android:layout_width="411dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="100dp"
+        android:background="#4e4e50"
+        android:queryHint="@string/NewSearch" />
+
+    <ImageButton
+        android:id="@+id/donebtn"
+        android:layout_width="65dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="20dp"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/img" />
+
+</RelativeLayout>
